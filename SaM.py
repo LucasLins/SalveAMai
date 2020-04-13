@@ -274,166 +274,6 @@ class snail(object):
                 self.washit = 0
 
 
-class cogumelo(object):
-
-    def __init__(self, x, y, width, height, end):
-        self.x = x
-        self.y = y
-        self.width = width
-        self.height = height
-        self.path = [x, end]
-        self.walkCount = 0
-        self.vel = 3
-
-    def draw(self, win):
-        self.move()
-        if self.walkCount + 1 >= 33:
-            self.walkCount = 0
-
-        if self.vel > 0:
-            win.blit(self.walkRight[self.walkCount // 3], (self.x, self.y))
-            self.walkCount += 1
-        else:
-            win.blit(self.walkLeft[self.walkCount // 3], (self.x, self.y))
-            self.walkCount += 1
-
-    def move(self):
-        if self.vel > 0:
-            if self.x < self.path[1] + self.vel:
-                self.x += self.vel
-            else:
-                self.vel = self.vel * -1
-                self.x += self.vel
-                self.walkCount = 0
-        else:
-            if self.x > self.path[0] - self.vel:
-                self.x += self.vel
-            else:
-                self.vel = self.vel * -1
-                self.x += self.vel
-                self.walkCount = 0
-
-
-class toco(object):
-
-    def __init__(self, x, y, width, height, end):
-        self.x = x
-        self.y = y
-        self.width = width
-        self.height = height
-        self.path = [x, end]
-        self.walkCount = 0
-        self.vel = 3
-
-    def draw(self, win):
-        self.move()
-        if self.walkCount + 1 >= 33:
-            self.walkCount = 0
-
-        if self.vel > 0:
-            win.blit(self.walkRight[self.walkCount // 3], (self.x, self.y))
-            self.walkCount += 1
-        else:
-            win.blit(self.walkLeft[self.walkCount // 3], (self.x, self.y))
-            self.walkCount += 1
-
-    def move(self):
-        if self.vel > 0:
-            if self.x < self.path[1] + self.vel:
-                self.x += self.vel
-            else:
-                self.vel = self.vel * -1
-                self.x += self.vel
-                self.walkCount = 0
-        else:
-            if self.x > self.path[0] - self.vel:
-                self.x += self.vel
-            else:
-                self.vel = self.vel * -1
-                self.x += self.vel
-                self.walkCount = 0
-
-
-class slime(object):
-
-    def __init__(self, x, y, width, height, end):
-        self.x = x
-        self.y = y
-        self.width = width
-        self.height = height
-        self.path = [x, end]
-        self.walkCount = 0
-        self.vel = 3
-
-    def draw(self, win):
-        self.move()
-        if self.walkCount + 1 >= 33:
-            self.walkCount = 0
-
-        if self.vel > 0:
-            win.blit(self.walkRight[self.walkCount // 3], (self.x, self.y))
-            self.walkCount += 1
-        else:
-            win.blit(self.walkLeft[self.walkCount // 3], (self.x, self.y))
-            self.walkCount += 1
-
-    def move(self):
-        if self.vel > 0:
-            if self.x < self.path[1] + self.vel:
-                self.x += self.vel
-            else:
-                self.vel = self.vel * -1
-                self.x += self.vel
-                self.walkCount = 0
-        else:
-            if self.x > self.path[0] - self.vel:
-                self.x += self.vel
-            else:
-                self.vel = self.vel * -1
-                self.x += self.vel
-                self.walkCount = 0
-
-
-class digao(object):
-
-    def __init__(self, x, y, width, height, end):
-        self.x = x
-        self.y = y
-        self.width = width
-        self.height = height
-        self.path = [x, end]
-        self.walkCount = 0
-        self.vel = 3
-
-    def draw(self, win):
-        self.move()
-        if self.walkCount + 1 >= 33:
-            self.walkCount = 0
-
-        if self.vel > 0:
-            win.blit(self.walkRight[self.walkCount // 3], (self.x, self.y))
-            self.walkCount += 1
-        else:
-            win.blit(self.walkLeft[self.walkCount // 3], (self.x, self.y))
-            self.walkCount += 1
-
-    def move(self):
-        if self.vel > 0:
-            if self.x < self.path[1] + self.vel:
-                self.x += self.vel
-            else:
-                self.vel = self.vel * -1
-                self.x += self.vel
-                self.walkCount = 0
-        else:
-            if self.x > self.path[0] - self.vel:
-                self.x += self.vel
-            else:
-                self.vel = self.vel * -1
-                self.x += self.vel
-                self.walkCount = 0
-
-
 def redrawGameWindow():
     # Background
     win.blit(bg, (0 - camx, 0 - camy))
@@ -478,6 +318,10 @@ while run:
 
     if camx == 1500:
         music = pygame.mixer.music.load("BGM/BGM01.mp3")
+        pygame.mixer.music.play(-1)
+
+    if camx == 6400:
+        music = pygame.mixer.music.load("BGM/BGM02.mp3")
         pygame.mixer.music.play(-1)
 
     if man.health < 0:
