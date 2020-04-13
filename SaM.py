@@ -310,7 +310,7 @@ while run:
     keys = pygame.key.get_pressed()
     clock.tick(27)
 
-   # print(camx)
+    print(camx)
 
     if camx == 0:
         music = pygame.mixer.music.load("BGM/BGMLOGIN.mp3")
@@ -340,6 +340,9 @@ while run:
 
     # gravidade
     if man.y < 361 and man.isJump == False and man.onPlatform == False:
+        man.y = man.y + 15
+
+    if camx > 3330 and camx < 3395 and man.isJump == False and man.onPlatform == False:
         man.y = man.y + 15
 
     if man.hitbox[1] < platform.hitbox[1] + platform.hitbox[3] and man.hitbox[1] + man.hitbox[3] > platform.hitbox[1]:
