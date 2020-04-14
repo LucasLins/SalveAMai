@@ -187,6 +187,19 @@ class platform(object):
             man.jumpCount = 10
             man.isJump = False
 
+class spike(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, 65, 40)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, 65, 40)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
 class snail(object):
     walkRight = [pygame.image.load('imagens/Mob/Snail/R1S.png'), pygame.image.load('imagens/Mob/Snail/R2S.png'),
                  pygame.image.load('imagens/Mob/Snail/R3S.png'), pygame.image.load('imagens/Mob/Snail/R4S.png'),
@@ -292,6 +305,7 @@ def redrawGameWindow():
     man.draw(win)
     snail.draw(win)
     platform.draw(win)
+    spike.draw(win)
     for bullet in bullets:
         bullet.draw(win)
     pygame.display.update()
@@ -304,14 +318,15 @@ font = pygame.font.SysFont('comicsans', 25, True)
 man = player(400, 470, 64, 64)
 snail = snail(100, 522, 64, 64, 300)
 platform = platform(400, 369, 100, 1)
+spike = spike(3765, 575, 65, 40)
 bullets = []
 run = True
 while run:
     keys = pygame.key.get_pressed()
     clock.tick(27)
 
-    print(camx)
-
+    #print(camx)
+    #print(man.y)
     if camx == 0:
         music = pygame.mixer.music.load("BGM/BGMLOGIN.mp3")
         pygame.mixer.music.play(-1)
@@ -337,6 +352,15 @@ while run:
             life -= 1
             man.health -= 1
             camx = 0
+            
+    if man.hitbox[1] < spike.hitbox[1] + spike.hitbox[3] and man.hitbox[1] + man.hitbox[3] > spike.hitbox[1]:
+        if man.hitbox[0] + man.hitbox[2] > spike.hitbox[0] and man.hitbox[0] < spike.hitbox[0] + spike.hitbox[2]:
+            man.hit()
+            life -= 1
+            man.health -= 1
+            camx = 2065
+            man.x = 400
+            man.y = 470
 
     # gravidade
     if man.y < 361 and man.isJump == False and man.onPlatform == False:
