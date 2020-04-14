@@ -14,15 +14,9 @@ pygame.init()
 
 # Variáveis Imagens
 walkRight = [pygame.image.load('imagens/Player/R1.png'), pygame.image.load('imagens/Player/R2.png'),
-             pygame.image.load('imagens/Player/R3.png'), pygame.image.load('imagens/Player/R4.png'),
-             pygame.image.load('imagens/Player/R5.png'), pygame.image.load('imagens/Player/R6.png'),
-             pygame.image.load('imagens/Player/R7.png'), pygame.image.load('imagens/Player/R8.png'),
-             pygame.image.load('imagens/Player/R9.png')]
+             pygame.image.load('imagens/Player/R3.png'), pygame.image.load('imagens/Player/R4.png')]
 walkLeft = [pygame.image.load('imagens/Player/L1.png'), pygame.image.load('imagens/Player/L2.png'),
-            pygame.image.load('imagens/Player/L3.png'), pygame.image.load('imagens/Player/L4.png'),
-            pygame.image.load('imagens/Player/L5.png'), pygame.image.load('imagens/Player/L6.png'),
-            pygame.image.load('imagens/Player/L7.png'), pygame.image.load('imagens/Player/L8.png'),
-            pygame.image.load('imagens/Player/L9.png')]
+            pygame.image.load('imagens/Player/L3.png'), pygame.image.load('imagens/Player/L4.png')]
 attackLeft = [pygame.image.load('imagens/Player/SL1.png'), pygame.image.load('imagens/Player/SL2.png'),
               pygame.image.load('imagens/Player/SL3.png'), pygame.image.load('imagens/Player/SL4.png'),
               pygame.image.load('imagens/Player/SL5.png'), pygame.image.load('imagens/Player/SL6.png'),
@@ -87,28 +81,29 @@ class player(object):
         self.attackCount = 0
         self.facing = 1  # Direita = 1 | Esquerda = 0
         self.hitbox = (self.x + 23, self.y + 5, 37, 73)
+        self.plathitbox = (self.x + 23, self.y + 100, 37, 26)
         self.health = 3
         self.onPlatform = False
 
     def draw(self, win):
-        if self.attackCount + 1 >= 27:
+        if self.attackCount + 1 >= 24:
             self.attackCount = 0
 
-        if self.walkCount + 1 >= 27:
+        if self.walkCount + 1 >= 24:
             self.walkCount = 0
 
         if self.left:
             if self.jumpCount < 10:
                 win.blit(jumpL, (round(self.x), round(self.y)))
             else:
-                win.blit(walkLeft[self.walkCount // 3], (round(self.x), round(self.y)))
+                win.blit(walkLeft[self.walkCount // 6], (round(self.x), round(self.y)))
                 self.walkCount += 1
 
         elif self.right:
             if self.jumpCount < 10:
                 win.blit(jumpR, (round(self.x), round(self.y)))
             else:
-                win.blit(walkRight[self.walkCount // 3], (round(self.x), round(self.y)))
+                win.blit(walkRight[self.walkCount // 6], (round(self.x), round(self.y)))
                 self.walkCount += 1
 
         elif self.jumpCount < 10 and self.facing == 0:
@@ -137,8 +132,9 @@ class player(object):
         else:
             win.blit(charL, (round(self.x), round(self.y)))
         self.hitbox = (self.x + 23, self.y + 5, 37, 73)
-
-    # pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        self.plathitbox = (self.x + 30, self.y + 75, 20, 1)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.plathitbox, 2)
 
     def hit(self):
         if self.health >= 1:
@@ -186,6 +182,8 @@ class platform(object):
             man.onPlatform = True
             man.jumpCount = 10
             man.isJump = False
+        else:
+            man.onPlatform = False
 
 class spike(object):
 
@@ -194,11 +192,11 @@ class spike(object):
         self.y = y
         self.width = width
         self.height = height
-        self.hitbox = (self.x, self.y, 65, 40)
+        self.hitbox = (self.x, self.y, 125, 40)
 
     def draw(self, win):
-        self.hitbox = (self.x - camx, self.y, 65, 40)
-        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        self.hitbox = (self.x - camx, self.y, 125, 40)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
 class snail(object):
     walkRight = [pygame.image.load('imagens/Mob/Snail/R1S.png'), pygame.image.load('imagens/Mob/Snail/R2S.png'),
@@ -289,6 +287,7 @@ class snail(object):
 
 def redrawGameWindow():
     # Background
+
     win.blit(bg, (0 - camx, 0 - camy))
     win.blit(teclas, (600, 5))
     if life == 3:
@@ -300,12 +299,11 @@ def redrawGameWindow():
     elif life == 0:
         win.blit(vidas0, (336, 5))
 
-    # text = font.render('Vidas: ' + str(life), 1, (255,255,255))
-    # win.blit(text, (400, 10))
     man.draw(win)
     snail.draw(win)
-    platform.draw(win)
     spike.draw(win)
+    platform.draw(win)
+
     for bullet in bullets:
         bullet.draw(win)
     pygame.display.update()
@@ -314,19 +312,24 @@ def redrawGameWindow():
 # Main loop
 camx = 0
 camy = 0
-font = pygame.font.SysFont('comicsans', 25, True)
 man = player(400, 470, 64, 64)
 snail = snail(100, 522, 64, 64, 300)
-platform = platform(400, 369, 100, 1)
-spike = spike(3765, 575, 65, 40)
+spike = spike(3735, 575, 65, 40)
+platform = platform(400, 480, 100, 1)
 bullets = []
+
 run = True
 while run:
     keys = pygame.key.get_pressed()
     clock.tick(27)
 
+    #TESTES
     #print(camx)
     #print(man.y)
+    #print(man.onPlatform)
+    #print(man.isJump)
+    #print(man.y)
+
     if camx == 0:
         music = pygame.mixer.music.load("BGM/BGMLOGIN.mp3")
         pygame.mixer.music.play(-1)
@@ -352,7 +355,7 @@ while run:
             life -= 1
             man.health -= 1
             camx = 0
-            
+
     if man.hitbox[1] < spike.hitbox[1] + spike.hitbox[3] and man.hitbox[1] + man.hitbox[3] > spike.hitbox[1]:
         if man.hitbox[0] + man.hitbox[2] > spike.hitbox[0] and man.hitbox[0] < spike.hitbox[0] + spike.hitbox[2]:
             man.hit()
@@ -363,14 +366,16 @@ while run:
             man.y = 470
 
     # gravidade
-    if man.y < 361 and man.isJump == False and man.onPlatform == False:
-        man.y = man.y + 15
+    if man.y < 470 and man.isJump == False and man.onPlatform == False:
+        man.y = man.y + 10
 
     if camx > 3330 and camx < 3395 and man.isJump == False and man.onPlatform == False:
-        man.y = man.y + 15
+        man.y = man.y + 10
+    elif man.y > 470:
+        man.y = 470
 
-    if man.hitbox[1] < platform.hitbox[1] + platform.hitbox[3] and man.hitbox[1] + man.hitbox[3] > platform.hitbox[1]:
-        if man.hitbox[0] + man.hitbox[2] > platform.hitbox[0] and man.hitbox[0] < platform.hitbox[0] + platform.hitbox[2]:
+    if man.plathitbox[1] < platform.hitbox[1] + platform.hitbox[3] and man.plathitbox[1] + man.plathitbox[3] > platform.hitbox[1]:
+        if man.plathitbox[0] + man.plathitbox[2] > platform.hitbox[0] and man.plathitbox[0] < platform.hitbox[0] + platform.hitbox[2]:
             platform.hit()
             man.onPlatform = True
         else:
@@ -451,7 +456,7 @@ while run:
             neg = 1
             if man.jumpCount < 0:
                 neg = -1
-            man.y -= (man.jumpCount ** 2) / 4 * neg
+            man.y -= round((man.jumpCount ** 2) / 4 * neg)
             #camy -=(man.jumpCount ** 2) / 4 * neg
             man.jumpCount -= 1
         else:
