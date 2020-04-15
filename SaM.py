@@ -1,6 +1,5 @@
 import pygame
 
-
 class cor:
     AMARELO = '\033[93m'
     VERDE = '\033[92m'
@@ -36,6 +35,7 @@ smileL = pygame.image.load('imagens/Player/smileL.png')
 arrowL = pygame.image.load('imagens/Player/arrowL.png')
 arrowR = pygame.image.load('imagens/Player/arrowR.png')
 bg = pygame.image.load('imagens/Mapa/mapa.png')
+#bg2 = pygame.image.load('imagens/Mapa/mapa2.png')
 teclas = pygame.image.load('imagens/Misc/keys.png')
 icone = pygame.image.load('imagens/Misc/icone.png')
 diepic = pygame.image.load('imagens/Mapa/die.png')
@@ -46,9 +46,9 @@ vidas1 = pygame.image.load('imagens/Mapa/vidas1.png')
 vidas0 = pygame.image.load('imagens/Mapa/vidas0.png')
 
 # Configurações da janela
+pygame.display.set_icon(icone)
 win = pygame.display.set_mode((800, 600))
 pygame.display.set_caption("Salve a Mai!")
-pygame.display.set_icon(icone)
 clock = pygame.time.Clock()
 life = 3
 
@@ -58,9 +58,6 @@ hitSound = pygame.mixer.Sound("BGM/hit.wav")
 snaildie = pygame.mixer.Sound("BGM/snaildie.wav")
 die = pygame.mixer.Sound("BGM/die.wav")
 gameover = pygame.mixer.Sound("BGM/gameover.wav")
-
-#music = pygame.mixer.music.load("BGM/BGM01.mp3")
-#pygame.mixer.music.play(-1)
 
 
 # Variáveis do Personagem
@@ -185,6 +182,7 @@ class platform(object):
         else:
             man.onPlatform = False
 
+
 class spike(object):
 
     def __init__(self, x, y, width, height):
@@ -197,6 +195,7 @@ class spike(object):
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, 125, 40)
         pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
 
 class snail(object):
     walkRight = [pygame.image.load('imagens/Mob/Snail/R1S.png'), pygame.image.load('imagens/Mob/Snail/R2S.png'),
@@ -239,9 +238,9 @@ class snail(object):
                 win.blit(self.RHS, (round(self.x - camx - 2), round(self.y - 8)))
                 self.washit = 0
             elif self.washit == 2:
-                win.blit(self.LHS, (round(self.x -camx - 5), round(self.y - 8)))
+                win.blit(self.LHS, (round(self.x - camx - 5), round(self.y - 8)))
                 self.washit = 0
-            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] -2, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] - 2, self.hitbox[1] - 17, 49, 8))
             pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0], self.hitbox[1] - 15, 45 - (15 * (3 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y - 3, 37, 29)
             # pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
@@ -284,12 +283,12 @@ class snail(object):
             else:
                 self.washit = 0
 
-
 def redrawGameWindow():
     # Background
-
-    win.blit(bg, (0 - camx, 0 - camy))
+    win.blit(bg, (0 - camx, 0))
+    win.blit(bg2, (10920 - camx, 0))
     win.blit(teclas, (600, 5))
+
     if life == 3:
         win.blit(vidas3, (336, 5))
     elif life == 2:
@@ -311,7 +310,6 @@ def redrawGameWindow():
 
 # Main loop
 camx = 0
-camy = 0
 man = player(400, 470, 64, 64)
 snail = snail(100, 522, 64, 64, 300)
 spike = spike(3735, 575, 65, 40)
@@ -402,7 +400,6 @@ while run:
 
     # Seta esquerda
     if keys[pygame.K_LEFT] and man.x > man.vel and man.x - camx < 400:
-       # man.x -= man.vel
         man.left = True
         man.right = False
         man.facing = 0
@@ -410,7 +407,6 @@ while run:
 
     # Seta direita
     elif keys[pygame.K_RIGHT] and man.x < 800 - man.width - man.vel:
-      #  man.x += man.vel
         man.right = True
         man.left = False
         man.facing = 1
@@ -457,7 +453,6 @@ while run:
             if man.jumpCount < 0:
                 neg = -1
             man.y -= round((man.jumpCount ** 2) / 4 * neg)
-            #camy -=(man.jumpCount ** 2) / 4 * neg
             man.jumpCount -= 1
         else:
             man.isJump = False
