@@ -537,7 +537,7 @@ class spike2(object):
         pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
 ## Monstros Porto Lith
-class snail(object):
+class snail1(object):
     walkR = [pygame.image.load('imagens/Mob/Snail/R1S.png'), pygame.image.load('imagens/Mob/Snail/R2S.png'),
              pygame.image.load('imagens/Mob/Snail/R3S.png'), pygame.image.load('imagens/Mob/Snail/R4S.png'),
              pygame.image.load('imagens/Mob/Snail/R5S.png'), pygame.image.load('imagens/Mob/Snail/R6S.png')]
@@ -557,7 +557,7 @@ class snail(object):
         self.path = [x, end]
         self.walkCount = 0
         self.vel = 3
-        self.hitbox = (self.x - camx, self.y - 3, 37, 29)
+        self.hitbox = (self.x - camx, self.y - 3, self.width, self.height)
         self.washit = 0
         self.health = 3
         self.visible = True
@@ -582,7 +582,7 @@ class snail(object):
                 self.washit = 0
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] - 2, self.hitbox[1] - 17, 49, 8))
             pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0], self.hitbox[1] - 15, 45 - (15 * (3 - self.health)), 4))
-            self.hitbox = (self.x - camx, self.y - 3, 37, 29)
+            self.hitbox = (self.x - camx, self.y - 3, self.width, self.height)
             # pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
@@ -623,6 +623,455 @@ class snail(object):
             else:
                 self.washit = 0
 
+class snail2(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 3
+        self.hitbox = (self.x - camx, self.y - 3, self.width, self.height)
+        self.washit = 0
+        self.health = 3
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 18:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(snail1.walkR[self.walkCount // 3], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(snail1.walkL[self.walkCount // 3], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(snail1.RHS, (round(self.x - camx - 2), round(self.y - 8)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(snail1.LHS, (round(self.x - camx - 5), round(self.y - 8)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] - 2, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0], self.hitbox[1] - 15, 45 - (15 * (3 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y - 3, self.width, self.height)
+            # pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        hitSound.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                snaildie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                snaildie.play()
+            else:
+                self.washit = 0
+
+class snail3(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 3
+        self.hitbox = (self.x - camx, self.y - 3, self.width, self.height)
+        self.washit = 0
+        self.health = 3
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 18:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(snail1.walkR[self.walkCount // 3], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(snail1.walkL[self.walkCount // 3], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(snail1.RHS, (round(self.x - camx - 2), round(self.y - 8)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(snail1.LHS, (round(self.x - camx - 5), round(self.y - 8)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] - 2, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0], self.hitbox[1] - 15, 45 - (15 * (3 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y - 3, self.width, self.height)
+            # pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        hitSound.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                snaildie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                snaildie.play()
+            else:
+                self.washit = 0
+
+class snail4(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 3
+        self.hitbox = (self.x - camx, self.y - 3, self.width, self.height)
+        self.washit = 0
+        self.health = 3
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 18:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(snail1.walkR[self.walkCount // 3], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(snail1.walkL[self.walkCount // 3], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(snail1.RHS, (round(self.x - camx - 2), round(self.y - 8)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(snail1.LHS, (round(self.x - camx - 5), round(self.y - 8)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] - 2, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0], self.hitbox[1] - 15, 45 - (15 * (3 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y - 3, self.width, self.height)
+            # pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        hitSound.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                snaildie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                snaildie.play()
+            else:
+                self.washit = 0
+
+class snail5(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 3
+        self.hitbox = (self.x - camx, self.y - 3, self.width, self.height)
+        self.washit = 0
+        self.health = 3
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 18:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(snail1.walkR[self.walkCount // 3], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(snail1.walkL[self.walkCount // 3], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(snail1.RHS, (round(self.x - camx - 2), round(self.y - 8)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(snail1.LHS, (round(self.x - camx - 5), round(self.y - 8)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] - 2, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0], self.hitbox[1] - 15, 45 - (15 * (3 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y - 3, self.width, self.height)
+            # pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        hitSound.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                snaildie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                snaildie.play()
+            else:
+                self.washit = 0
+
+class snail6(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 3
+        self.hitbox = (self.x - camx, self.y - 3, self.width, self.height)
+        self.washit = 0
+        self.health = 3
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 18:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(snail1.walkR[self.walkCount // 3], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(snail1.walkL[self.walkCount // 3], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(snail1.RHS, (round(self.x - camx - 2), round(self.y - 8)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(snail1.LHS, (round(self.x - camx - 5), round(self.y - 8)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] - 2, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0], self.hitbox[1] - 15, 45 - (15 * (3 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y - 3, self.width, self.height)
+            # pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        hitSound.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                snaildie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                snaildie.play()
+            else:
+                self.washit = 0
+
+class snail7(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 3
+        self.hitbox = (self.x - camx, self.y - 3, self.width, self.height)
+        self.washit = 0
+        self.health = 3
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 18:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(snail1.walkR[self.walkCount // 3], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(snail1.walkL[self.walkCount // 3], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(snail1.RHS, (round(self.x - camx - 2), round(self.y - 8)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(snail1.LHS, (round(self.x - camx - 5), round(self.y - 8)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] - 2, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0], self.hitbox[1] - 15, 45 - (15 * (3 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y - 3, self.width, self.height)
+            # pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        hitSound.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                snaildie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                snaildie.play()
+            else:
+                self.washit = 0
 def redrawGameWindow():
     # Background (Mapa)
     win.blit(bg, (0 - camx, 0))
@@ -646,8 +1095,13 @@ def redrawGameWindow():
 
     #Draw Porto Lith
     #Draw Monstros Porto Lith
-    snail.draw(win)
-
+    snail1.draw(win)
+    snail2.draw(win)
+    snail3.draw(win)
+    snail4.draw(win)
+    snail5.draw(win)
+    snail6.draw(win)
+    snail7.draw(win)
     #Draw Espinhos Porto Lith
     spike1.draw(win)
     spike2.draw(win)
@@ -674,7 +1128,7 @@ def redrawGameWindow():
 
 
 # Main loop
-camx = 3870 #Camera
+camx = 3800 #Camera
 
 # Variavel Player
 man = player(400, 470, 64, 64)
@@ -683,7 +1137,14 @@ onGravity = False
 checkpoint = 2065
 
 # Variavel Monstros Porto Lith
-snail = snail(100, 522, 64, 64, 300)
+snail1 = snail1(3195, 522, 37, 26, 3430)
+snail2 = snail2(3850, 522, 37, 26, 4080)
+snail3 = snail3(4270, 424, 37, 26, 4363)
+snail4 = snail4(4465, 384, 37, 26, 4563)
+snail5 = snail5(4435, 152, 37, 26, 4563)
+snail6 = snail6(4980, 522, 37, 26, 5163)
+snail7 = snail7(5690, 334, 37, 26, 5718)
+
 
 # Variavel Espinhos Porto Lith
 spike1 = spike1(3735, 575, 115, 40)
@@ -719,12 +1180,14 @@ while run:
     #print(man.onPlatform)
     #print(man.isJump)
 
+    if camx == 6545:
+        checkpoint = 6545
 # BGM de cada cidade
     if camx == 0:
         music = pygame.mixer.music.load("BGM/BGMLOGIN.mp3")
         pygame.mixer.music.play(-1)
 
-    if camx == 1500:
+    if camx == 1370:
         music = pygame.mixer.music.load("BGM/BGM01.mp3")
         pygame.mixer.music.play(-1)
 
@@ -742,8 +1205,8 @@ while run:
         break
 
 # Colisão Monstros Porto Lith
-    if man.hitbox[1] < snail.hitbox[1] + snail.hitbox[3] and man.hitbox[1] + man.hitbox[3] > snail.hitbox[1]:
-        if man.hitbox[0] + man.hitbox[2] > snail.hitbox[0] and man.hitbox[0] < snail.hitbox[0] + snail.hitbox[2]:
+    if man.hitbox[1] < snail1.hitbox[1] + snail1.hitbox[3] and man.hitbox[1] + man.hitbox[3] > snail1.hitbox[1]:
+        if man.hitbox[0] + man.hitbox[2] > snail1.hitbox[0] and man.hitbox[0] < snail1.hitbox[0] + snail1.hitbox[2]:
             man.hit()
             life -= 1
             man.health -= 1
@@ -751,6 +1214,60 @@ while run:
             man.x = 400
             man.y = 470
 
+    if man.hitbox[1] < snail2.hitbox[1] + snail2.hitbox[3] and man.hitbox[1] + man.hitbox[3] > snail2.hitbox[1]:
+        if man.hitbox[0] + man.hitbox[2] > snail2.hitbox[0] and man.hitbox[0] < snail2.hitbox[0] + snail2.hitbox[2]:
+            man.hit()
+            life -= 1
+            man.health -= 1
+            camx = checkpoint
+            man.x = 400
+            man.y = 470
+            
+    if man.hitbox[1] < snail3.hitbox[1] + snail3.hitbox[3] and man.hitbox[1] + man.hitbox[3] > snail3.hitbox[1]:
+        if man.hitbox[0] + man.hitbox[2] > snail3.hitbox[0] and man.hitbox[0] < snail3.hitbox[0] + snail3.hitbox[2]:
+            man.hit()
+            life -= 1
+            man.health -= 1
+            camx = checkpoint
+            man.x = 400
+            man.y = 470
+            
+    if man.hitbox[1] < snail4.hitbox[1] + snail4.hitbox[3] and man.hitbox[1] + man.hitbox[3] > snail4.hitbox[1]:
+        if man.hitbox[0] + man.hitbox[2] > snail4.hitbox[0] and man.hitbox[0] < snail4.hitbox[0] + snail4.hitbox[2]:
+            man.hit()
+            life -= 1
+            man.health -= 1
+            camx = checkpoint
+            man.x = 400
+            man.y = 470
+            
+    if man.hitbox[1] < snail5.hitbox[1] + snail5.hitbox[3] and man.hitbox[1] + man.hitbox[3] > snail5.hitbox[1]:
+        if man.hitbox[0] + man.hitbox[2] > snail5.hitbox[0] and man.hitbox[0] < snail5.hitbox[0] + snail5.hitbox[2]:
+            man.hit()
+            life -= 1
+            man.health -= 1
+            camx = checkpoint
+            man.x = 400
+            man.y = 470
+            
+    if man.hitbox[1] < snail6.hitbox[1] + snail6.hitbox[3] and man.hitbox[1] + man.hitbox[3] > snail6.hitbox[1]:
+        if man.hitbox[0] + man.hitbox[2] > snail6.hitbox[0] and man.hitbox[0] < snail6.hitbox[0] + snail6.hitbox[2]:
+            man.hit()
+            life -= 1
+            man.health -= 1
+            camx = checkpoint
+            man.x = 400
+            man.y = 470
+            
+    if man.hitbox[1] < snail7.hitbox[1] + snail7.hitbox[3] and man.hitbox[1] + man.hitbox[3] > snail7.hitbox[1]:
+        if man.hitbox[0] + man.hitbox[2] > snail7.hitbox[0] and man.hitbox[0] < snail7.hitbox[0] + snail7.hitbox[2]:
+            man.hit()
+            life -= 1
+            man.health -= 1
+            camx = checkpoint
+            man.x = 400
+            man.y = 470
+            
 # Colisão Espinhos Porto Lith
     if man.hitbox[1] < spike1.hitbox[1] + spike1.hitbox[3] and man.hitbox[1] + man.hitbox[3] > spike1.hitbox[1]:
         if man.hitbox[0] + man.hitbox[2] > spike1.hitbox[0] and man.hitbox[0] < spike1.hitbox[0] + spike1.hitbox[2]:
@@ -883,10 +1400,10 @@ while run:
         onGravity = False
 
 # Gravidade / Buracos Porto Lith
-    if camx > 3330 and camx < 3395 and man.isJump == False and man.onPlatform == False:
+    if camx > 3330 and camx <= 3395 and man.isJump == False and man.onPlatform == False:
         man.y = man.y + 10
 
-    if camx > 4815 and camx < 5660 and man.isJump == False and man.onPlatform == False:
+    elif camx > 4815 and camx < 5660 and man.isJump == False and man.onPlatform == False:
         man.y = man.y + 10
 
     elif man.y > 470:
@@ -895,11 +1412,41 @@ while run:
 # Colisão Flechas
     for arrow in arrows:
         # Colisão Flechas Monstros Porto Lith
-        if arrow.y - arrow.radius < snail.hitbox[1] + snail.hitbox[3] and arrow.y + arrow.radius > snail.hitbox[1]:
-            if arrow.x + arrow.radius > snail.hitbox[0] and arrow.x - arrow.radius < snail.hitbox[0] + snail.hitbox[2]:
-                snail.hit()
+        if arrow.y - arrow.radius < snail1.hitbox[1] + snail1.hitbox[3] and arrow.y + arrow.radius > snail1.hitbox[1]:
+            if arrow.x + arrow.radius > snail1.hitbox[0] and arrow.x - arrow.radius < snail1.hitbox[0] + snail1.hitbox[2]:
+                snail1.hit()
                 arrows.pop(arrows.index(arrow))
 
+        if arrow.y - arrow.radius < snail2.hitbox[1] + snail2.hitbox[3] and arrow.y + arrow.radius > snail2.hitbox[1]:
+            if arrow.x + arrow.radius > snail2.hitbox[0] and arrow.x - arrow.radius < snail2.hitbox[0] + snail2.hitbox[2]:
+                snail2.hit()
+                arrows.pop(arrows.index(arrow))
+                
+        if arrow.y - arrow.radius < snail3.hitbox[1] + snail3.hitbox[3] and arrow.y + arrow.radius > snail3.hitbox[1]:
+            if arrow.x + arrow.radius > snail3.hitbox[0] and arrow.x - arrow.radius < snail3.hitbox[0] + snail3.hitbox[2]:
+                snail3.hit()
+                arrows.pop(arrows.index(arrow))
+
+        if arrow.y - arrow.radius < snail4.hitbox[1] + snail4.hitbox[3] and arrow.y + arrow.radius > snail4.hitbox[1]:
+            if arrow.x + arrow.radius > snail4.hitbox[0] and arrow.x - arrow.radius < snail4.hitbox[0] + snail4.hitbox[2]:
+                snail4.hit()
+                arrows.pop(arrows.index(arrow))
+
+        if arrow.y - arrow.radius < snail5.hitbox[1] + snail5.hitbox[3] and arrow.y + arrow.radius > snail5.hitbox[1]:
+            if arrow.x + arrow.radius > snail5.hitbox[0] and arrow.x - arrow.radius < snail5.hitbox[0] + snail5.hitbox[2]:
+                snail5.hit()
+                arrows.pop(arrows.index(arrow))
+                
+        if arrow.y - arrow.radius < snail6.hitbox[1] + snail6.hitbox[3] and arrow.y + arrow.radius > snail6.hitbox[1]:
+            if arrow.x + arrow.radius > snail6.hitbox[0] and arrow.x - arrow.radius < snail6.hitbox[0] + snail6.hitbox[2]:
+                snail6.hit()
+                arrows.pop(arrows.index(arrow))
+                
+        if arrow.y - arrow.radius < snail7.hitbox[1] + snail7.hitbox[3] and arrow.y + arrow.radius > snail7.hitbox[1]:
+            if arrow.x + arrow.radius > snail7.hitbox[0] and arrow.x - arrow.radius < snail7.hitbox[0] + snail7.hitbox[2]:
+                snail7.hit()
+                arrows.pop(arrows.index(arrow))
+                
         if arrow.x < 800 and arrow.x > 0:
             arrow.x += arrow.vel
         else:
