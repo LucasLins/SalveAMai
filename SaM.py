@@ -1,5 +1,6 @@
 import pygame
 
+
 class cor:
     AMARELO = '\033[93m'
     VERDE = '\033[92m'
@@ -43,7 +44,7 @@ arrowR = pygame.image.load('imagens/Player/arrowR.png')
 
 # Imagens HUD / Background
 bg = pygame.image.load('imagens/Mapa/mapa.png')
-#bg2 = pygame.image.load('imagens/Mapa/mapa2.png')
+# bg2 = pygame.image.load('imagens/Mapa/mapa2.png')
 teclas = pygame.image.load('imagens/Misc/keys.png')
 icone = pygame.image.load('imagens/Misc/icone.png')
 diepic = pygame.image.load('imagens/Mapa/die.png')
@@ -140,7 +141,7 @@ class player(object):
             win.blit(charL, (round(self.x), round(self.y)))
         self.hitbox = (self.x + 23, self.y + 5, 37, 73)
         self.plathitbox = (self.x + 30, self.y + 75, 20, 1)
-        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        # pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
         pygame.draw.rect(win, (255, 0, 0), self.plathitbox, 2)
 
     def hit(self):
@@ -188,12 +189,13 @@ class platform1(object):
         pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
-        if man.jumpCount <= 0:
-            man.onPlatform = True
-            man.jumpCount = 10
-            man.isJump = False
+        if player.jumpCount <= 0:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
         else:
-            man.onPlatform = False
+            player.onPlatform = False
+
 
 class platform2(object):
 
@@ -209,12 +211,13 @@ class platform2(object):
         pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
-        if man.jumpCount <= 0:
-            man.onPlatform = True
-            man.jumpCount = 10
-            man.isJump = False
+        if player.jumpCount <= 0:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
         else:
-            man.onPlatform = False
+            player.onPlatform = False
+
 
 class platform3(object):
 
@@ -230,12 +233,13 @@ class platform3(object):
         pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
-        if man.jumpCount <= 0:
-            man.onPlatform = True
-            man.jumpCount = 10
-            man.isJump = False
+        if player.jumpCount <= 0:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
         else:
-            man.onPlatform = False
+            player.onPlatform = False
+
 
 class platform4(object):
 
@@ -251,12 +255,13 @@ class platform4(object):
         pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
-        if man.jumpCount <= -1:
-            man.onPlatform = True
-            man.jumpCount = 10
-            man.isJump = False
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
         else:
-            man.onPlatform = False
+            player.onPlatform = False
+
 
 class platform5(object):
 
@@ -272,12 +277,13 @@ class platform5(object):
         pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
-        if man.jumpCount <= -1:
-            man.onPlatform = True
-            man.jumpCount = 10
-            man.isJump = False
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
         else:
-            man.onPlatform = False
+            player.onPlatform = False
+
 
 class platform6(object):
 
@@ -293,12 +299,13 @@ class platform6(object):
         pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
-        if man.jumpCount <= -1:
-            man.onPlatform = True
-            man.jumpCount = 10
-            man.isJump = False
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
         else:
-            man.onPlatform = False
+            player.onPlatform = False
+
 
 class platform7(object):
 
@@ -314,12 +321,13 @@ class platform7(object):
         pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
-        if man.jumpCount <= -1:
-            man.onPlatform = True
-            man.jumpCount = 10
-            man.isJump = False
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
         else:
-            man.onPlatform = False
+            player.onPlatform = False
+
 
 class platform8(object):
 
@@ -335,12 +343,13 @@ class platform8(object):
         pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
-        if man.jumpCount <= -1:
-            man.onPlatform = True
-            man.jumpCount = 10
-            man.isJump = False
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
         else:
-            man.onPlatform = False
+            player.onPlatform = False
+
 
 class platform9(object):
 
@@ -356,12 +365,13 @@ class platform9(object):
         pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
-        if man.jumpCount <= -1:
-            man.onPlatform = True
-            man.jumpCount = 10
-            man.isJump = False
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
         else:
-            man.onPlatform = False
+            player.onPlatform = False
+
 
 class platform10(object):
 
@@ -377,12 +387,13 @@ class platform10(object):
         pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
-        if man.jumpCount <= -1:
-            man.onPlatform = True
-            man.jumpCount = 10
-            man.isJump = False
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
         else:
-            man.onPlatform = False
+            player.onPlatform = False
+
 
 class platform11(object):
 
@@ -398,12 +409,13 @@ class platform11(object):
         pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
-        if man.jumpCount <= -1:
-            man.onPlatform = True
-            man.jumpCount = 10
-            man.isJump = False
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
         else:
-            man.onPlatform = False
+            player.onPlatform = False
+
 
 class platform12(object):
 
@@ -419,12 +431,13 @@ class platform12(object):
         pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
-        if man.jumpCount <= -1:
-            man.onPlatform = True
-            man.jumpCount = 10
-            man.isJump = False
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
         else:
-            man.onPlatform = False
+            player.onPlatform = False
+
 
 class platform13(object):
 
@@ -440,12 +453,13 @@ class platform13(object):
         pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
-        if man.jumpCount <= -1:
-            man.onPlatform = True
-            man.jumpCount = 10
-            man.isJump = False
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
         else:
-            man.onPlatform = False
+            player.onPlatform = False
+
 
 class platform14(object):
 
@@ -461,12 +475,13 @@ class platform14(object):
         pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
-        if man.jumpCount <= -1:
-            man.onPlatform = True
-            man.jumpCount = 10
-            man.isJump = False
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
         else:
-            man.onPlatform = False
+            player.onPlatform = False
+
 
 class platform15(object):
 
@@ -482,12 +497,13 @@ class platform15(object):
         pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
-        if man.jumpCount <= -1:
-            man.onPlatform = True
-            man.jumpCount = 10
-            man.isJump = False
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
         else:
-            man.onPlatform = False
+            player.onPlatform = False
+
 
 class platform16(object):
 
@@ -503,12 +519,14 @@ class platform16(object):
         pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
-        if man.jumpCount <= -1:
-            man.onPlatform = True
-            man.jumpCount = 10
-            man.isJump = False
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
         else:
-            man.onPlatform = False
+            player.onPlatform = False
+
+
 ## Espinhos Porto Lith
 class spike1(object):
 
@@ -522,6 +540,7 @@ class spike1(object):
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
         pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
 
 class spike2(object):
 
@@ -583,7 +602,7 @@ class snail1(object):
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] - 2, self.hitbox[1] - 17, 49, 8))
             pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0], self.hitbox[1] - 15, 45 - (15 * (3 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y - 3, self.width, self.height)
-            # pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -622,6 +641,7 @@ class snail1(object):
                 snaildie.play()
             else:
                 self.washit = 0
+
 
 class snail2(object):
     def __init__(self, x, y, width, height, end):
@@ -658,7 +678,7 @@ class snail2(object):
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] - 2, self.hitbox[1] - 17, 49, 8))
             pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0], self.hitbox[1] - 15, 45 - (15 * (3 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y - 3, self.width, self.height)
-            # pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -697,6 +717,7 @@ class snail2(object):
                 snaildie.play()
             else:
                 self.washit = 0
+
 
 class snail3(object):
     def __init__(self, x, y, width, height, end):
@@ -733,7 +754,7 @@ class snail3(object):
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] - 2, self.hitbox[1] - 17, 49, 8))
             pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0], self.hitbox[1] - 15, 45 - (15 * (3 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y - 3, self.width, self.height)
-            # pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -772,6 +793,7 @@ class snail3(object):
                 snaildie.play()
             else:
                 self.washit = 0
+
 
 class snail4(object):
     def __init__(self, x, y, width, height, end):
@@ -808,7 +830,7 @@ class snail4(object):
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] - 2, self.hitbox[1] - 17, 49, 8))
             pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0], self.hitbox[1] - 15, 45 - (15 * (3 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y - 3, self.width, self.height)
-            # pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -847,6 +869,7 @@ class snail4(object):
                 snaildie.play()
             else:
                 self.washit = 0
+
 
 class snail5(object):
     def __init__(self, x, y, width, height, end):
@@ -883,7 +906,7 @@ class snail5(object):
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] - 2, self.hitbox[1] - 17, 49, 8))
             pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0], self.hitbox[1] - 15, 45 - (15 * (3 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y - 3, self.width, self.height)
-            # pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -922,6 +945,7 @@ class snail5(object):
                 snaildie.play()
             else:
                 self.washit = 0
+
 
 class snail6(object):
     def __init__(self, x, y, width, height, end):
@@ -958,7 +982,7 @@ class snail6(object):
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] - 2, self.hitbox[1] - 17, 49, 8))
             pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0], self.hitbox[1] - 15, 45 - (15 * (3 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y - 3, self.width, self.height)
-            # pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -997,6 +1021,7 @@ class snail6(object):
                 snaildie.play()
             else:
                 self.washit = 0
+
 
 class snail7(object):
     def __init__(self, x, y, width, height, end):
@@ -1033,7 +1058,7 @@ class snail7(object):
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] - 2, self.hitbox[1] - 17, 49, 8))
             pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0], self.hitbox[1] - 15, 45 - (15 * (3 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y - 3, self.width, self.height)
-            # pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -1072,12 +1097,828 @@ class snail7(object):
                 snaildie.play()
             else:
                 self.washit = 0
-def redrawGameWindow():
+
+# Objetos Henesys
+## Espinhos Henesys
+class spike3(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+class spike4(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+class spike5(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+class spike6(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+## Plataformas Henesys
+class platform17(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform18(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform19(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform20(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform21(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform22(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform23(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform24(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+
+class platform25(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform26(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform27(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform28(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform29(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform30(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform31(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform32(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform33(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform34(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform35(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform36(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform37(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform38(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform39(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform40(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform41(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform42(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform43(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform44(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform45(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform46(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform47(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform48(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+## Monstros Henesys
+class cogu1(object):
+    walkR = [pygame.image.load('imagens/Mob/Cogu/RC1.png'), pygame.image.load('imagens/Mob/Cogu/RC2.png'),
+             pygame.image.load('imagens/Mob/Cogu/RC3.png'), pygame.image.load('imagens/Mob/Cogu/RC4.png'),
+             pygame.image.load('imagens/Mob/Cogu/RC5.png'), pygame.image.load('imagens/Mob/Cogu/RC6.png')]
+
+    walkL = [pygame.image.load('imagens/Mob/Cogu/LC1.png'), pygame.image.load('imagens/Mob/Cogu/LC2.png'),
+             pygame.image.load('imagens/Mob/Cogu/LC3.png'), pygame.image.load('imagens/Mob/Cogu/LC4.png'),
+             pygame.image.load('imagens/Mob/Cogu/LC5.png'), pygame.image.load('imagens/Mob/Cogu/LC6.png')]
+
+    RHS = pygame.image.load('imagens/Mob/Cogu/RHC.png')
+    LHS = pygame.image.load('imagens/Mob/Cogu/LHC.png')
+
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 4
+        self.hitbox = (self.x - camx, self.y - 3, self.width, self.height)
+        self.washit = 0
+        self.health = 3
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 18:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(self.walkR[self.walkCount // 3], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(self.walkL[self.walkCount // 3], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(self.RHS, (round(self.x - camx - 2), round(self.y - 8)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(self.LHS, (round(self.x - camx - 5), round(self.y - 8)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] - 2, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0], self.hitbox[1] - 15, 45 - (15 * (3 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y - 3, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        hitSound.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                snaildie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                snaildie.play()
+            else:
+                self.washit = 0
+
+def GameWindow():
     # Background (Mapa)
     win.blit(bg, (0 - camx, 0))
-    #win.blit(bg2, (10920 - camx, 0))
+    # win.blit(bg2, (10920 - camx, 0))
 
-    #HUD
+    # HUD
     win.blit(teclas, (600, 5))
     if life == 3:
         win.blit(vidas3, (336, 5))
@@ -1088,13 +1929,13 @@ def redrawGameWindow():
     elif life == 0:
         win.blit(vidas0, (336, 5))
 
-    #Draw Player
-    man.draw(win)
+    # Draw Player
+    player.draw(win)
     for arrow in arrows:
         arrow.draw(win)
 
-    #Draw Porto Lith
-    #Draw Monstros Porto Lith
+    # Draw Porto Lith
+    # Draw Monstros Porto Lith
     snail1.draw(win)
     snail2.draw(win)
     snail3.draw(win)
@@ -1102,11 +1943,12 @@ def redrawGameWindow():
     snail5.draw(win)
     snail6.draw(win)
     snail7.draw(win)
-    #Draw Espinhos Porto Lith
+
+    # Draw Espinhos Porto Lith
     spike1.draw(win)
     spike2.draw(win)
 
-    #Draw Plataformas Porto Lith
+    # Draw Plataformas Porto Lith
     platform1.draw(win)
     platform2.draw(win)
     platform3.draw(win)
@@ -1124,14 +1966,53 @@ def redrawGameWindow():
     platform15.draw(win)
     platform16.draw(win)
 
+    # Draw Henesys
+    # Draw Espinhos Henesys
+    spike3.draw(win)
+    spike4.draw(win)
+    spike5.draw(win)
+    spike6.draw(win)
+
+    #Draw Plataformas Henesys
+    platform16.draw(win)
+    platform17.draw(win)
+    platform18.draw(win)
+    platform19.draw(win)
+    platform20.draw(win)
+    platform21.draw(win)
+    platform22.draw(win)
+    platform23.draw(win)
+    platform24.draw(win)
+    platform25.draw(win)
+    platform26.draw(win)
+    platform27.draw(win)
+    platform28.draw(win)
+    platform29.draw(win)
+    platform30.draw(win)
+    platform31.draw(win)
+    platform32.draw(win)
+    platform33.draw(win)
+    platform34.draw(win)
+    platform35.draw(win)
+    platform36.draw(win)
+    platform37.draw(win)
+    platform38.draw(win)
+    platform39.draw(win)
+    platform40.draw(win)
+    platform41.draw(win)
+    platform42.draw(win)
+
+# Draw Monstros Henesys
+    cogu1.draw(win)
+
     pygame.display.update()
 
 
 # Main loop
-camx = 3800 #Camera
+camx = 7800  # Camera
 
 # Variavel Player
-man = player(400, 470, 64, 64)
+player = player(400, 50, 64, 64)
 arrows = []
 onGravity = False
 checkpoint = 2065
@@ -1144,7 +2025,6 @@ snail4 = snail4(4465, 384, 37, 26, 4563)
 snail5 = snail5(4435, 152, 37, 26, 4563)
 snail6 = snail6(4980, 522, 37, 26, 5163)
 snail7 = snail7(5690, 334, 37, 26, 5718)
-
 
 # Variavel Espinhos Porto Lith
 spike1 = spike1(3735, 575, 115, 40)
@@ -1168,21 +2048,60 @@ platform14 = platform14(5800, 270, 50, 20)
 platform15 = platform15(5915, 415, 50, 20)
 platform16 = platform16(6020, 470, 50, 20)
 
+# Variavel Espinhos Henesys
+spike3 = spike3(7635, 500, 30, 40)
+spike4 = spike4(7725, 560, 90, 40)
+spike5 = spike5(7855, 560, 90, 40)
+spike6 = spike6(8345, 560, 790, 40)
+
+# Variavel Plataformas Henesys
+platform17 = platform17(8415, 485, 50, 20)
+platform18 = platform18(8535, 435, 50, 20)
+platform19 = platform19(8415, 375, 50, 30)
+platform20 = platform20(8315, 310, 50, 20)
+platform21 = platform21(8200, 245, 50, 20)
+platform22 = platform22(8200, 155, 50, 20)
+platform23 = platform23(8310, 140, 50, 20)
+platform24 = platform24(8430, 140, 50, 20)
+platform25 = platform25(8550, 140, 50, 20)
+platform26 = platform26(8680, 140, 50, 20)
+platform27 = platform27(8800, 435, 50, 20)
+platform28 = platform28(8910, 375, 50, 40)
+platform29 = platform29(9035, 450, 50, 20)
+platform30 = platform30(9880, 450, 50, 20)
+platform31 = platform31(9700, 375, 145, 20)
+platform32 = platform32(9505, 375, 145, 20)
+platform33 = platform33(9325, 290, 145, 20)
+platform34 = platform34(9505, 225, 145, 20)
+platform35 = platform35(9700, 225, 145, 20)
+platform36 = platform36(9905, 225, 145, 20)
+platform37 = platform37(10085, 300, 145, 20)
+platform38 = platform38(10245, 380, 145, 20)
+platform39 = platform39(10425, 300, 145, 20)
+platform40 = platform40(10350, 190, 50, 20)
+platform41 = platform41(10350, 105, 50, 20)
+platform42 = platform42(10130, 105, 145, 20)
+
+# Variavel Monstros Henesys
+cogu1 = cogu1(7100, 483, 64, 64, 7325)
+
 run = True
 while run:
     keys = pygame.key.get_pressed()
     clock.tick(27)
 
-    #TESTES
-    print("JumpCount:",man.jumpCount,"Camx:",camx,"onPlatform:",man.onPlatform,"isJump:",man.isJump)
-    #print(camx)
-    #print(man.y)
-    #print(man.onPlatform)
-    #print(man.isJump)
+    # TESTES
+    print("JumpCount:", player.jumpCount, "Camx:", camx, "onPlatform:", player.onPlatform, "isJump:", player.isJump)
+    # print(camx)
+    # print(player.y)
+    # print(player.onPlatform)
+    # print(player.isJump)
 
+    # Checkpoints
     if camx == 6545:
         checkpoint = 6545
-# BGM de cada cidade
+
+    # BGM de cada cidade
     if camx == 0:
         music = pygame.mixer.music.load("BGM/BGMLOGIN.mp3")
         pygame.mixer.music.play(-1)
@@ -1195,8 +2114,8 @@ while run:
         music = pygame.mixer.music.load("BGM/BGM02.mp3")
         pygame.mixer.music.play(-1)
 
-# Verificação de GameOver
-    if man.health < 0:
+    # Verificação de GameOver
+    if player.health < 0:
         gameover.play()
         win.blit(gameoverpic, (0, 0))
         pygame.display.update()
@@ -1204,249 +2123,612 @@ while run:
         print(cor.VERMELHO + 'GAMEOVER! Boa sorte da próxima vez.' + cor.FIM)
         break
 
-# Colisão Monstros Porto Lith
-    if man.hitbox[1] < snail1.hitbox[1] + snail1.hitbox[3] and man.hitbox[1] + man.hitbox[3] > snail1.hitbox[1]:
-        if man.hitbox[0] + man.hitbox[2] > snail1.hitbox[0] and man.hitbox[0] < snail1.hitbox[0] + snail1.hitbox[2]:
-            man.hit()
+    # Colisão Monstros Porto Lith
+    if player.hitbox[1] < snail1.hitbox[1] + snail1.hitbox[3] and player.hitbox[1] + player.hitbox[3] > snail1.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > snail1.hitbox[0] and player.hitbox[0] < snail1.hitbox[0] + \
+                snail1.hitbox[2]:
+            player.hit()
             life -= 1
-            man.health -= 1
+            player.health -= 1
             camx = checkpoint
-            man.x = 400
-            man.y = 470
+            player.x = 400
+            player.y = 470
 
-    if man.hitbox[1] < snail2.hitbox[1] + snail2.hitbox[3] and man.hitbox[1] + man.hitbox[3] > snail2.hitbox[1]:
-        if man.hitbox[0] + man.hitbox[2] > snail2.hitbox[0] and man.hitbox[0] < snail2.hitbox[0] + snail2.hitbox[2]:
-            man.hit()
+    if player.hitbox[1] < snail2.hitbox[1] + snail2.hitbox[3] and player.hitbox[1] + player.hitbox[3] > snail2.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > snail2.hitbox[0] and player.hitbox[0] < snail2.hitbox[0] + \
+                snail2.hitbox[2]:
+            player.hit()
             life -= 1
-            man.health -= 1
+            player.health -= 1
             camx = checkpoint
-            man.x = 400
-            man.y = 470
-            
-    if man.hitbox[1] < snail3.hitbox[1] + snail3.hitbox[3] and man.hitbox[1] + man.hitbox[3] > snail3.hitbox[1]:
-        if man.hitbox[0] + man.hitbox[2] > snail3.hitbox[0] and man.hitbox[0] < snail3.hitbox[0] + snail3.hitbox[2]:
-            man.hit()
-            life -= 1
-            man.health -= 1
-            camx = checkpoint
-            man.x = 400
-            man.y = 470
-            
-    if man.hitbox[1] < snail4.hitbox[1] + snail4.hitbox[3] and man.hitbox[1] + man.hitbox[3] > snail4.hitbox[1]:
-        if man.hitbox[0] + man.hitbox[2] > snail4.hitbox[0] and man.hitbox[0] < snail4.hitbox[0] + snail4.hitbox[2]:
-            man.hit()
-            life -= 1
-            man.health -= 1
-            camx = checkpoint
-            man.x = 400
-            man.y = 470
-            
-    if man.hitbox[1] < snail5.hitbox[1] + snail5.hitbox[3] and man.hitbox[1] + man.hitbox[3] > snail5.hitbox[1]:
-        if man.hitbox[0] + man.hitbox[2] > snail5.hitbox[0] and man.hitbox[0] < snail5.hitbox[0] + snail5.hitbox[2]:
-            man.hit()
-            life -= 1
-            man.health -= 1
-            camx = checkpoint
-            man.x = 400
-            man.y = 470
-            
-    if man.hitbox[1] < snail6.hitbox[1] + snail6.hitbox[3] and man.hitbox[1] + man.hitbox[3] > snail6.hitbox[1]:
-        if man.hitbox[0] + man.hitbox[2] > snail6.hitbox[0] and man.hitbox[0] < snail6.hitbox[0] + snail6.hitbox[2]:
-            man.hit()
-            life -= 1
-            man.health -= 1
-            camx = checkpoint
-            man.x = 400
-            man.y = 470
-            
-    if man.hitbox[1] < snail7.hitbox[1] + snail7.hitbox[3] and man.hitbox[1] + man.hitbox[3] > snail7.hitbox[1]:
-        if man.hitbox[0] + man.hitbox[2] > snail7.hitbox[0] and man.hitbox[0] < snail7.hitbox[0] + snail7.hitbox[2]:
-            man.hit()
-            life -= 1
-            man.health -= 1
-            camx = checkpoint
-            man.x = 400
-            man.y = 470
-            
-# Colisão Espinhos Porto Lith
-    if man.hitbox[1] < spike1.hitbox[1] + spike1.hitbox[3] and man.hitbox[1] + man.hitbox[3] > spike1.hitbox[1]:
-        if man.hitbox[0] + man.hitbox[2] > spike1.hitbox[0] and man.hitbox[0] < spike1.hitbox[0] + spike1.hitbox[2]:
-            man.hit()
-            life -= 1
-            man.health -= 1
-            camx = checkpoint
-            man.x = 400
-            man.y = 470
+            player.x = 400
+            player.y = 470
 
-    if man.hitbox[1] < spike2.hitbox[1] + spike2.hitbox[3] and man.hitbox[1] + man.hitbox[3] > spike2.hitbox[1]:
-        if man.hitbox[0] + man.hitbox[2] > spike2.hitbox[0] and man.hitbox[0] < spike2.hitbox[0] + spike2.hitbox[2]:
-            man.hit()
+    if player.hitbox[1] < snail3.hitbox[1] + snail3.hitbox[3] and player.hitbox[1] + player.hitbox[3] > snail3.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > snail3.hitbox[0] and player.hitbox[0] < snail3.hitbox[0] + \
+                snail3.hitbox[2]:
+            player.hit()
             life -= 1
-            man.health -= 1
+            player.health -= 1
             camx = checkpoint
-            man.x = 400
-            man.y = 470
-            
-# Colisão Plataformas Porto Lith
-    if man.plathitbox[1] < platform1.hitbox[1] + platform1.hitbox[3] and man.plathitbox[1] + man.plathitbox[3] > platform1.hitbox[1]:
-        if man.plathitbox[0] + man.plathitbox[2] > platform1.hitbox[0] and man.plathitbox[0] < platform1.hitbox[0] + platform1.hitbox[2]:
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < snail4.hitbox[1] + snail4.hitbox[3] and player.hitbox[1] + player.hitbox[3] > snail4.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > snail4.hitbox[0] and player.hitbox[0] < snail4.hitbox[0] + \
+                snail4.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < snail5.hitbox[1] + snail5.hitbox[3] and player.hitbox[1] + player.hitbox[3] > snail5.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > snail5.hitbox[0] and player.hitbox[0] < snail5.hitbox[0] + \
+                snail5.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < snail6.hitbox[1] + snail6.hitbox[3] and player.hitbox[1] + player.hitbox[3] > snail6.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > snail6.hitbox[0] and player.hitbox[0] < snail6.hitbox[0] + \
+                snail6.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < snail7.hitbox[1] + snail7.hitbox[3] and player.hitbox[1] + player.hitbox[3] > snail7.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > snail7.hitbox[0] and player.hitbox[0] < snail7.hitbox[0] + \
+                snail7.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    # Colisão Espinhos Porto Lith
+    if player.hitbox[1] < spike1.hitbox[1] + spike1.hitbox[3] and player.hitbox[1] + player.hitbox[3] > spike1.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > spike1.hitbox[0] and player.hitbox[0] < spike1.hitbox[0] + \
+                spike1.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < spike2.hitbox[1] + spike2.hitbox[3] and player.hitbox[1] + player.hitbox[3] > spike2.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > spike2.hitbox[0] and player.hitbox[0] < spike2.hitbox[0] + \
+                spike2.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    # Colisão Plataformas Porto Lith
+    if player.plathitbox[1] < platform1.hitbox[1] + platform1.hitbox[3] and player.plathitbox[1] + player.plathitbox[
+        3] > platform1.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform1.hitbox[0] and player.plathitbox[0] < \
+                platform1.hitbox[0] + platform1.hitbox[2]:
             platform1.hit()
-            man.onPlatform = True
+            player.onPlatform = True
         else:
-            man.onPlatform = False
+            player.onPlatform = False
 
-    if man.plathitbox[1] < platform2.hitbox[1] + platform2.hitbox[3] and man.plathitbox[1] + man.plathitbox[3] > platform2.hitbox[1]:
-        if man.plathitbox[0] + man.plathitbox[2] > platform2.hitbox[0] and man.plathitbox[0] < platform2.hitbox[0] + platform2.hitbox[2]:
+    if player.plathitbox[1] < platform2.hitbox[1] + platform2.hitbox[3] and player.plathitbox[1] + player.plathitbox[
+        3] > platform2.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform2.hitbox[0] and player.plathitbox[0] < \
+                platform2.hitbox[0] + platform2.hitbox[2]:
             platform2.hit()
-            man.onPlatform = True
+            player.onPlatform = True
 
-    if man.plathitbox[1] < platform3.hitbox[1] + platform3.hitbox[3] and man.plathitbox[1] + man.plathitbox[3] > platform3.hitbox[1]:
-        if man.plathitbox[0] + man.plathitbox[2] > platform3.hitbox[0] and man.plathitbox[0] < platform3.hitbox[0] + platform3.hitbox[2]:
+    if player.plathitbox[1] < platform3.hitbox[1] + platform3.hitbox[3] and player.plathitbox[1] + player.plathitbox[
+        3] > platform3.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform3.hitbox[0] and player.plathitbox[0] < \
+                platform3.hitbox[0] + platform3.hitbox[2]:
             platform3.hit()
-            man.onPlatform = True
+            player.onPlatform = True
         else:
-            man.onPlatform = False
+            player.onPlatform = False
 
-    if man.plathitbox[1] < platform4.hitbox[1] + platform4.hitbox[3] and man.plathitbox[1] + man.plathitbox[3] > platform4.hitbox[1]:
-        if man.plathitbox[0] + man.plathitbox[2] > platform4.hitbox[0] and man.plathitbox[0] < platform4.hitbox[0] + platform4.hitbox[2]:
+    if player.plathitbox[1] < platform4.hitbox[1] + platform4.hitbox[3] and player.plathitbox[1] + player.plathitbox[
+        3] > platform4.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform4.hitbox[0] and player.plathitbox[0] < \
+                platform4.hitbox[0] + platform4.hitbox[2]:
             platform4.hit()
-            man.onPlatform = True
+            player.onPlatform = True
         else:
-            man.onPlatform = False
-            
-    if man.plathitbox[1] < platform5.hitbox[1] + platform5.hitbox[3] and man.plathitbox[1] + man.plathitbox[3] > platform5.hitbox[1]:
-        if man.plathitbox[0] + man.plathitbox[2] > platform5.hitbox[0] and man.plathitbox[0] < platform5.hitbox[0] + platform5.hitbox[2]:
+            player.onPlatform = False
+
+    if player.plathitbox[1] < platform5.hitbox[1] + platform5.hitbox[3] and player.plathitbox[1] + player.plathitbox[
+        3] > platform5.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform5.hitbox[0] and player.plathitbox[0] < \
+                platform5.hitbox[0] + platform5.hitbox[2]:
             platform5.hit()
-            man.onPlatform = True
+            player.onPlatform = True
         else:
-            man.onPlatform = False
+            player.onPlatform = False
 
-    if man.plathitbox[1] < platform6.hitbox[1] + platform6.hitbox[3] and man.plathitbox[1] + man.plathitbox[3] > platform6.hitbox[1]:
-        if man.plathitbox[0] + man.plathitbox[2] > platform6.hitbox[0] and man.plathitbox[0] < platform6.hitbox[0] + platform6.hitbox[2]:
+    if player.plathitbox[1] < platform6.hitbox[1] + platform6.hitbox[3] and player.plathitbox[1] + player.plathitbox[
+        3] > platform6.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform6.hitbox[0] and player.plathitbox[0] < \
+                platform6.hitbox[0] + platform6.hitbox[2]:
             platform6.hit()
-            man.onPlatform = True
+            player.onPlatform = True
         else:
-            man.onPlatform = False
+            player.onPlatform = False
 
-    if man.plathitbox[1] < platform7.hitbox[1] + platform7.hitbox[3] and man.plathitbox[1] + man.plathitbox[3] > platform7.hitbox[1]:
-        if man.plathitbox[0] + man.plathitbox[2] > platform7.hitbox[0] and man.plathitbox[0] < platform7.hitbox[0] + platform7.hitbox[2]:
+    if player.plathitbox[1] < platform7.hitbox[1] + platform7.hitbox[3] and player.plathitbox[1] + player.plathitbox[
+        3] > platform7.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform7.hitbox[0] and player.plathitbox[0] < \
+                platform7.hitbox[0] + platform7.hitbox[2]:
             platform7.hit()
-            man.onPlatform = True
+            player.onPlatform = True
         else:
-            man.onPlatform = False
+            player.onPlatform = False
 
-    if man.plathitbox[1] < platform8.hitbox[1] + platform8.hitbox[3] and man.plathitbox[1] + man.plathitbox[3] > platform8.hitbox[1]:
-        if man.plathitbox[0] + man.plathitbox[2] > platform8.hitbox[0] and man.plathitbox[0] < platform8.hitbox[0] + platform8.hitbox[2]:
+    if player.plathitbox[1] < platform8.hitbox[1] + platform8.hitbox[3] and player.plathitbox[1] + player.plathitbox[
+        3] > platform8.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform8.hitbox[0] and player.plathitbox[0] < \
+                platform8.hitbox[0] + platform8.hitbox[2]:
             platform8.hit()
-            man.onPlatform = True
+            player.onPlatform = True
         else:
-            man.onPlatform = False
+            player.onPlatform = False
 
-    if man.plathitbox[1] < platform9.hitbox[1] + platform9.hitbox[3] and man.plathitbox[1] + man.plathitbox[3] > platform9.hitbox[1]:
-        if man.plathitbox[0] + man.plathitbox[2] > platform9.hitbox[0] and man.plathitbox[0] < platform9.hitbox[0] + platform9.hitbox[2]:
+    if player.plathitbox[1] < platform9.hitbox[1] + platform9.hitbox[3] and player.plathitbox[1] + player.plathitbox[
+        3] > platform9.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform9.hitbox[0] and player.plathitbox[0] < \
+                platform9.hitbox[0] + platform9.hitbox[2]:
             platform9.hit()
-            man.onPlatform = True
+            player.onPlatform = True
         else:
-            man.onPlatform = False
+            player.onPlatform = False
 
-    if man.plathitbox[1] < platform10.hitbox[1] + platform10.hitbox[3] and man.plathitbox[1] + man.plathitbox[3] > platform10.hitbox[1]:
-        if man.plathitbox[0] + man.plathitbox[2] > platform10.hitbox[0] and man.plathitbox[0] < platform10.hitbox[0] + platform10.hitbox[2]:
+    if player.plathitbox[1] < platform10.hitbox[1] + platform10.hitbox[3] and player.plathitbox[1] + player.plathitbox[
+        3] > platform10.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform10.hitbox[0] and player.plathitbox[0] < \
+                platform10.hitbox[0] + platform10.hitbox[2]:
             platform10.hit()
-            man.onPlatform = True
+            player.onPlatform = True
         else:
-            man.onPlatform = False
+            player.onPlatform = False
 
-    if man.plathitbox[1] < platform11.hitbox[1] + platform11.hitbox[3] and man.plathitbox[1] + man.plathitbox[3] > platform11.hitbox[1]:
-        if man.plathitbox[0] + man.plathitbox[2] > platform11.hitbox[0] and man.plathitbox[0] < platform11.hitbox[0] + platform11.hitbox[2]:
+    if player.plathitbox[1] < platform11.hitbox[1] + platform11.hitbox[3] and player.plathitbox[1] + player.plathitbox[
+        3] > platform11.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform11.hitbox[0] and player.plathitbox[0] < \
+                platform11.hitbox[0] + platform11.hitbox[2]:
             platform11.hit()
-            man.onPlatform = True
+            player.onPlatform = True
         else:
-            man.onPlatform = False
+            player.onPlatform = False
 
-    if man.plathitbox[1] < platform12.hitbox[1] + platform12.hitbox[3] and man.plathitbox[1] + man.plathitbox[3] > platform12.hitbox[1]:
-        if man.plathitbox[0] + man.plathitbox[2] > platform12.hitbox[0] and man.plathitbox[0] < platform12.hitbox[0] + platform12.hitbox[2]:
+    if player.plathitbox[1] < platform12.hitbox[1] + platform12.hitbox[3] and player.plathitbox[1] + player.plathitbox[
+        3] > platform12.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform12.hitbox[0] and player.plathitbox[0] < \
+                platform12.hitbox[0] + platform12.hitbox[2]:
             platform12.hit()
-            man.onPlatform = True
+            player.onPlatform = True
 
-    if man.plathitbox[1] < platform13.hitbox[1] + platform13.hitbox[3] and man.plathitbox[1] + man.plathitbox[3] > platform13.hitbox[1]:
-        if man.plathitbox[0] + man.plathitbox[2] > platform13.hitbox[0] and man.plathitbox[0] < platform13.hitbox[0] + platform13.hitbox[2]:
+    if player.plathitbox[1] < platform13.hitbox[1] + platform13.hitbox[3] and player.plathitbox[1] + player.plathitbox[
+        3] > platform13.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform13.hitbox[0] and player.plathitbox[0] < \
+                platform13.hitbox[0] + platform13.hitbox[2]:
             platform13.hit()
-            man.onPlatform = True
+            player.onPlatform = True
 
-    if man.plathitbox[1] < platform14.hitbox[1] + platform14.hitbox[3] and man.plathitbox[1] + man.plathitbox[3] > platform14.hitbox[1]:
-        if man.plathitbox[0] + man.plathitbox[2] > platform14.hitbox[0] and man.plathitbox[0] < platform14.hitbox[0] + platform14.hitbox[2]:
+    if player.plathitbox[1] < platform14.hitbox[1] + platform14.hitbox[3] and player.plathitbox[1] + player.plathitbox[
+        3] > platform14.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform14.hitbox[0] and player.plathitbox[0] < \
+                platform14.hitbox[0] + platform14.hitbox[2]:
             platform14.hit()
-            man.onPlatform = True
+            player.onPlatform = True
         else:
-            man.onPlatform = False
+            player.onPlatform = False
 
-    if man.plathitbox[1] < platform15.hitbox[1] + platform15.hitbox[3] and man.plathitbox[1] + man.plathitbox[3] > platform15.hitbox[1]:
-        if man.plathitbox[0] + man.plathitbox[2] > platform15.hitbox[0] and man.plathitbox[0] < platform15.hitbox[0] + platform15.hitbox[2]:
+    if player.plathitbox[1] < platform15.hitbox[1] + platform15.hitbox[3] and player.plathitbox[1] + player.plathitbox[
+        3] > platform15.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform15.hitbox[0] and player.plathitbox[0] < \
+                platform15.hitbox[0] + platform15.hitbox[2]:
             platform15.hit()
-            man.onPlatform = True
+            player.onPlatform = True
 
-
-    if man.plathitbox[1] < platform16.hitbox[1] + platform16.hitbox[3] and man.plathitbox[1] + man.plathitbox[3] > platform16.hitbox[1]:
-        if man.plathitbox[0] + man.plathitbox[2] > platform16.hitbox[0] and man.plathitbox[0] < platform16.hitbox[0] + platform16.hitbox[2]:
+    if player.plathitbox[1] < platform16.hitbox[1] + platform16.hitbox[3] and player.plathitbox[1] + player.plathitbox[
+        3] > platform16.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform16.hitbox[0] and player.plathitbox[0] < \
+                platform16.hitbox[0] + platform16.hitbox[2]:
             platform16.hit()
-            man.onPlatform = True
+            player.onPlatform = True
+
+    if player.plathitbox[1] < platform17.hitbox[1] + platform17.hitbox[3] and player.plathitbox[1] + player.plathitbox[
+        3] > platform17.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform17.hitbox[0] and player.plathitbox[0] < \
+                platform17.hitbox[0] + platform17.hitbox[2]:
+            platform17.hit()
+            player.onPlatform = True
+        else:
+            player.onPlatform = False
 
 
-# Funções da Gravidade
-    if man.y < 470 and man.isJump == False and man.onPlatform == False:
-        man.y = man.y + 10
+    if player.plathitbox[1] < platform18.hitbox[1] + platform18.hitbox[3] and player.plathitbox[1] + player.plathitbox[
+        3] > platform18.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform18.hitbox[0] and player.plathitbox[0] < \
+                platform18.hitbox[0] + platform18.hitbox[2]:
+            platform18.hit()
+            player.onPlatform = True
+        else:
+            player.onPlatform = False
+
+    if player.plathitbox[1] < platform19.hitbox[1] + platform19.hitbox[3] and player.plathitbox[1] + player.plathitbox[
+        3] > platform19.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform19.hitbox[0] and player.plathitbox[0] < \
+                platform19.hitbox[0] + platform19.hitbox[2]:
+            platform19.hit()
+            player.onPlatform = True
+        else:
+            player.onPlatform = False
+
+    if player.plathitbox[1] < platform20.hitbox[1] + platform20.hitbox[3] and player.plathitbox[1] + player.plathitbox[
+        3] > platform20.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform20.hitbox[0] and player.plathitbox[0] < \
+                platform20.hitbox[0] + platform20.hitbox[2]:
+            platform20.hit()
+            player.onPlatform = True
+        else:
+            player.onPlatform = False
+
+    if player.plathitbox[1] < platform21.hitbox[1] + platform21.hitbox[3] and player.plathitbox[1] + player.plathitbox[
+        3] > platform21.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform21.hitbox[0] and player.plathitbox[0] < \
+                platform21.hitbox[0] + platform21.hitbox[2]:
+            platform21.hit()
+            player.onPlatform = True
+        else:
+            player.onPlatform = False
+
+    if player.plathitbox[1] < platform22.hitbox[1] + platform22.hitbox[3] and player.plathitbox[1] + player.plathitbox[
+        3] > platform22.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform22.hitbox[0] and player.plathitbox[0] < \
+                platform22.hitbox[0] + platform22.hitbox[2]:
+            platform22.hit()
+            player.onPlatform = True
+        else:
+            player.onPlatform = False
+
+    if player.plathitbox[1] < platform23.hitbox[1] + platform23.hitbox[3] and player.plathitbox[1] + player.plathitbox[
+        3] > platform23.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform23.hitbox[0] and player.plathitbox[0] < \
+                platform23.hitbox[0] + platform23.hitbox[2]:
+            platform23.hit()
+            player.onPlatform = True
+        else:
+            player.onPlatform = False
+
+    if player.plathitbox[1] < platform24.hitbox[1] + platform24.hitbox[3] and player.plathitbox[1] + player.plathitbox[
+        3] > platform24.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform24.hitbox[0] and player.plathitbox[0] < \
+                platform24.hitbox[0] + platform24.hitbox[2]:
+            platform24.hit()
+            player.onPlatform = True
+        #else:
+            #player.onPlatform = False
+
+    if player.plathitbox[1] < platform25.hitbox[1] + platform25.hitbox[3] and player.plathitbox[1] + \
+            player.plathitbox[
+                3] > platform25.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform25.hitbox[0] and player.plathitbox[0] < \
+                platform25.hitbox[0] + platform25.hitbox[2]:
+            platform25.hit()
+            player.onPlatform = True
+        #else:
+            #player.onPlatform = False
+
+    if player.plathitbox[1] < platform26.hitbox[1] + platform26.hitbox[3] and player.plathitbox[1] + \
+            player.plathitbox[
+                3] > platform26.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform26.hitbox[0] and player.plathitbox[0] < \
+                platform26.hitbox[0] + platform26.hitbox[2]:
+            platform26.hit()
+            player.onPlatform = True
+        #else:
+            #player.onPlatform = False
+
+    if player.plathitbox[1] < platform27.hitbox[1] + platform27.hitbox[3] and player.plathitbox[1] + \
+            player.plathitbox[
+                3] > platform27.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform27.hitbox[0] and player.plathitbox[0] < \
+                platform27.hitbox[0] + platform27.hitbox[2]:
+            platform27.hit()
+            player.onPlatform = True
+        #else:
+            #player.onPlatform = False
+
+    if player.plathitbox[1] < platform28.hitbox[1] + platform28.hitbox[3] and player.plathitbox[1] + \
+            player.plathitbox[
+                3] > platform28.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform28.hitbox[0] and player.plathitbox[0] < \
+                platform28.hitbox[0] + platform28.hitbox[2]:
+            platform28.hit()
+            player.onPlatform = True
+        #else:
+            #player.onPlatform = False
+
+    if player.plathitbox[1] < platform29.hitbox[1] + platform29.hitbox[3] and player.plathitbox[1] + \
+            player.plathitbox[
+                3] > platform29.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform29.hitbox[0] and player.plathitbox[0] < \
+                platform29.hitbox[0] + platform29.hitbox[2]:
+            platform29.hit()
+            player.onPlatform = True
+        else:
+            player.onPlatform = False
+
+    if player.plathitbox[1] < platform30.hitbox[1] + platform30.hitbox[3] and player.plathitbox[1] + \
+            player.plathitbox[
+                3] > platform30.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform30.hitbox[0] and player.plathitbox[0] < \
+                platform30.hitbox[0] + platform30.hitbox[2]:
+            platform30.hit()
+            player.onPlatform = True
+        #else:
+            #player.onPlatform = False
+
+    if player.plathitbox[1] < platform31.hitbox[1] + platform31.hitbox[3] and player.plathitbox[1] + \
+            player.plathitbox[
+                3] > platform31.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform31.hitbox[0] and player.plathitbox[0] < \
+                platform31.hitbox[0] + platform31.hitbox[2]:
+            platform31.hit()
+            player.onPlatform = True
+#        else:
+#            player.onPlatform = False
+
+    if player.plathitbox[1] < platform32.hitbox[1] + platform32.hitbox[3] and player.plathitbox[1] + \
+            player.plathitbox[
+                3] > platform32.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform32.hitbox[0] and player.plathitbox[0] < \
+                platform32.hitbox[0] + platform32.hitbox[2]:
+            platform32.hit()
+            player.onPlatform = True
+#        else:
+#            player.onPlatform = False
+
+    if player.plathitbox[1] < platform33.hitbox[1] + platform33.hitbox[3] and player.plathitbox[1] + \
+            player.plathitbox[
+                3] > platform33.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform33.hitbox[0] and player.plathitbox[0] < \
+                platform33.hitbox[0] + platform33.hitbox[2]:
+            platform33.hit()
+            player.onPlatform = True
+        else:
+            player.onPlatform = False
+
+    if player.plathitbox[1] < platform34.hitbox[1] + platform34.hitbox[3] and player.plathitbox[1] + \
+            player.plathitbox[
+                3] > platform34.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform34.hitbox[0] and player.plathitbox[0] < \
+                platform34.hitbox[0] + platform34.hitbox[2]:
+            platform34.hit()
+            player.onPlatform = True
+        else:
+            player.onPlatform = False
+
+    if player.plathitbox[1] < platform35.hitbox[1] + platform35.hitbox[3] and player.plathitbox[1] + \
+            player.plathitbox[
+                3] > platform35.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform35.hitbox[0] and player.plathitbox[0] < \
+                platform35.hitbox[0] + platform35.hitbox[2]:
+            platform35.hit()
+            player.onPlatform = True
+        #else:
+            #player.onPlatform = False
+
+    if player.plathitbox[1] < platform36.hitbox[1] + platform36.hitbox[3] and player.plathitbox[1] + \
+            player.plathitbox[
+                3] > platform36.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform36.hitbox[0] and player.plathitbox[0] < \
+                platform36.hitbox[0] + platform36.hitbox[2]:
+            platform36.hit()
+            player.onPlatform = True
+        #else:
+            #player.onPlatform = False
+
+    if player.plathitbox[1] < platform37.hitbox[1] + platform37.hitbox[3] and player.plathitbox[1] + \
+            player.plathitbox[
+                3] > platform37.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform37.hitbox[0] and player.plathitbox[0] < \
+                platform37.hitbox[0] + platform37.hitbox[2]:
+            platform37.hit()
+            player.onPlatform = True
+        else:
+            player.onPlatform = False
+
+    if player.plathitbox[1] < platform38.hitbox[1] + platform38.hitbox[3] and player.plathitbox[1] + \
+            player.plathitbox[
+                3] > platform38.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform38.hitbox[0] and player.plathitbox[0] < \
+                platform38.hitbox[0] + platform38.hitbox[2]:
+            platform38.hit()
+            player.onPlatform = True
+        else:
+            player.onPlatform = False
+
+    if player.plathitbox[1] < platform39.hitbox[1] + platform39.hitbox[3] and player.plathitbox[1] + \
+            player.plathitbox[
+                3] > platform39.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform39.hitbox[0] and player.plathitbox[0] < \
+                platform39.hitbox[0] + platform39.hitbox[2]:
+            platform39.hit()
+            player.onPlatform = True
+        #else:
+            #player.onPlatform = False
+
+    if player.plathitbox[1] < platform40.hitbox[1] + platform40.hitbox[3] and player.plathitbox[1] + \
+            player.plathitbox[
+                3] > platform40.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform40.hitbox[0] and player.plathitbox[0] < \
+                platform40.hitbox[0] + platform40.hitbox[2]:
+            platform40.hit()
+            player.onPlatform = True
+        else:
+            player.onPlatform = False
+
+    if player.plathitbox[1] < platform41.hitbox[1] + platform41.hitbox[3] and player.plathitbox[1] + \
+            player.plathitbox[
+                3] > platform41.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform41.hitbox[0] and player.plathitbox[0] < \
+                platform41.hitbox[0] + platform41.hitbox[2]:
+            platform41.hit()
+            player.onPlatform = True
+        else:
+            player.onPlatform = False
+
+    if player.plathitbox[1] < platform42.hitbox[1] + platform42.hitbox[3] and player.plathitbox[1] + \
+            player.plathitbox[
+                3] > platform42.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform42.hitbox[0] and player.plathitbox[0] < \
+                platform42.hitbox[0] + platform42.hitbox[2]:
+            platform42.hit()
+            player.onPlatform = True
+        #else:
+            #player.onPlatform = False
+            
+            # Colisão Espinhos Henesys
+    if player.hitbox[1] < spike3.hitbox[1] + spike3.hitbox[3] and player.hitbox[1] + player.hitbox[3] > spike3.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > spike3.hitbox[0] and player.hitbox[0] < spike3.hitbox[0] + \
+                spike3.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+            
+    if player.hitbox[1] < spike4.hitbox[1] + spike4.hitbox[3] and player.hitbox[1] + player.hitbox[3] > spike4.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > spike4.hitbox[0] and player.hitbox[0] < spike4.hitbox[0] + \
+                spike4.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+            
+    if player.hitbox[1] < spike5.hitbox[1] + spike5.hitbox[3] and player.hitbox[1] + player.hitbox[3] > spike5.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > spike5.hitbox[0] and player.hitbox[0] < spike5.hitbox[0] + \
+                spike5.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < spike6.hitbox[1] + spike6.hitbox[3] and player.hitbox[1] + player.hitbox[3] > spike6.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > spike6.hitbox[0] and player.hitbox[0] < spike6.hitbox[0] + \
+                spike6.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    # Funções da Gravidade
+    if player.y < 470 and player.isJump == False and player.onPlatform == False:
+        player.y = player.y + 10
         onGravity = True
     else:
         onGravity = False
 
-# Gravidade / Buracos Porto Lith
-    if camx > 3330 and camx <= 3395 and man.isJump == False and man.onPlatform == False:
-        man.y = man.y + 10
+    # Gravidade / Buracos Porto Lith
+    if camx > 3330 and camx <= 3395 and player.isJump == False and player.onPlatform == False:
+        player.y = player.y + 5
 
-    elif camx > 4815 and camx < 5660 and man.isJump == False and man.onPlatform == False:
-        man.y = man.y + 10
+    elif camx > 4815 and camx < 5660 and player.isJump == False and player.onPlatform == False:
+        player.y = player.y + 5
 
-    elif man.y > 470:
-        man.y = 470
+    # Gravidade / Buracos Henesys
+    elif camx > 7295 and camx <= 7365 and player.isJump == False and player.onPlatform == False:
+        player.y = player.y + 5
 
-# Colisão Flechas
+    elif camx > 7425 and camx <= 7495 and player.isJump == False and player.onPlatform == False:
+        player.y = player.y + 5
+
+    elif camx > 7915 and camx <= 8685 and player.isJump == False and player.onPlatform == False:
+        player.y = player.y + 5
+
+    elif player.y > 470:
+        player.y = 470
+
+    # Colisão Flechas
     for arrow in arrows:
         # Colisão Flechas Monstros Porto Lith
         if arrow.y - arrow.radius < snail1.hitbox[1] + snail1.hitbox[3] and arrow.y + arrow.radius > snail1.hitbox[1]:
-            if arrow.x + arrow.radius > snail1.hitbox[0] and arrow.x - arrow.radius < snail1.hitbox[0] + snail1.hitbox[2]:
+            if arrow.x + arrow.radius > snail1.hitbox[0] and arrow.x - arrow.radius < snail1.hitbox[0] + snail1.hitbox[
+                2]:
                 snail1.hit()
                 arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < snail2.hitbox[1] + snail2.hitbox[3] and arrow.y + arrow.radius > snail2.hitbox[1]:
-            if arrow.x + arrow.radius > snail2.hitbox[0] and arrow.x - arrow.radius < snail2.hitbox[0] + snail2.hitbox[2]:
+            if arrow.x + arrow.radius > snail2.hitbox[0] and arrow.x - arrow.radius < snail2.hitbox[0] + snail2.hitbox[
+                2]:
                 snail2.hit()
                 arrows.pop(arrows.index(arrow))
-                
+
         if arrow.y - arrow.radius < snail3.hitbox[1] + snail3.hitbox[3] and arrow.y + arrow.radius > snail3.hitbox[1]:
-            if arrow.x + arrow.radius > snail3.hitbox[0] and arrow.x - arrow.radius < snail3.hitbox[0] + snail3.hitbox[2]:
+            if arrow.x + arrow.radius > snail3.hitbox[0] and arrow.x - arrow.radius < snail3.hitbox[0] + snail3.hitbox[
+                2]:
                 snail3.hit()
                 arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < snail4.hitbox[1] + snail4.hitbox[3] and arrow.y + arrow.radius > snail4.hitbox[1]:
-            if arrow.x + arrow.radius > snail4.hitbox[0] and arrow.x - arrow.radius < snail4.hitbox[0] + snail4.hitbox[2]:
+            if arrow.x + arrow.radius > snail4.hitbox[0] and arrow.x - arrow.radius < snail4.hitbox[0] + snail4.hitbox[
+                2]:
                 snail4.hit()
                 arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < snail5.hitbox[1] + snail5.hitbox[3] and arrow.y + arrow.radius > snail5.hitbox[1]:
-            if arrow.x + arrow.radius > snail5.hitbox[0] and arrow.x - arrow.radius < snail5.hitbox[0] + snail5.hitbox[2]:
+            if arrow.x + arrow.radius > snail5.hitbox[0] and arrow.x - arrow.radius < snail5.hitbox[0] + snail5.hitbox[
+                2]:
                 snail5.hit()
                 arrows.pop(arrows.index(arrow))
-                
+
         if arrow.y - arrow.radius < snail6.hitbox[1] + snail6.hitbox[3] and arrow.y + arrow.radius > snail6.hitbox[1]:
-            if arrow.x + arrow.radius > snail6.hitbox[0] and arrow.x - arrow.radius < snail6.hitbox[0] + snail6.hitbox[2]:
+            if arrow.x + arrow.radius > snail6.hitbox[0] and arrow.x - arrow.radius < snail6.hitbox[0] + snail6.hitbox[
+                2]:
                 snail6.hit()
                 arrows.pop(arrows.index(arrow))
-                
+
         if arrow.y - arrow.radius < snail7.hitbox[1] + snail7.hitbox[3] and arrow.y + arrow.radius > snail7.hitbox[1]:
-            if arrow.x + arrow.radius > snail7.hitbox[0] and arrow.x - arrow.radius < snail7.hitbox[0] + snail7.hitbox[2]:
+            if arrow.x + arrow.radius > snail7.hitbox[0] and arrow.x - arrow.radius < snail7.hitbox[0] + snail7.hitbox[
+                2]:
                 snail7.hit()
                 arrows.pop(arrows.index(arrow))
-                
+
         if arrow.x < 800 and arrow.x > 0:
             arrow.x += arrow.vel
         else:
@@ -1457,68 +2739,69 @@ while run:
             run = False
             print(cor.VERMELHO + "Finalizando o jogo..." + cor.FIM)
 
-# Controles do jogo
+    # Controles do jogo
     # Seta esquerda (Andar)
-    if keys[pygame.K_LEFT] and man.x > man.vel and man.x - camx < 400:
-        man.left = True
-        man.right = False
-        man.facing = 0
+    if keys[pygame.K_LEFT] and player.x > player.vel and player.x - camx < 400:
+        player.left = True
+        player.right = False
+        player.facing = 0
         camx -= 5
 
     # Seta direita (Andar)
-    elif keys[pygame.K_RIGHT] and man.x < 800 - man.width - man.vel:
-        man.right = True
-        man.left = False
-        man.facing = 1
+    elif keys[pygame.K_RIGHT] and player.x < 800 - player.width - player.vel:
+        player.right = True
+        player.left = False
+        player.facing = 1
         camx += 5
 
     # Tecla X (Atacar)
     elif keys[pygame.K_x]:
-        man.right = False
-        man.left = False
-        man.attack = True
-        if man.facing == 0:
+        player.right = False
+        player.left = False
+        player.attack = True
+        if player.facing == 0:
             facingB = -1
         else:
             facingB = 1
         if len(arrows) < 1:
-            arrows.append(projectile(round(man.x + man.width // 1.6), round(man.y + man.height // 1.6), 13, facingB))
+            arrows.append(
+                projectile(round(player.x + player.width // 2), round(player.y + player.height // 1.7), 13, facingB))
             arrowSound.play()
 
     # Tecla F2 (Emote sorrir)
     elif keys[pygame.K_F2]:
-        man.smile = True
-        man.right = False
-        man.left = False
-        man.attack = False
+        player.smile = True
+        player.right = False
+        player.left = False
+        player.attack = False
     else:
-        man.right = False
-        man.left = False
-        man.attack = False
-        man.smile = False
-        man.walkCount = 0
-        man.attackCount = 0
+        player.right = False
+        player.left = False
+        player.attack = False
+        player.smile = False
+        player.walkCount = 0
+        player.attackCount = 0
 
     # Tecla espaço (Pular)
-    if man.isJump == False:
+    if player.isJump == False:
         if onGravity == False:
             if keys[pygame.K_SPACE]:
-                man.isJump = True
-                man.right = False
-                man.left = False
-                man.walkCount = 0
-                man.attackCount = 0
+                player.isJump = True
+                player.right = False
+                player.left = False
+                player.walkCount = 0
+                player.attackCount = 0
     else:
-        if man.jumpCount >= -10:
+        if player.jumpCount >= -10:
             neg = 1
-            if man.jumpCount < 0:
+            if player.jumpCount < 0:
                 neg = -1
-            man.y -= round((man.jumpCount ** 2) / 4 * neg)
-            man.jumpCount -= 1
+            player.y -= round((player.jumpCount ** 2) / 4 * neg)
+            player.jumpCount -= 1
         else:
-            man.isJump = False
-            man.jumpCount = 10
+            player.isJump = False
+            player.jumpCount = 10
 
-    redrawGameWindow()
+    GameWindow()
 
 pygame.quit()
