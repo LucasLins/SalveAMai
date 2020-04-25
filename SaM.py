@@ -69,7 +69,7 @@ hitSound = pygame.mixer.Sound("BGM/hit.wav")
 
 ## Sons/Monstros
 snaildie = pygame.mixer.Sound("BGM/snaildie.wav")
-
+cogudie = pygame.mixer.Sound("BGM/cogudie.wav")
 
 # Personagem
 class player(object):
@@ -141,7 +141,7 @@ class player(object):
             win.blit(charL, (round(self.x), round(self.y)))
         self.hitbox = (self.x + 23, self.y + 5, 37, 73)
         self.plathitbox = (self.x + 30, self.y + 75, 20, 1)
-        # pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
         pygame.draw.rect(win, (255, 0, 0), self.plathitbox, 2)
 
     def hit(self):
@@ -1847,9 +1847,9 @@ class cogu1(object):
         self.path = [x, end]
         self.walkCount = 0
         self.vel = 4
-        self.hitbox = (self.x - camx, self.y - 3, self.width, self.height)
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
         self.washit = 0
-        self.health = 3
+        self.health = 6
         self.visible = True
 
     def draw(self, win):
@@ -1865,14 +1865,14 @@ class cogu1(object):
                 win.blit(self.walkL[self.walkCount // 3], (self.x - camx, self.y))
                 self.walkCount += 1
             if self.washit == 1:
-                win.blit(self.RHS, (round(self.x - camx - 2), round(self.y - 8)))
+                win.blit(self.RHS, (round(self.x - camx), round(self.y)))
                 self.washit = 0
             elif self.washit == 2:
-                win.blit(self.LHS, (round(self.x - camx - 5), round(self.y - 8)))
+                win.blit(self.LHS, (round(self.x - camx), round(self.y)))
                 self.washit = 0
-            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] - 2, self.hitbox[1] - 17, 49, 8))
-            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0], self.hitbox[1] - 15, 45 - (15 * (3 - self.health)), 4))
-            self.hitbox = (self.x - camx, self.y - 3, self.width, self.height)
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 13, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y, self.width, self.height)
             pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
@@ -1904,12 +1904,986 @@ class cogu1(object):
                 self.hitbox = (0, 0, 0, 0)
                 self.washit = 1
                 self.visible = False
-                snaildie.play()
+                cogudie.play()
             elif self.vel < 0:
                 self.hitbox = (0, 0, 0, 0)
                 self.washit = 2
                 self.visible = False
-                snaildie.play()
+                cogudie.play()
+            else:
+                self.washit = 0
+
+class cogu2(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 4
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 6
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 18:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(cogu1.walkR[self.walkCount // 3], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(cogu1.walkL[self.walkCount // 3], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(cogu1.RHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(cogu1.LHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 13, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        hitSound.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                cogudie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                cogudie.play()
+            else:
+                self.washit = 0
+
+class cogu3(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 4
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 6
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 18:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(cogu1.walkR[self.walkCount // 3], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(cogu1.walkL[self.walkCount // 3], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(cogu1.RHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(cogu1.LHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 13, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        hitSound.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                cogudie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                cogudie.play()
+            else:
+                self.washit = 0
+
+class cogu4(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 4
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 6
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 18:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(cogu1.walkR[self.walkCount // 3], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(cogu1.walkL[self.walkCount // 3], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(cogu1.RHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(cogu1.LHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 13, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        hitSound.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                cogudie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                cogudie.play()
+            else:
+                self.washit = 0
+
+class cogu5(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 4
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 6
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 18:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(cogu1.walkR[self.walkCount // 3], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(cogu1.walkL[self.walkCount // 3], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(cogu1.RHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(cogu1.LHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 13, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        hitSound.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                cogudie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                cogudie.play()
+            else:
+                self.washit = 0
+
+class cogu6(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 4
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 6
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 18:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(cogu1.walkR[self.walkCount // 3], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(cogu1.walkL[self.walkCount // 3], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(cogu1.RHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(cogu1.LHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 13, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        hitSound.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                cogudie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                cogudie.play()
+            else:
+                self.washit = 0
+
+class cogu7(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 4
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 6
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 18:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(cogu1.walkR[self.walkCount // 3], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(cogu1.walkL[self.walkCount // 3], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(cogu1.RHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(cogu1.LHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 13, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        hitSound.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                cogudie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                cogudie.play()
+            else:
+                self.washit = 0
+
+class cogu8(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 4
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 6
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 18:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(cogu1.walkR[self.walkCount // 3], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(cogu1.walkL[self.walkCount // 3], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(cogu1.RHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(cogu1.LHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 13, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        hitSound.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                cogudie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                cogudie.play()
+            else:
+                self.washit = 0
+
+class cogu9(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 4
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 6
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 18:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(cogu1.walkR[self.walkCount // 3], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(cogu1.walkL[self.walkCount // 3], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(cogu1.RHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(cogu1.LHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 13, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        hitSound.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                cogudie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                cogudie.play()
+            else:
+                self.washit = 0
+
+class cogu10(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 4
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 6
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 18:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(cogu1.walkR[self.walkCount // 3], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(cogu1.walkL[self.walkCount // 3], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(cogu1.RHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(cogu1.LHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 13, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        hitSound.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                cogudie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                cogudie.play()
+            else:
+                self.washit = 0
+
+class cogu11(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 4
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 6
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 18:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(cogu1.walkR[self.walkCount // 3], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(cogu1.walkL[self.walkCount // 3], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(cogu1.RHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(cogu1.LHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 13, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        hitSound.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                cogudie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                cogudie.play()
+            else:
+                self.washit = 0
+class cogu12(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 4
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 6
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 18:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(cogu1.walkR[self.walkCount // 3], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(cogu1.walkL[self.walkCount // 3], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(cogu1.RHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(cogu1.LHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 13, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        hitSound.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                cogudie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                cogudie.play()
+            else:
+                self.washit = 0
+
+class cogu13(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 4
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 6
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 18:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(cogu1.walkR[self.walkCount // 3], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(cogu1.walkL[self.walkCount // 3], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(cogu1.RHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(cogu1.LHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 13, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        hitSound.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                cogudie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                cogudie.play()
+            else:
+                self.washit = 0
+
+class cogu14(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 4
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 6
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 18:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(cogu1.walkR[self.walkCount // 3], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(cogu1.walkL[self.walkCount // 3], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(cogu1.RHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(cogu1.LHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 13, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        hitSound.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                cogudie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                cogudie.play()
             else:
                 self.washit = 0
 
@@ -2004,15 +2978,28 @@ def GameWindow():
 
 # Draw Monstros Henesys
     cogu1.draw(win)
+    cogu2.draw(win)
+    cogu3.draw(win)
+    cogu4.draw(win)
+    cogu5.draw(win)
+    cogu6.draw(win)
+    cogu7.draw(win)
+    cogu8.draw(win)
+    cogu9.draw(win)
+    cogu10.draw(win)
+    cogu11.draw(win)
+    cogu12.draw(win)
+    cogu13.draw(win)
+    cogu14.draw(win)
 
     pygame.display.update()
 
 
 # Main loop
-camx = 7800  # Camera
+camx = 6500  # Camera
 
 # Variavel Player
-player = player(400, 50, 64, 64)
+player = player(400, 470, 64, 64)
 arrows = []
 onGravity = False
 checkpoint = 2065
@@ -2066,7 +3053,7 @@ platform24 = platform24(8430, 140, 50, 20)
 platform25 = platform25(8550, 140, 50, 20)
 platform26 = platform26(8680, 140, 50, 20)
 platform27 = platform27(8800, 435, 50, 20)
-platform28 = platform28(8910, 375, 50, 40)
+platform28 = platform28(8910, 400, 50, 20)
 platform29 = platform29(9035, 450, 50, 20)
 platform30 = platform30(9880, 450, 50, 20)
 platform31 = platform31(9700, 375, 145, 20)
@@ -2084,6 +3071,20 @@ platform42 = platform42(10130, 105, 145, 20)
 
 # Variavel Monstros Henesys
 cogu1 = cogu1(7100, 483, 64, 64, 7325)
+cogu2 = cogu2(7390, 483, 64, 64, 7556)
+cogu3 = cogu3(7930, 483, 64, 64, 8282)
+cogu4 = cogu4(8290, 78, 64, 64, 8325)
+cogu5 = cogu5(8530, 78, 64, 64, 8565)
+cogu6 = cogu6(8775, 372, 64, 64, 8810)
+cogu7 = cogu7(9208, 452, 64, 64, 9441)
+cogu8 = cogu8(9135, 483, 64, 64, 10707)
+cogu9 = cogu9(9700, 311, 64, 64, 9805)
+cogu10 = cogu10(9505, 311, 64, 64, 9615)
+cogu11 = cogu11(9700, 160, 64, 64, 9805)
+cogu12 = cogu12(9505, 160, 64, 64, 9615)
+cogu13 = cogu13(10090, 238, 64, 64, 10195)
+cogu14 = cogu14(10425, 238, 64, 64, 10530)
+
 
 run = True
 while run:
@@ -2091,7 +3092,7 @@ while run:
     clock.tick(27)
 
     # TESTES
-    print("JumpCount:", player.jumpCount, "Camx:", camx, "onPlatform:", player.onPlatform, "isJump:", player.isJump)
+    #print("JumpCount:", player.jumpCount, "Camx:", camx, "onPlatform:", player.onPlatform, "isJump:", player.isJump)
     # print(camx)
     # print(player.y)
     # print(player.onPlatform)
@@ -2319,8 +3320,8 @@ while run:
                 platform11.hitbox[0] + platform11.hitbox[2]:
             platform11.hit()
             player.onPlatform = True
-        else:
-            player.onPlatform = False
+        #else:
+            #player.onPlatform = False
 
     if player.plathitbox[1] < platform12.hitbox[1] + platform12.hitbox[3] and player.plathitbox[1] + player.plathitbox[
         3] > platform12.hitbox[1]:
@@ -2359,6 +3360,162 @@ while run:
             platform16.hit()
             player.onPlatform = True
 
+    #Colisão Monstros Henesys
+    if player.hitbox[1] < cogu1.hitbox[1] + cogu1.hitbox[3] and player.hitbox[1] + player.hitbox[3] > cogu1.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > cogu1.hitbox[0] and player.hitbox[0] < cogu1.hitbox[0] + \
+                cogu1.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+            
+    if player.hitbox[1] < cogu2.hitbox[1] + cogu2.hitbox[3] and player.hitbox[1] + player.hitbox[3] > cogu2.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > cogu2.hitbox[0] and player.hitbox[0] < cogu2.hitbox[0] + \
+                cogu2.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < cogu3.hitbox[1] + cogu3.hitbox[3] and player.hitbox[1] + player.hitbox[3] > cogu3.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > cogu3.hitbox[0] and player.hitbox[0] < cogu3.hitbox[0] + \
+                cogu3.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < cogu4.hitbox[1] + cogu4.hitbox[3] and player.hitbox[1] + player.hitbox[3] > cogu4.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > cogu4.hitbox[0] and player.hitbox[0] < cogu4.hitbox[0] + \
+                cogu4.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < cogu5.hitbox[1] + cogu5.hitbox[3] and player.hitbox[1] + player.hitbox[3] > cogu5.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > cogu5.hitbox[0] and player.hitbox[0] < cogu5.hitbox[0] + \
+                cogu5.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < cogu6.hitbox[1] + cogu6.hitbox[3] and player.hitbox[1] + player.hitbox[3] > cogu6.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > cogu6.hitbox[0] and player.hitbox[0] < cogu6.hitbox[0] + \
+                cogu6.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < cogu7.hitbox[1] + cogu7.hitbox[3] and player.hitbox[1] + player.hitbox[3] > cogu7.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > cogu7.hitbox[0] and player.hitbox[0] < cogu7.hitbox[0] + \
+                cogu7.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < cogu8.hitbox[1] + cogu8.hitbox[3] and player.hitbox[1] + player.hitbox[3] > cogu8.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > cogu8.hitbox[0] and player.hitbox[0] < cogu8.hitbox[0] + \
+                cogu8.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < cogu9.hitbox[1] + cogu9.hitbox[3] and player.hitbox[1] + player.hitbox[3] > cogu9.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > cogu9.hitbox[0] and player.hitbox[0] < cogu9.hitbox[0] + \
+                cogu9.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < cogu10.hitbox[1] + cogu10.hitbox[3] and player.hitbox[1] + player.hitbox[3] > cogu10.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > cogu10.hitbox[0] and player.hitbox[0] < cogu10.hitbox[0] + \
+                cogu10.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < cogu11.hitbox[1] + cogu11.hitbox[3] and player.hitbox[1] + player.hitbox[3] > cogu11.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > cogu11.hitbox[0] and player.hitbox[0] < cogu11.hitbox[0] + \
+                cogu11.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < cogu12.hitbox[1] + cogu12.hitbox[3] and player.hitbox[1] + player.hitbox[3] > cogu12.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > cogu12.hitbox[0] and player.hitbox[0] < cogu12.hitbox[0] + \
+                cogu12.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < cogu13.hitbox[1] + cogu13.hitbox[3] and player.hitbox[1] + player.hitbox[3] > cogu13.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > cogu13.hitbox[0] and player.hitbox[0] < cogu13.hitbox[0] + \
+                cogu13.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < cogu14.hitbox[1] + cogu14.hitbox[3] and player.hitbox[1] + player.hitbox[3] > cogu14.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > cogu14.hitbox[0] and player.hitbox[0] < cogu14.hitbox[0] + \
+                cogu14.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    # Colisão Plataformas Henesys
     if player.plathitbox[1] < platform17.hitbox[1] + platform17.hitbox[3] and player.plathitbox[1] + player.plathitbox[
         3] > platform17.hitbox[1]:
         if player.plathitbox[0] + player.plathitbox[2] > platform17.hitbox[0] and player.plathitbox[0] < \
@@ -2402,8 +3559,8 @@ while run:
                 platform21.hitbox[0] + platform21.hitbox[2]:
             platform21.hit()
             player.onPlatform = True
-        else:
-            player.onPlatform = False
+        #else:
+            #player.onPlatform = False
 
     if player.plathitbox[1] < platform22.hitbox[1] + platform22.hitbox[3] and player.plathitbox[1] + player.plathitbox[
         3] > platform22.hitbox[1]:
@@ -2479,8 +3636,8 @@ while run:
                 platform29.hitbox[0] + platform29.hitbox[2]:
             platform29.hit()
             player.onPlatform = True
-        else:
-            player.onPlatform = False
+        #else:
+            #player.onPlatform = False
 
     if player.plathitbox[1] < platform30.hitbox[1] + platform30.hitbox[3] and player.plathitbox[1] + \
             player.plathitbox[
@@ -2728,8 +3885,93 @@ while run:
                 2]:
                 snail7.hit()
                 arrows.pop(arrows.index(arrow))
+                
+        # Colisão Flechas Henesys
+        if arrow.y - arrow.radius < cogu1.hitbox[1] + cogu1.hitbox[3] and arrow.y + arrow.radius > cogu1.hitbox[1]:
+            if arrow.x + arrow.radius > cogu1.hitbox[0] and arrow.x - arrow.radius < cogu1.hitbox[0] + cogu1.hitbox[
+                2]:
+                cogu1.hit()
+                arrows.pop(arrows.index(arrow))
 
-        if arrow.x < 800 and arrow.x > 0:
+        if arrow.y - arrow.radius < cogu2.hitbox[1] + cogu2.hitbox[3] and arrow.y + arrow.radius > cogu2.hitbox[1]:
+            if arrow.x + arrow.radius > cogu2.hitbox[0] and arrow.x - arrow.radius < cogu2.hitbox[0] + cogu2.hitbox[
+                2]:
+                cogu2.hit()
+                arrows.pop(arrows.index(arrow))
+
+        if arrow.y - arrow.radius < cogu3.hitbox[1] + cogu3.hitbox[3] and arrow.y + arrow.radius > cogu3.hitbox[1]:
+            if arrow.x + arrow.radius > cogu3.hitbox[0] and arrow.x - arrow.radius < cogu3.hitbox[0] + cogu3.hitbox[
+                2]:
+                cogu3.hit()
+                arrows.pop(arrows.index(arrow))
+
+        if arrow.y - arrow.radius < cogu4.hitbox[1] + cogu4.hitbox[3] and arrow.y + arrow.radius > cogu4.hitbox[1]:
+            if arrow.x + arrow.radius > cogu4.hitbox[0] and arrow.x - arrow.radius < cogu4.hitbox[0] + cogu4.hitbox[
+                2]:
+                cogu4.hit()
+                arrows.pop(arrows.index(arrow))
+
+        if arrow.y - arrow.radius < cogu5.hitbox[1] + cogu5.hitbox[3] and arrow.y + arrow.radius > cogu5.hitbox[1]:
+            if arrow.x + arrow.radius > cogu5.hitbox[0] and arrow.x - arrow.radius < cogu5.hitbox[0] + cogu5.hitbox[
+                2]:
+                cogu5.hit()
+                arrows.pop(arrows.index(arrow))
+
+        if arrow.y - arrow.radius < cogu6.hitbox[1] + cogu6.hitbox[3] and arrow.y + arrow.radius > cogu6.hitbox[1]:
+            if arrow.x + arrow.radius > cogu6.hitbox[0] and arrow.x - arrow.radius < cogu6.hitbox[0] + cogu6.hitbox[
+                2]:
+                cogu6.hit()
+                arrows.pop(arrows.index(arrow))
+
+        if arrow.y - arrow.radius < cogu7.hitbox[1] + cogu7.hitbox[3] and arrow.y + arrow.radius > cogu7.hitbox[1]:
+            if arrow.x + arrow.radius > cogu7.hitbox[0] and arrow.x - arrow.radius < cogu7.hitbox[0] + cogu7.hitbox[
+                2]:
+                cogu7.hit()
+                arrows.pop(arrows.index(arrow))
+
+        if arrow.y - arrow.radius < cogu8.hitbox[1] + cogu8.hitbox[3] and arrow.y + arrow.radius > cogu8.hitbox[1]:
+            if arrow.x + arrow.radius > cogu8.hitbox[0] and arrow.x - arrow.radius < cogu8.hitbox[0] + cogu8.hitbox[
+                2]:
+                cogu8.hit()
+                arrows.pop(arrows.index(arrow))
+
+        if arrow.y - arrow.radius < cogu9.hitbox[1] + cogu9.hitbox[3] and arrow.y + arrow.radius > cogu9.hitbox[1]:
+            if arrow.x + arrow.radius > cogu9.hitbox[0] and arrow.x - arrow.radius < cogu9.hitbox[0] + cogu9.hitbox[
+                2]:
+                cogu9.hit()
+                arrows.pop(arrows.index(arrow))
+
+        if arrow.y - arrow.radius < cogu10.hitbox[1] + cogu10.hitbox[3] and arrow.y + arrow.radius > cogu10.hitbox[1]:
+            if arrow.x + arrow.radius > cogu10.hitbox[0] and arrow.x - arrow.radius < cogu10.hitbox[0] + cogu10.hitbox[
+                2]:
+                cogu10.hit()
+                arrows.pop(arrows.index(arrow))
+
+        if arrow.y - arrow.radius < cogu11.hitbox[1] + cogu11.hitbox[3] and arrow.y + arrow.radius > cogu11.hitbox[1]:
+            if arrow.x + arrow.radius > cogu11.hitbox[0] and arrow.x - arrow.radius < cogu11.hitbox[0] + cogu11.hitbox[
+                2]:
+                cogu11.hit()
+                arrows.pop(arrows.index(arrow))
+
+        if arrow.y - arrow.radius < cogu12.hitbox[1] + cogu12.hitbox[3] and arrow.y + arrow.radius > cogu12.hitbox[1]:
+            if arrow.x + arrow.radius > cogu12.hitbox[0] and arrow.x - arrow.radius < cogu12.hitbox[0] + cogu12.hitbox[
+                2]:
+                cogu12.hit()
+                arrows.pop(arrows.index(arrow))
+
+        if arrow.y - arrow.radius < cogu13.hitbox[1] + cogu13.hitbox[3] and arrow.y + arrow.radius > cogu13.hitbox[1]:
+            if arrow.x + arrow.radius > cogu13.hitbox[0] and arrow.x - arrow.radius < cogu13.hitbox[0] + cogu13.hitbox[
+                2]:
+                cogu13.hit()
+                arrows.pop(arrows.index(arrow))
+
+        if arrow.y - arrow.radius < cogu14.hitbox[1] + cogu14.hitbox[3] and arrow.y + arrow.radius > cogu14.hitbox[1]:
+            if arrow.x + arrow.radius > cogu14.hitbox[0] and arrow.x - arrow.radius < cogu14.hitbox[0] + cogu14.hitbox[
+                2]:
+                cogu14.hit()
+                arrows.pop(arrows.index(arrow))
+
+        if arrow.x < 900 and arrow.x > -100:
             arrow.x += arrow.vel
         else:
             arrows.pop(arrows.index(arrow))
@@ -2763,10 +4005,11 @@ while run:
             facingB = -1
         else:
             facingB = 1
-        if len(arrows) < 1:
-            arrows.append(
-                projectile(round(player.x + player.width // 2), round(player.y + player.height // 1.7), 13, facingB))
-            arrowSound.play()
+        if player.jumpCount == 10:
+            if len(arrows) < 1:
+                arrows.append(
+                    projectile(round(player.x + player.width // 2), round(player.y + player.height // 1.7), 13, facingB))
+                arrowSound.play()
 
     # Tecla F2 (Emote sorrir)
     elif keys[pygame.K_F2]:
