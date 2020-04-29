@@ -44,7 +44,7 @@ arrowR = pygame.image.load('imagens/Player/arrowR.png')
 
 # Imagens HUD / Background
 bg = pygame.image.load('imagens/Mapa/mapa.png')
-# bg2 = pygame.image.load('imagens/Mapa/mapa2.png')
+bg2 = pygame.image.load('imagens/Mapa/mapa2.png')
 teclas = pygame.image.load('imagens/Misc/keys.png')
 icone = pygame.image.load('imagens/Misc/icone.png')
 diepic = pygame.image.load('imagens/Mapa/die.png')
@@ -2889,8 +2889,9 @@ class cogu14(object):
 
 def GameWindow():
     # Background (Mapa)
+    win.blit(bg2, (10920 - camx, 0))
     win.blit(bg, (0 - camx, 0))
-    # win.blit(bg2, (10920 - camx, 0))
+
 
     # HUD
     win.blit(teclas, (600, 5))
@@ -2996,7 +2997,7 @@ def GameWindow():
 
 
 # Main loop
-camx = 6500  # Camera
+camx = 10920  # Camera
 
 # Variavel Player
 player = player(400, 470, 64, 64)
@@ -3092,7 +3093,7 @@ while run:
     clock.tick(27)
 
     # TESTES
-    #print("JumpCount:", player.jumpCount, "Camx:", camx, "onPlatform:", player.onPlatform, "isJump:", player.isJump)
+    print("JumpCount:", player.jumpCount, "Camx:", camx, "onPlatform:", player.onPlatform, "isJump:", player.isJump)
     # print(camx)
     # print(player.y)
     # print(player.onPlatform)
@@ -3115,6 +3116,9 @@ while run:
         music = pygame.mixer.music.load("BGM/BGM02.mp3")
         pygame.mixer.music.play(-1)
 
+    if camx == 10485:
+        music = pygame.mixer.music.load("BGM/BGM03.mp3")
+        pygame.mixer.music.play(-1)
     # Verificação de GameOver
     if player.health < 0:
         gameover.play()
