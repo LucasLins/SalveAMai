@@ -70,6 +70,8 @@ hitSound = pygame.mixer.Sound("BGM/hit.wav")
 ## Sons/Monstros
 snaildie = pygame.mixer.Sound("BGM/snaildie.wav")
 cogudie = pygame.mixer.Sound("BGM/cogudie.wav")
+tocodie = pygame.mixer.Sound("BGM/tocodie.wav")
+tocohit = pygame.mixer.Sound("BGM/tocohit.wav")
 
 # Personagem
 class player(object):
@@ -3380,6 +3382,1276 @@ class gate1(object):
             elif self.washit == 2:
                 self.washit = 0
 
+# Altar Perion
+
+class altar1(object):
+    walkR = [pygame.image.load('imagens/Mapa/altar1.png'), pygame.image.load('imagens/Mapa/altar2.png')]
+
+    walkL = [pygame.image.load('imagens/Mapa/altar1.png'), pygame.image.load('imagens/Mapa/altar2.png')]
+
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 4
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 6
+        self.visible = True
+
+    def draw(self, win):
+        #self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 4:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(self.walkR[self.walkCount // 2], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(self.walkL[self.walkCount // 2], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                self.washit = 0
+            elif self.washit == 2:
+                self.washit = 0
+
+# Monstros Perion
+class toco1(object):
+    walkR = [pygame.image.load('imagens/Mob/Toco/TR1.png'), pygame.image.load('imagens/Mob/Toco/TR2.png'),
+             pygame.image.load('imagens/Mob/Toco/TR3.png'), pygame.image.load('imagens/Mob/Toco/TR4.png')]
+
+    walkL = [pygame.image.load('imagens/Mob/Toco/TL1.png'), pygame.image.load('imagens/Mob/Toco/TL2.png'),
+             pygame.image.load('imagens/Mob/Toco/TL3.png'), pygame.image.load('imagens/Mob/Toco/TL4.png')]
+
+    RHS = pygame.image.load('imagens/Mob/Toco/THR.png')
+    LHS = pygame.image.load('imagens/Mob/Toco/THL.png')
+
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 2
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 10
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 16:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(self.walkR[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(self.walkL[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(self.RHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(self.LHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 8, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        tocohit.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                tocodie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                tocodie.play()
+            else:
+                self.washit = 0
+
+
+class toco2(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 2
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 10
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 16:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(toco1.walkR[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(toco1.walkL[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(toco1.RHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(toco1.LHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 8, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        tocohit.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                tocodie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                tocodie.play()
+            else:
+                self.washit = 0
+
+
+class toco3(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 2
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 10
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 16:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(toco1.walkR[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(toco1.walkL[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(toco1.RHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(toco1.LHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 8, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        tocohit.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                tocodie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                tocodie.play()
+            else:
+                self.washit = 0
+
+
+class toco4(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 2
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 10
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 16:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(toco1.walkR[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(toco1.walkL[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(toco1.RHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(toco1.LHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 8, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        tocohit.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                tocodie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                tocodie.play()
+            else:
+                self.washit = 0
+
+class toco5(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 2
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 10
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 16:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(toco1.walkR[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(toco1.walkL[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(toco1.RHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(toco1.LHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 8, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        tocohit.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                tocodie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                tocodie.play()
+            else:
+                self.washit = 0
+
+class toco6(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 2
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 10
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 16:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(toco1.walkR[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(toco1.walkL[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(toco1.RHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(toco1.LHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 8, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        tocohit.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                tocodie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                tocodie.play()
+            else:
+                self.washit = 0
+
+class toco7(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 2
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 10
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 16:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(toco1.walkR[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(toco1.walkL[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(toco1.RHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(toco1.LHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 8, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        tocohit.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                tocodie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                tocodie.play()
+            else:
+                self.washit = 0
+
+
+class toco8(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 2
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 10
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 16:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(toco1.walkR[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(toco1.walkL[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(toco1.RHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(toco1.LHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 8, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        tocohit.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                tocodie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                tocodie.play()
+            else:
+                self.washit = 0
+
+
+class toco9(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 2
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 10
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 16:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(toco1.walkR[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(toco1.walkL[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(toco1.RHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(toco1.LHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 8, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        tocohit.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                tocodie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                tocodie.play()
+            else:
+                self.washit = 0
+
+
+class toco10(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 2
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 10
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 16:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(toco1.walkR[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(toco1.walkL[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(toco1.RHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(toco1.LHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 8, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        tocohit.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                tocodie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                tocodie.play()
+            else:
+                self.washit = 0
+
+
+class toco11(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 2
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 10
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 16:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(toco1.walkR[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(toco1.walkL[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(toco1.RHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(toco1.LHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 8, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        tocohit.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                tocodie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                tocodie.play()
+            else:
+                self.washit = 0
+
+
+class toco12(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 2
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 10
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 16:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(toco1.walkR[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(toco1.walkL[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(toco1.RHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(toco1.LHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 8, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        tocohit.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                tocodie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                tocodie.play()
+            else:
+                self.washit = 0
+
+
+class toco13(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 2
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 10
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 16:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(toco1.walkR[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(toco1.walkL[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(toco1.RHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(toco1.LHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 8, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        tocohit.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                tocodie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                tocodie.play()
+            else:
+                self.washit = 0
+
+
+class toco14(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 2
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 10
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 16:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(toco1.walkR[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(toco1.walkL[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(toco1.RHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(toco1.LHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 8, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        tocohit.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                tocodie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                tocodie.play()
+            else:
+                self.washit = 0
+
+
+class toco15(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 2
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 10
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 16:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(toco1.walkR[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(toco1.walkL[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(toco1.RHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(toco1.LHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 8, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        tocohit.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                tocodie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                tocodie.play()
+            else:
+                self.washit = 0
+
+
+class toco16(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 2
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 10
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 16:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(toco1.walkR[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(toco1.walkL[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(toco1.RHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(toco1.LHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 8, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        tocohit.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                tocodie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                tocodie.play()
+            else:
+                self.washit = 0
 
 def GameWindow():
     # Background (Mapa)
@@ -3398,6 +4670,10 @@ def GameWindow():
     elif life == 0:
         win.blit(vidas0, (336, 5))
 
+    # Draw Gate Perion
+    gate1.draw(win)
+    # Draw Objetos Mapa Perion
+    altar1.draw(win)
     # Draw Player
     player.draw(win)
     for arrow in arrows:
@@ -3518,8 +4794,23 @@ def GameWindow():
     platform65.draw(win)
     platform66.draw(win)
 
-# Draw Gate Perion
-    gate1.draw(win)
+# Draw Monstros Perion
+    toco1.draw(win)
+    toco2.draw(win)
+    toco3.draw(win)
+    toco4.draw(win)
+    toco5.draw(win)
+    toco6.draw(win)
+    toco7.draw(win)
+    toco8.draw(win)
+    toco9.draw(win)
+    toco10.draw(win)
+    toco11.draw(win)
+    toco12.draw(win)
+    toco13.draw(win)
+    toco14.draw(win)
+    toco15.draw(win)
+    toco16.draw(win)
 
 # Draw Paredes Perion
     wall1.draw(win)
@@ -3529,7 +4820,7 @@ def GameWindow():
 
 
 # Main loop
-camx = 14290  # Camera
+camx = 13500  # Camera
 
 # Variavel Player
 player = player(400, 470, 64, 64)
@@ -3656,17 +4947,39 @@ wall2 = wall2(14802, 0, 48, 600)
 # Variável Gate Perion
 gate1 = gate1(14691, 281, 64, 64, 14708)
 
+# Variável Objetos Mapa Perion
+altar1 = altar1(14637, 453, 64, 64, 14708)
+
+# Variável Monstros Perion
+toco1 = toco1(11354, 490, 66, 54, 11501)
+toco2 = toco2(12063, 348, 66, 54, 12206)
+toco3 = toco3(12063, 159, 66, 54, 12206)
+toco4 = toco4(12313, 255, 66, 54, 12362)
+toco5 = toco5(12452, 348, 66, 54, 12593)
+toco6 = toco6(12452, 159, 66, 54, 12593)
+toco7 = toco7(12672, 255, 66, 54, 12722)
+toco8 = toco8(12811, 348, 66, 54, 12954)
+toco9 = toco9(12811, 159, 66, 54, 12954)
+toco10 = toco10(13029, 255, 66, 54, 13083)
+toco11 = toco11(13172, 348, 66, 54, 13314)
+toco12 = toco12(13172, 159, 66, 54, 13314)
+toco13 = toco13(11950, 490, 66, 54, 12654)
+toco14 = toco14(12743, 490, 66, 54, 13439)
+toco15 = toco15(13903, 67, 66, 54, 14127)
+toco16 = toco16(14127, 67, 66, 54, 14417)
+
 run = True
 while run:
     keys = pygame.key.get_pressed()
     clock.tick(27)
 
     # TESTES
-    print("JumpCount:", player.jumpCount, "Camx:", camx, "onPlatform:", player.onPlatform, "isJump:", player.isJump)
+    #print("JumpCount:", player.jumpCount, "Camx:", camx, "onPlatform:", player.onPlatform, "isJump:", player.isJump)
     # print(camx)
     # print(player.y)
     # print(player.onPlatform)
     # print(player.isJump)
+
 
     # Checkpoints
     if camx == 6545:
@@ -4665,6 +5978,183 @@ while run:
         #else:
             #player.onPlatform = False
 
+# Colisão Monstros Perion
+    if player.hitbox[1] < toco1.hitbox[1] + toco1.hitbox[3] and player.hitbox[1] + player.hitbox[3] > toco1.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > toco1.hitbox[0] and player.hitbox[0] < toco1.hitbox[0] + \
+                toco1.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < toco2.hitbox[1] + toco2.hitbox[3] and player.hitbox[1] + player.hitbox[3] > toco2.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > toco2.hitbox[0] and player.hitbox[0] < toco2.hitbox[0] + \
+                toco2.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < toco3.hitbox[1] + toco3.hitbox[3] and player.hitbox[1] + player.hitbox[3] > toco3.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > toco3.hitbox[0] and player.hitbox[0] < toco3.hitbox[0] + \
+                toco3.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < toco4.hitbox[1] + toco4.hitbox[3] and player.hitbox[1] + player.hitbox[3] > toco4.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > toco4.hitbox[0] and player.hitbox[0] < toco4.hitbox[0] + \
+                toco4.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < toco5.hitbox[1] + toco5.hitbox[3] and player.hitbox[1] + player.hitbox[3] > toco5.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > toco5.hitbox[0] and player.hitbox[0] < toco5.hitbox[0] + \
+                toco5.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < toco6.hitbox[1] + toco6.hitbox[3] and player.hitbox[1] + player.hitbox[3] > toco6.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > toco6.hitbox[0] and player.hitbox[0] < toco6.hitbox[0] + \
+                toco6.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < toco7.hitbox[1] + toco7.hitbox[3] and player.hitbox[1] + player.hitbox[3] > toco7.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > toco7.hitbox[0] and player.hitbox[0] < toco7.hitbox[0] + \
+                toco7.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < toco8.hitbox[1] + toco8.hitbox[3] and player.hitbox[1] + player.hitbox[3] > toco8.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > toco8.hitbox[0] and player.hitbox[0] < toco8.hitbox[0] + \
+                toco8.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < toco9.hitbox[1] + toco9.hitbox[3] and player.hitbox[1] + player.hitbox[3] > toco9.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > toco9.hitbox[0] and player.hitbox[0] < toco9.hitbox[0] + \
+                toco9.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < toco10.hitbox[1] + toco10.hitbox[3] and player.hitbox[1] + player.hitbox[3] > toco10.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > toco10.hitbox[0] and player.hitbox[0] < toco10.hitbox[0] + \
+                toco10.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < toco11.hitbox[1] + toco11.hitbox[3] and player.hitbox[1] + player.hitbox[3] > toco11.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > toco11.hitbox[0] and player.hitbox[0] < toco11.hitbox[0] + \
+                toco11.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < toco12.hitbox[1] + toco12.hitbox[3] and player.hitbox[1] + player.hitbox[3] > toco12.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > toco12.hitbox[0] and player.hitbox[0] < toco12.hitbox[0] + \
+                toco12.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < toco13.hitbox[1] + toco13.hitbox[3] and player.hitbox[1] + player.hitbox[3] > toco13.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > toco13.hitbox[0] and player.hitbox[0] < toco13.hitbox[0] + \
+                toco13.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < toco14.hitbox[1] + toco14.hitbox[3] and player.hitbox[1] + player.hitbox[3] > toco14.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > toco14.hitbox[0] and player.hitbox[0] < toco14.hitbox[0] + \
+                toco14.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < toco15.hitbox[1] + toco15.hitbox[3] and player.hitbox[1] + player.hitbox[3] > toco15.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > toco15.hitbox[0] and player.hitbox[0] < toco15.hitbox[0] + \
+                toco15.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < toco16.hitbox[1] + toco16.hitbox[3] and player.hitbox[1] + player.hitbox[3] > toco16.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > toco16.hitbox[0] and player.hitbox[0] < toco16.hitbox[0] + \
+                toco16.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
 # Colisão Parede Perion
     if player.plathitbox[1] < wall1.hitbox[1] + wall1.hitbox[3] and player.plathitbox[1] + \
             player.plathitbox[
@@ -4681,6 +6171,7 @@ while run:
                 wall2.hitbox[0] + wall2.hitbox[2]:
             camx -= 5
             player.walkCount = 0
+
 
     # Funções da Gravidade
     if player.y < 470 and player.isJump == False and player.onPlatform == False:
@@ -4758,7 +6249,7 @@ while run:
                 2]:
                 snail7.hit()
                 arrows.pop(arrows.index(arrow))
-                
+
         # Colisão Flechas Henesys
         if arrow.y - arrow.radius < cogu1.hitbox[1] + cogu1.hitbox[3] and arrow.y + arrow.radius > cogu1.hitbox[1]:
             if arrow.x + arrow.radius > cogu1.hitbox[0] and arrow.x - arrow.radius < cogu1.hitbox[0] + cogu1.hitbox[
@@ -4844,10 +6335,108 @@ while run:
                 cogu14.hit()
                 arrows.pop(arrows.index(arrow))
 
-        if arrow.x < 900 and arrow.x > -100:
+    # Colisão Flechas Perion
+        if arrow.y - arrow.radius < toco1.hitbox[1] + toco1.hitbox[3] and arrow.y + arrow.radius > toco1.hitbox[1]:
+            if arrow.x + arrow.radius > toco1.hitbox[0] and arrow.x - arrow.radius < toco1.hitbox[0] + toco1.hitbox[
+                2]:
+                toco1.hit()
+                arrows.pop(arrows.index(arrow))
+
+        if arrow.y - arrow.radius < toco2.hitbox[1] + toco2.hitbox[3] and arrow.y + arrow.radius > toco2.hitbox[1]:
+            if arrow.x + arrow.radius > toco2.hitbox[0] and arrow.x - arrow.radius < toco2.hitbox[0] + toco2.hitbox[
+                2]:
+                toco2.hit()
+                arrows.pop(arrows.index(arrow))
+
+        if arrow.y - arrow.radius < toco3.hitbox[1] + toco3.hitbox[3] and arrow.y + arrow.radius > toco3.hitbox[1]:
+            if arrow.x + arrow.radius > toco3.hitbox[0] and arrow.x - arrow.radius < toco3.hitbox[0] + toco3.hitbox[
+                2]:
+                toco3.hit()
+                arrows.pop(arrows.index(arrow))
+
+        if arrow.y - arrow.radius < toco4.hitbox[1] + toco4.hitbox[3] and arrow.y + arrow.radius > toco4.hitbox[1]:
+            if arrow.x + arrow.radius > toco4.hitbox[0] and arrow.x - arrow.radius < toco4.hitbox[0] + toco4.hitbox[
+                2]:
+                toco4.hit()
+                arrows.pop(arrows.index(arrow))
+
+        if arrow.y - arrow.radius < toco5.hitbox[1] + toco5.hitbox[3] and arrow.y + arrow.radius > toco5.hitbox[1]:
+            if arrow.x + arrow.radius > toco5.hitbox[0] and arrow.x - arrow.radius < toco5.hitbox[0] + toco5.hitbox[
+                2]:
+                toco5.hit()
+                arrows.pop(arrows.index(arrow))
+
+        if arrow.y - arrow.radius < toco6.hitbox[1] + toco6.hitbox[3] and arrow.y + arrow.radius > toco6.hitbox[1]:
+            if arrow.x + arrow.radius > toco6.hitbox[0] and arrow.x - arrow.radius < toco6.hitbox[0] + toco6.hitbox[
+                2]:
+                toco6.hit()
+                arrows.pop(arrows.index(arrow))
+
+        if arrow.y - arrow.radius < toco7.hitbox[1] + toco7.hitbox[3] and arrow.y + arrow.radius > toco7.hitbox[1]:
+            if arrow.x + arrow.radius > toco7.hitbox[0] and arrow.x - arrow.radius < toco7.hitbox[0] + toco7.hitbox[
+                2]:
+                toco7.hit()
+                arrows.pop(arrows.index(arrow))
+
+        if arrow.y - arrow.radius < toco8.hitbox[1] + toco8.hitbox[3] and arrow.y + arrow.radius > toco8.hitbox[1]:
+            if arrow.x + arrow.radius > toco8.hitbox[0] and arrow.x - arrow.radius < toco8.hitbox[0] + toco8.hitbox[
+                2]:
+                toco8.hit()
+                arrows.pop(arrows.index(arrow))
+
+        if arrow.y - arrow.radius < toco9.hitbox[1] + toco9.hitbox[3] and arrow.y + arrow.radius > toco9.hitbox[1]:
+            if arrow.x + arrow.radius > toco9.hitbox[0] and arrow.x - arrow.radius < toco9.hitbox[0] + toco9.hitbox[
+                2]:
+                toco9.hit()
+                arrows.pop(arrows.index(arrow))
+
+        if arrow.y - arrow.radius < toco10.hitbox[1] + toco10.hitbox[3] and arrow.y + arrow.radius > toco10.hitbox[1]:
+            if arrow.x + arrow.radius > toco10.hitbox[0] and arrow.x - arrow.radius < toco10.hitbox[0] + toco10.hitbox[
+                2]:
+                toco10.hit()
+                arrows.pop(arrows.index(arrow))
+
+        if arrow.y - arrow.radius < toco11.hitbox[1] + toco11.hitbox[3] and arrow.y + arrow.radius > toco11.hitbox[1]:
+            if arrow.x + arrow.radius > toco11.hitbox[0] and arrow.x - arrow.radius < toco11.hitbox[0] + toco11.hitbox[
+                2]:
+                toco11.hit()
+                arrows.pop(arrows.index(arrow))
+
+        if arrow.y - arrow.radius < toco12.hitbox[1] + toco12.hitbox[3] and arrow.y + arrow.radius > toco12.hitbox[1]:
+            if arrow.x + arrow.radius > toco12.hitbox[0] and arrow.x - arrow.radius < toco12.hitbox[0] + toco12.hitbox[
+                2]:
+                toco12.hit()
+                arrows.pop(arrows.index(arrow))
+
+        if arrow.y - arrow.radius < toco13.hitbox[1] + toco13.hitbox[3] and arrow.y + arrow.radius > toco13.hitbox[1]:
+            if arrow.x + arrow.radius > toco13.hitbox[0] and arrow.x - arrow.radius < toco13.hitbox[0] + toco13.hitbox[
+                2]:
+                toco13.hit()
+                arrows.pop(arrows.index(arrow))
+
+        if arrow.y - arrow.radius < toco14.hitbox[1] + toco14.hitbox[3] and arrow.y + arrow.radius > toco14.hitbox[1]:
+            if arrow.x + arrow.radius > toco14.hitbox[0] and arrow.x - arrow.radius < toco14.hitbox[0] + toco14.hitbox[
+                2]:
+                toco14.hit()
+                arrows.pop(arrows.index(arrow))
+
+        if arrow.y - arrow.radius < toco15.hitbox[1] + toco15.hitbox[3] and arrow.y + arrow.radius > toco15.hitbox[1]:
+            if arrow.x + arrow.radius > toco15.hitbox[0] and arrow.x - arrow.radius < toco15.hitbox[0] + toco15.hitbox[
+                2]:
+                toco15.hit()
+                arrows.pop(arrows.index(arrow))
+
+        if arrow.y - arrow.radius < toco16.hitbox[1] + toco16.hitbox[3] and arrow.y + arrow.radius > toco16.hitbox[1]:
+            if arrow.x + arrow.radius > toco16.hitbox[0] and arrow.x - arrow.radius < toco16.hitbox[0] + toco16.hitbox[
+                2]:
+                toco16.hit()
+                arrows.pop(arrows.index(arrow))
+
+        if arrow.x < 780 and arrow.x > 0:
             arrow.x += arrow.vel
         else:
-            arrows.pop(arrows.index(arrow))
+            if arrows != []: # if utilizado para corrigir o bug que tenta deletar uma flecha que já foi deletada ao colidir com um monstro.
+                arrows.pop(arrows.index(arrow))
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
