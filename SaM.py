@@ -53,6 +53,8 @@ vidas3 = pygame.image.load('imagens/Mapa/vidas3.png')
 vidas2 = pygame.image.load('imagens/Mapa/vidas2.png')
 vidas1 = pygame.image.load('imagens/Mapa/vidas1.png')
 vidas0 = pygame.image.load('imagens/Mapa/vidas0.png')
+detonado = pygame.image.load('imagens/Mapa/detonado.png')
+errado = pygame.image.load('imagens/Mapa/errado.png')
 
 # Configurações da janela
 pygame.display.set_icon(icone)
@@ -65,13 +67,18 @@ life = 3
 arrowSound = pygame.mixer.Sound("BGM/arrow.wav")
 die = pygame.mixer.Sound("BGM/die.wav")
 gameover = pygame.mixer.Sound("BGM/gameover.wav")
-hitSound = pygame.mixer.Sound("BGM/hit.wav")
+sucesso = pygame.mixer.Sound("BGM/sucesso.wav")
+fail = pygame.mixer.Sound("BGM/fail.wav")
 
 ## Sons/Monstros
+hitSound = pygame.mixer.Sound("BGM/hit.wav")
 snaildie = pygame.mixer.Sound("BGM/snaildie.wav")
 cogudie = pygame.mixer.Sound("BGM/cogudie.wav")
 tocodie = pygame.mixer.Sound("BGM/tocodie.wav")
 tocohit = pygame.mixer.Sound("BGM/tocohit.wav")
+stumpyhit = pygame.mixer.Sound("BGM/stumpyhit.wav")
+stumpydie = pygame.mixer.Sound("BGM/stumpydie.wav")
+stumpyskill = pygame.mixer.Sound("BGM/stumpyskill.wav")
 
 # Personagem
 class player(object):
@@ -3367,7 +3374,7 @@ class gate1(object):
 
     def draw(self, win):
         #self.move()
-        if self.visible:
+        if stumpy.visible:
             if self.walkCount + 1 >= 18:
                 self.walkCount = 0
 
@@ -4653,6 +4660,94 @@ class toco16(object):
             else:
                 self.washit = 0
 
+class stumpy(object): # Boss perion
+    walkR = [pygame.image.load('imagens/Mob/Stumpy/1.png'), pygame.image.load('imagens/Mob/Stumpy/2.png'),
+             pygame.image.load('imagens/Mob/Stumpy/3.png'), pygame.image.load('imagens/Mob/Stumpy/4.png'),
+             pygame.image.load('imagens/Mob/Stumpy/5.png'), pygame.image.load('imagens/Mob/Stumpy/6.png'),
+             pygame.image.load('imagens/Mob/Stumpy/7.png'), pygame.image.load('imagens/Mob/Stumpy/8.png'),
+             pygame.image.load('imagens/Mob/Stumpy/9.png'), pygame.image.load('imagens/Mob/Stumpy/10.png'),
+             pygame.image.load('imagens/Mob/Stumpy/11.png'), pygame.image.load('imagens/Mob/Stumpy/12.png'),
+             pygame.image.load('imagens/Mob/Stumpy/13.png'), pygame.image.load('imagens/Mob/Stumpy/14.png'),
+             pygame.image.load('imagens/Mob/Stumpy/15.png'), pygame.image.load('imagens/Mob/Stumpy/16.png'),
+             pygame.image.load('imagens/Mob/Stumpy/17.png'), pygame.image.load('imagens/Mob/Stumpy/18.png'),
+             pygame.image.load('imagens/Mob/Stumpy/19.png'), pygame.image.load('imagens/Mob/Stumpy/20.png'),
+             pygame.image.load('imagens/Mob/Stumpy/21.png'), pygame.image.load('imagens/Mob/Stumpy/22.png'),
+             pygame.image.load('imagens/Mob/Stumpy/23.png'), pygame.image.load('imagens/Mob/Stumpy/24.png')]
+
+    walkL = [pygame.image.load('imagens/Mob/Stumpy/1.png'), pygame.image.load('imagens/Mob/Stumpy/2.png'),
+             pygame.image.load('imagens/Mob/Stumpy/3.png'), pygame.image.load('imagens/Mob/Stumpy/4.png'),
+             pygame.image.load('imagens/Mob/Stumpy/5.png'), pygame.image.load('imagens/Mob/Stumpy/6.png'),
+             pygame.image.load('imagens/Mob/Stumpy/7.png'), pygame.image.load('imagens/Mob/Stumpy/8.png'),
+             pygame.image.load('imagens/Mob/Stumpy/9.png'), pygame.image.load('imagens/Mob/Stumpy/10.png'),
+             pygame.image.load('imagens/Mob/Stumpy/11.png'), pygame.image.load('imagens/Mob/Stumpy/12.png'),
+             pygame.image.load('imagens/Mob/Stumpy/13.png'), pygame.image.load('imagens/Mob/Stumpy/14.png'),
+             pygame.image.load('imagens/Mob/Stumpy/15.png'), pygame.image.load('imagens/Mob/Stumpy/16.png'),
+             pygame.image.load('imagens/Mob/Stumpy/17.png'), pygame.image.load('imagens/Mob/Stumpy/18.png'),
+             pygame.image.load('imagens/Mob/Stumpy/19.png'), pygame.image.load('imagens/Mob/Stumpy/20.png'),
+             pygame.image.load('imagens/Mob/Stumpy/21.png'), pygame.image.load('imagens/Mob/Stumpy/22.png'),
+             pygame.image.load('imagens/Mob/Stumpy/23.png'), pygame.image.load('imagens/Mob/Stumpy/24.png')]
+
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 2
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 89
+        self.visible = True
+
+    def draw(self, win):
+        if self.visible:
+            if self.walkCount + 1 >= 96:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(self.walkR[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(self.walkL[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                self.washit = 0
+            elif self.washit == 2:
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] - 50, self.hitbox[1] - 80, 187, 8))
+            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0]- 48, self.hitbox[1] - 78, 183 - (2 * (89 - self.health)), 4))
+            self.hitbox = (self.x - camx + 50, self.y + 80, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        stumpyhit.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                stumpydie.play()
+                sucesso.play()
+                win.blit(detonado, (57, 232))
+                pygame.display.update()
+                pygame.time.delay(2000)
+
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                stumpydie.play()
+            else:
+                self.washit = 0
+
+
 def GameWindow():
     # Background (Mapa)
     win.blit(bg2, (10920 - camx, 0))
@@ -4811,7 +4906,7 @@ def GameWindow():
     toco14.draw(win)
     toco15.draw(win)
     toco16.draw(win)
-
+    stumpy.draw(win)
 # Draw Paredes Perion
     wall1.draw(win)
     wall2.draw(win)
@@ -4967,6 +5062,7 @@ toco13 = toco13(11950, 490, 66, 54, 12654)
 toco14 = toco14(12743, 490, 66, 54, 13439)
 toco15 = toco15(13903, 67, 66, 54, 14127)
 toco16 = toco16(14127, 67, 66, 54, 14417)
+stumpy = stumpy(14680, 345, 82, 117, 14426)
 
 run = True
 while run:
@@ -4974,11 +5070,12 @@ while run:
     clock.tick(27)
 
     # TESTES
-    #print("JumpCount:", player.jumpCount, "Camx:", camx, "onPlatform:", player.onPlatform, "isJump:", player.isJump)
+    print("JumpCount:", player.jumpCount, "Camx:", camx, "onPlatform:", player.onPlatform, "isJump:", player.isJump)
     # print(camx)
     # print(player.y)
     # print(player.onPlatform)
     # print(player.isJump)
+    #print(stumpy.walkCount)
 
 
     # Checkpoints
@@ -5955,8 +6052,8 @@ while run:
                 platform64.hitbox[0] + platform64.hitbox[2]:
             platform64.hit()
             player.onPlatform = True
-        # else:
-        # player.onPlatform = False
+        else:
+            player.onPlatform = False
         
     if player.plathitbox[1] < platform65.hitbox[1] + platform65.hitbox[3] and player.plathitbox[1] + \
             player.plathitbox[
@@ -5965,8 +6062,8 @@ while run:
                 platform65.hitbox[0] + platform65.hitbox[2]:
             platform65.hit()
             player.onPlatform = True
-        # else:
-        # player.onPlatform = False
+        #else:
+            #player.onPlatform = False
 
     if player.plathitbox[1] < platform66.hitbox[1] + platform66.hitbox[3] and player.plathitbox[1] + \
             player.plathitbox[
@@ -6154,6 +6251,38 @@ while run:
             camx = checkpoint
             player.x = 400
             player.y = 470
+    
+    #Colisão Hitbox Stumpy
+    if player.hitbox[1] < stumpy.hitbox[1] + stumpy.hitbox[3] and player.hitbox[1] + player.hitbox[3] > stumpy.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > stumpy.hitbox[0] and player.hitbox[0] < stumpy.hitbox[0] + \
+                stumpy.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+            
+    # Colisão Skill Stumpy
+    if stumpy.walkCount == 40 and player.y == 470 and camx > 13955 and stumpy.visible == True:
+        player.hit()
+        life -= 1
+        player.health -= 1
+        camx = checkpoint
+        player.x = 400
+        player.y = 470
+
+    if stumpy.walkCount == 80 and stumpy.visible == True and camx > 13910:
+        stumpyskill.play()
+
+    if stumpy.walkCount == 40 and camx >= 14225 and player.y > 300 and stumpy.visible == True:
+        player.hit()
+        life -= 1
+        player.health -= 1
+        camx = checkpoint
+        player.x = 400
+        player.y = 470
 
 # Colisão Parede Perion
     if player.plathitbox[1] < wall1.hitbox[1] + wall1.hitbox[3] and player.plathitbox[1] + \
@@ -6163,14 +6292,15 @@ while run:
                 wall1.hitbox[0] + wall1.hitbox[2]:
             camx -= 5
             player.walkCount = 0
-            
-    if player.plathitbox[1] < wall2.hitbox[1] + wall2.hitbox[3] and player.plathitbox[1] + \
-            player.plathitbox[
-                3] > wall2.hitbox[1]:
-        if player.plathitbox[0] + player.plathitbox[2] > wall2.hitbox[0] and player.plathitbox[0] < \
-                wall2.hitbox[0] + wall2.hitbox[2]:
-            camx -= 5
-            player.walkCount = 0
+
+    if stumpy.visible:
+        if player.plathitbox[1] < wall2.hitbox[1] + wall2.hitbox[3] and player.plathitbox[1] + \
+                player.plathitbox[
+                    3] > wall2.hitbox[1]:
+            if player.plathitbox[0] + player.plathitbox[2] > wall2.hitbox[0] and player.plathitbox[0] < \
+                    wall2.hitbox[0] + wall2.hitbox[2]:
+                camx -= 5
+                player.walkCount = 0
 
 
     # Funções da Gravidade
@@ -6430,6 +6560,13 @@ while run:
             if arrow.x + arrow.radius > toco16.hitbox[0] and arrow.x - arrow.radius < toco16.hitbox[0] + toco16.hitbox[
                 2]:
                 toco16.hit()
+                arrows.pop(arrows.index(arrow))
+
+        #Colisão Flecha Stumpy
+        if arrow.y - arrow.radius < stumpy.hitbox[1] + stumpy.hitbox[3] and arrow.y + arrow.radius > stumpy.hitbox[1]:
+            if arrow.x + arrow.radius > stumpy.hitbox[0] and arrow.x - arrow.radius < stumpy.hitbox[0] + stumpy.hitbox[
+                2]:
+                stumpy.hit()
                 arrows.pop(arrows.index(arrow))
 
         if arrow.x < 780 and arrow.x > 0:
