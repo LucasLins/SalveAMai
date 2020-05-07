@@ -3347,6 +3347,182 @@ class wall2(object):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
         pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
+# Objetos Plataformas Ellinia
+class platform67(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform68(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform69(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform70(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform71(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform72(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform73(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+
+# Objetos Parede Ellinia
+class wall3(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+class wall4(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        
     # Objetos Gate Perion
 class gate1(object):
     walkR = [pygame.image.load('imagens/Mob/Gate/1.png'), pygame.image.load('imagens/Mob/Gate/2.png'),
@@ -4747,6 +4923,20 @@ class stumpy(object): # Boss perion
             else:
                 self.washit = 0
 
+# Objetos Spike Ellinia
+class spike10(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
 
 def GameWindow():
     # Background (Mapa)
@@ -4911,6 +5101,21 @@ def GameWindow():
     wall1.draw(win)
     wall2.draw(win)
 
+# Draw Spikes Ellinia
+    spike10.draw(win)
+
+#Draw Parede Ellinia
+    wall3.draw(win)
+    wall4.draw(win)
+
+#Draw Plataformas Ellinia
+    platform67.draw(win)
+    platform68.draw(win)
+    platform69.draw(win)
+    platform70.draw(win)
+    platform71.draw(win)
+    platform72.draw(win)
+    platform73.draw(win)
     pygame.display.update()
 
 
@@ -5064,14 +5269,30 @@ toco15 = toco15(13903, 67, 66, 54, 14127)
 toco16 = toco16(14127, 67, 66, 54, 14417)
 stumpy = stumpy(14680, 345, 82, 117, 14426)
 
+# Variável Spikes Ellinias
+spike10 = spike10(15485, 555, 2050, 35)
+
+# Variável Wall Ellinia
+wall3 = wall3(17861, 61, 26, 496)
+wall4 = wall4(18635, 0, 48, 600)
+
+# Variável Plataformas Ellinia
+platform67 = platform67(17939, 455, 38, 20)
+platform68 = platform68(18420, 449, 38, 20)
+platform69 = platform69(17939, 359, 38, 20)
+platform70 = platform70(18057, 359, 38, 20)
+platform71 = platform71(18181, 359, 38, 20)
+platform72 = platform72(18304, 359, 38, 20)
+platform73 = platform73(18420, 359, 38, 20)
+
 run = True
 while run:
     keys = pygame.key.get_pressed()
     clock.tick(27)
 
     # TESTES
-    print("JumpCount:", player.jumpCount, "Camx:", camx, "onPlatform:", player.onPlatform, "isJump:", player.isJump)
-    # print(camx)
+    #print("JumpCount:", player.jumpCount, "Camx:", camx, "onPlatform:", player.onPlatform, "isJump:", player.isJump)
+    print(camx)
     # print(player.y)
     # print(player.onPlatform)
     # print(player.isJump)
@@ -5084,6 +5305,9 @@ while run:
 
     if camx == 10610:
         checkpoint = 10610
+
+    if camx == 14740:
+        checkpoint = 14740
 
     # BGM de cada cidade
     if camx == 0:
@@ -5101,6 +5325,11 @@ while run:
     if camx == 10485:
         music = pygame.mixer.music.load("BGM/BGM03.mp3")
         pygame.mixer.music.play(-1)
+
+    if camx == 14430:
+        music = pygame.mixer.music.load("BGM/BGM04.mp3")
+        pygame.mixer.music.play(-1)
+
     # Verificação de GameOver
     if player.health < 0:
         gameover.play()
@@ -6075,6 +6304,77 @@ while run:
         #else:
             #player.onPlatform = False
 
+#Colisão Plataformas Ellinia
+    if player.plathitbox[1] < platform67.hitbox[1] + platform67.hitbox[3] and player.plathitbox[1] + \
+            player.plathitbox[
+                3] > platform67.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform67.hitbox[0] and player.plathitbox[0] < \
+                platform67.hitbox[0] + platform67.hitbox[2]:
+            platform67.hit()
+            player.onPlatform = True
+        #else:
+            #player.onPlatform = False
+
+    if player.plathitbox[1] < platform68.hitbox[1] + platform68.hitbox[3] and player.plathitbox[1] + \
+            player.plathitbox[
+                3] > platform68.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform68.hitbox[0] and player.plathitbox[0] < \
+                platform68.hitbox[0] + platform68.hitbox[2]:
+            platform68.hit()
+            player.onPlatform = True
+        #else:
+            #player.onPlatform = False
+
+    if player.plathitbox[1] < platform69.hitbox[1] + platform69.hitbox[3] and player.plathitbox[1] + \
+            player.plathitbox[
+                3] > platform69.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform69.hitbox[0] and player.plathitbox[0] < \
+                platform69.hitbox[0] + platform69.hitbox[2]:
+            platform69.hit()
+            player.onPlatform = True
+        #else:
+            #player.onPlatform = False
+
+    if player.plathitbox[1] < platform70.hitbox[1] + platform70.hitbox[3] and player.plathitbox[1] + \
+            player.plathitbox[
+                3] > platform70.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform70.hitbox[0] and player.plathitbox[0] < \
+                platform70.hitbox[0] + platform70.hitbox[2]:
+            platform70.hit()
+            player.onPlatform = True
+        #else:
+            #player.onPlatform = False
+
+    if player.plathitbox[1] < platform71.hitbox[1] + platform71.hitbox[3] and player.plathitbox[1] + \
+            player.plathitbox[
+                3] > platform71.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform71.hitbox[0] and player.plathitbox[0] < \
+                platform71.hitbox[0] + platform71.hitbox[2]:
+            platform71.hit()
+            player.onPlatform = True
+        #else:
+            #player.onPlatform = False
+
+    if player.plathitbox[1] < platform72.hitbox[1] + platform72.hitbox[3] and player.plathitbox[1] + \
+            player.plathitbox[
+                3] > platform72.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform72.hitbox[0] and player.plathitbox[0] < \
+                platform72.hitbox[0] + platform72.hitbox[2]:
+            platform72.hit()
+            player.onPlatform = True
+        #else:
+            #player.onPlatform = False
+
+    if player.plathitbox[1] < platform73.hitbox[1] + platform73.hitbox[3] and player.plathitbox[1] + \
+            player.plathitbox[
+                3] > platform73.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform73.hitbox[0] and player.plathitbox[0] < \
+                platform73.hitbox[0] + platform73.hitbox[2]:
+            platform73.hit()
+            player.onPlatform = True
+        #else:
+            #player.onPlatform = False
+        
 # Colisão Monstros Perion
     if player.hitbox[1] < toco1.hitbox[1] + toco1.hitbox[3] and player.hitbox[1] + player.hitbox[3] > toco1.hitbox[
         1]:
@@ -6302,6 +6602,34 @@ while run:
                 camx -= 5
                 player.walkCount = 0
 
+# Colisão Parede Ellinia
+    if player.plathitbox[1] < wall3.hitbox[1] + wall3.hitbox[3] and player.plathitbox[1] + \
+            player.plathitbox[
+                3] > wall3.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > wall3.hitbox[0] and player.plathitbox[0] < \
+                wall3.hitbox[0] + wall3.hitbox[2]:
+            camx += 5
+            player.walkCount = 0
+            
+    if player.plathitbox[1] < wall4.hitbox[1] + wall4.hitbox[3] and player.plathitbox[1] + \
+            player.plathitbox[
+                3] > wall4.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > wall4.hitbox[0] and player.plathitbox[0] < \
+                wall4.hitbox[0] + wall4.hitbox[2]:
+            camx -= 5
+            player.walkCount = 0
+            
+    # Colisão Spike Ellinia
+    if player.hitbox[1] < spike10.hitbox[1] + spike10.hitbox[3] and player.hitbox[1] + player.hitbox[3] > spike10.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > spike10.hitbox[0] and player.hitbox[0] < spike10.hitbox[0] + \
+                spike10.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
 
     # Funções da Gravidade
     if player.y < 470 and player.isJump == False and player.onPlatform == False:
@@ -6331,8 +6659,40 @@ while run:
     elif camx > 11220 and camx <= 11310 and player.isJump == False and player.onPlatform == False:
         player.y = player.y + 5
 
+    # Gravidade / Buracos Ellinia
+    elif camx > 15060 and camx <= 15145 and player.isJump == False and player.onPlatform == False:
+        player.y = player.y + 5
+
+    elif camx > 15210 and camx <= 15300 and player.isJump == False and player.onPlatform == False:
+        player.y = player.y + 5
+
+    elif camx > 15360 and camx <= 15460 and player.isJump == False and player.onPlatform == False:
+        player.y = player.y + 5
+
+    elif camx > 15520 and camx <= 15610 and player.isJump == False and player.onPlatform == False:
+        player.y = player.y + 5
+
+    elif camx > 15670 and camx <= 15770 and player.isJump == False and player.onPlatform == False:
+        player.y = player.y + 5
+
+    elif camx > 16350 and camx <= 16440 and player.isJump == False and player.onPlatform == False:
+        player.y = player.y + 5
+
+    elif camx > 16510 and camx <= 16595 and player.isJump == False and player.onPlatform == False:
+        player.y = player.y + 5
+
+    elif camx > 16660 and camx <= 16755 and player.isJump == False and player.onPlatform == False:
+        player.y = player.y + 5
+
+    elif camx > 16820 and camx <= 16905 and player.isJump == False and player.onPlatform == False:
+        player.y = player.y + 5
+
+    elif camx > 16970 and camx <= 17060 and player.isJump == False and player.onPlatform == False:
+        player.y = player.y + 5
+
     elif player.y > 470:
         player.y = 470
+
 
 
     # Colisão Flechas
