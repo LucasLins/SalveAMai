@@ -4937,7 +4937,853 @@ class spike10(object):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
         pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
+# Objetos Monstros Ellinia
+class slime1(object):
+    walkR = [pygame.image.load('imagens/Mob/Slime/SR1.png'), pygame.image.load('imagens/Mob/Slime/SR2.png'),
+             pygame.image.load('imagens/Mob/Slime/SR3.png'), pygame.image.load('imagens/Mob/Slime/SR4.png'),
+             pygame.image.load('imagens/Mob/Slime/SR5.png'), pygame.image.load('imagens/Mob/Slime/SR6.png'),
+             pygame.image.load('imagens/Mob/Slime/SR7.png')]
 
+    walkL = [pygame.image.load('imagens/Mob/Slime/SL1.png'), pygame.image.load('imagens/Mob/Slime/SL2.png'),
+             pygame.image.load('imagens/Mob/Slime/SL3.png'), pygame.image.load('imagens/Mob/Slime/SL4.png'),
+             pygame.image.load('imagens/Mob/Slime/SL5.png'), pygame.image.load('imagens/Mob/Slime/SL6.png'),
+             pygame.image.load('imagens/Mob/Slime/SL7.png')]
+
+    RHS = pygame.image.load('imagens/Mob/Slime/SHR.png')
+    LHS = pygame.image.load('imagens/Mob/Slime/SHL.png')
+
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 5
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 10
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 28:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(self.walkR[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(self.walkL[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(self.RHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(self.LHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 8, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y + 30, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        tocohit.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                tocodie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                tocodie.play()
+            else:
+                self.washit = 0
+
+class slime2(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 5
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 10
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 28:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(slime1.walkR[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(slime1.walkL[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(slime1.RHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(slime1.LHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 8, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y + 30, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        tocohit.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                tocodie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                tocodie.play()
+            else:
+                self.washit = 0
+
+class slime3(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 5
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 10
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 28:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(slime1.walkR[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(slime1.walkL[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(slime1.RHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(slime1.LHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 8, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y + 30, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        tocohit.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                tocodie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                tocodie.play()
+            else:
+                self.washit = 0
+
+class slime4(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 5
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 10
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 28:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(slime1.walkR[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(slime1.walkL[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(slime1.RHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(slime1.LHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 8, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y + 30, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        tocohit.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                tocodie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                tocodie.play()
+            else:
+                self.washit = 0
+
+class slime5(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 5
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 10
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 28:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(slime1.walkR[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(slime1.walkL[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(slime1.RHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(slime1.LHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 8, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y + 30, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        tocohit.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                tocodie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                tocodie.play()
+            else:
+                self.washit = 0
+
+class slime6(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 5
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 10
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 28:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(slime1.walkR[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(slime1.walkL[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(slime1.RHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(slime1.LHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 8, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y + 30, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        tocohit.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                tocodie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                tocodie.play()
+            else:
+                self.washit = 0
+
+class slime7(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 5
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 10
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 28:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(slime1.walkR[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(slime1.walkL[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(slime1.RHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(slime1.LHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 8, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y + 30, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        tocohit.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                tocodie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                tocodie.play()
+            else:
+                self.washit = 0
+
+class slime8(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 5
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 10
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 28:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(slime1.walkR[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(slime1.walkL[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(slime1.RHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(slime1.LHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 8, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y + 30, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        tocohit.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                tocodie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                tocodie.play()
+            else:
+                self.washit = 0
+
+class slime9(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 5
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 10
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 28:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(slime1.walkR[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(slime1.walkL[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(slime1.RHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(slime1.LHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 8, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y + 30, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        tocohit.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                tocodie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                tocodie.play()
+            else:
+                self.washit = 0
+
+class slime10(object):
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 5
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 10
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 28:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(slime1.walkR[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(slime1.walkL[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                win.blit(slime1.RHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            elif self.washit == 2:
+                win.blit(slime1.LHS, (round(self.x - camx), round(self.y)))
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 8, self.hitbox[1] - 17, 49, 8))
+            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
+            self.hitbox = (self.x - camx, self.y + 30, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        tocohit.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                tocodie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                tocodie.play()
+            else:
+                self.washit = 0
+
+class KSlime(object): # Boss Ellinia
+    walkR = [pygame.image.load('imagens/Mob/KSlime/SR1.png'), pygame.image.load('imagens/Mob/KSlime/SR2.png'),
+             pygame.image.load('imagens/Mob/KSlime/SR3.png'), pygame.image.load('imagens/Mob/KSlime/SR4.png'),
+             pygame.image.load('imagens/Mob/KSlime/SR5.png'), pygame.image.load('imagens/Mob/KSlime/SR6.png'),
+             pygame.image.load('imagens/Mob/KSlime/SR7.png')]
+
+    walkL = [pygame.image.load('imagens/Mob/KSlime/SL1.png'), pygame.image.load('imagens/Mob/KSlime/SL2.png'),
+             pygame.image.load('imagens/Mob/KSlime/SL3.png'), pygame.image.load('imagens/Mob/KSlime/SL4.png'),
+             pygame.image.load('imagens/Mob/KSlime/SL5.png'), pygame.image.load('imagens/Mob/KSlime/SL6.png'),
+             pygame.image.load('imagens/Mob/KSlime/SL7.png')]
+
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 5
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 89
+        self.visible = True
+
+    def draw(self, win):
+        self.move()
+        if self.visible:
+            if self.walkCount + 1 >= 28:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(self.walkR[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(self.walkL[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                self.washit = 0
+            elif self.washit == 2:
+                self.washit = 0
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] - 30, self.hitbox[1] - 80, 187, 8))
+            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0]- 28, self.hitbox[1] - 78, 183 - (2 * (89 - self.health)), 4))
+            self.hitbox = (self.x - camx + 30, self.y + 80, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def move(self):
+        if self.vel > 0:
+            if self.x < self.path[1] + self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+        else:
+            if self.x > self.path[0] - self.vel:
+                self.x += self.vel
+            else:
+                self.vel = self.vel * -1
+                self.x += self.vel
+                self.walkCount = 0
+
+    def hit(self):
+        tocohit.play()
+        if self.health > 0 and self.vel > 0:
+            self.washit = 1
+            self.health -= 1
+        elif self.health > 0 and self.vel < 0:
+            self.washit = 2
+            self.health -= 1
+        else:
+            if self.vel > 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 1
+                self.visible = False
+                tocodie.play()
+            elif self.vel < 0:
+                self.hitbox = (0, 0, 0, 0)
+                self.washit = 2
+                self.visible = False
+                tocodie.play()
+            else:
+                self.washit = 0
+                
 def GameWindow():
     # Background (Mapa)
     win.blit(bg2, (10920 - camx, 0))
@@ -5116,11 +5962,24 @@ def GameWindow():
     platform71.draw(win)
     platform72.draw(win)
     platform73.draw(win)
+
+# Draw Monstros Ellinia
+    slime1.draw(win)
+    slime2.draw(win)
+    slime3.draw(win)
+    slime4.draw(win)
+    slime5.draw(win)
+    slime6.draw(win)
+    slime7.draw(win)
+    slime8.draw(win)
+    slime9.draw(win)
+    slime10.draw(win)
+    KSlime.draw(win)
     pygame.display.update()
 
 
 # Main loop
-camx = 13500  # Camera
+camx = 17400  # Camera
 
 # Variavel Player
 player = player(400, 470, 64, 64)
@@ -5270,7 +6129,7 @@ toco16 = toco16(14127, 67, 66, 54, 14417)
 stumpy = stumpy(14680, 345, 82, 117, 14426)
 
 # Variável Spikes Ellinias
-spike10 = spike10(15485, 555, 2050, 35)
+spike10 = spike10(15485, 549, 2050, 35)
 
 # Variável Wall Ellinia
 wall3 = wall3(17861, 61, 26, 496)
@@ -5284,6 +6143,20 @@ platform70 = platform70(18057, 359, 38, 20)
 platform71 = platform71(18181, 359, 38, 20)
 platform72 = platform72(18304, 359, 38, 20)
 platform73 = platform73(18420, 359, 38, 20)
+
+# Variável Monstros Ellinia
+slime1 = slime1(15240, 456, 60, 54, 15410)
+slime2 = slime2(15708, 456, 60, 54, 15759)
+slime3 = slime3(16018, 456, 60, 54, 16069)
+slime4 = slime4(16220, 456, 60, 54, 16430)
+slime5 = slime5(16500, 456, 60, 54, 16710)
+slime6 = slime6(17007, 456, 60, 54, 17058)
+slime7 = slime7(17317, 456, 60, 54, 17368)
+slime8 = slime8(17520, 456, 60, 54, 17790)
+
+slime9 = slime9(17890, 456, 60, 54, 18130)
+slime10 = slime10(18200, 456, 60, 54, 18360)
+KSlime = KSlime(17890, 300, 159, 165, 18360)
 
 run = True
 while run:
@@ -6565,7 +7438,7 @@ while run:
             player.y = 470
             
     # Colisão Skill Stumpy
-    if stumpy.walkCount == 40 and player.y == 470 and camx > 13955 and stumpy.visible == True:
+    if stumpy.walkCount == 40 and player.y == 470 and camx > 13955 and stumpy.visible == True and camx < 14385:
         player.hit()
         life -= 1
         player.health -= 1
@@ -6573,10 +7446,10 @@ while run:
         player.x = 400
         player.y = 470
 
-    if stumpy.walkCount == 80 and stumpy.visible == True and camx > 13910:
+    if stumpy.walkCount == 80 and stumpy.visible == True and camx > 13910 and camx < 14385:
         stumpyskill.play()
 
-    if stumpy.walkCount == 40 and camx >= 14225 and player.y > 300 and stumpy.visible == True:
+    if stumpy.walkCount == 40 and camx >= 14225 and player.y > 300 and stumpy.visible == True and camx < 14385:
         player.hit()
         life -= 1
         player.health -= 1
@@ -6601,6 +7474,128 @@ while run:
                     wall2.hitbox[0] + wall2.hitbox[2]:
                 camx -= 5
                 player.walkCount = 0
+
+# Colisão Monstros Ellinia
+    if player.hitbox[1] < slime1.hitbox[1] + slime1.hitbox[3] and player.hitbox[1] + player.hitbox[3] > slime1.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > slime1.hitbox[0] and player.hitbox[0] < slime1.hitbox[0] + \
+                slime1.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < slime2.hitbox[1] + slime2.hitbox[3] and player.hitbox[1] + player.hitbox[3] > slime2.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > slime2.hitbox[0] and player.hitbox[0] < slime2.hitbox[0] + \
+                slime2.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < slime3.hitbox[1] + slime3.hitbox[3] and player.hitbox[1] + player.hitbox[3] > slime3.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > slime3.hitbox[0] and player.hitbox[0] < slime3.hitbox[0] + \
+                slime3.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < slime4.hitbox[1] + slime4.hitbox[3] and player.hitbox[1] + player.hitbox[3] > slime4.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > slime4.hitbox[0] and player.hitbox[0] < slime4.hitbox[0] + \
+                slime4.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < slime5.hitbox[1] + slime5.hitbox[3] and player.hitbox[1] + player.hitbox[3] > slime5.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > slime5.hitbox[0] and player.hitbox[0] < slime5.hitbox[0] + \
+                slime5.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < slime6.hitbox[1] + slime6.hitbox[3] and player.hitbox[1] + player.hitbox[3] > slime6.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > slime6.hitbox[0] and player.hitbox[0] < slime6.hitbox[0] + \
+                slime6.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < slime7.hitbox[1] + slime7.hitbox[3] and player.hitbox[1] + player.hitbox[3] > slime7.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > slime7.hitbox[0] and player.hitbox[0] < slime7.hitbox[0] + \
+                slime7.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < slime8.hitbox[1] + slime8.hitbox[3] and player.hitbox[1] + player.hitbox[3] > slime8.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > slime8.hitbox[0] and player.hitbox[0] < slime8.hitbox[0] + \
+                slime8.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < slime9.hitbox[1] + slime9.hitbox[3] and player.hitbox[1] + player.hitbox[3] > slime9.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > slime9.hitbox[0] and player.hitbox[0] < slime9.hitbox[0] + \
+                slime9.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+
+    if player.hitbox[1] < slime10.hitbox[1] + slime10.hitbox[3] and player.hitbox[1] + player.hitbox[3] > slime10.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > slime10.hitbox[0] and player.hitbox[0] < slime10.hitbox[0] + \
+                slime10.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+            
+    if player.hitbox[1] < KSlime.hitbox[1] + KSlime.hitbox[3] and player.hitbox[1] + player.hitbox[3] > KSlime.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > KSlime.hitbox[0] and player.hitbox[0] < KSlime.hitbox[0] + \
+                KSlime.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
 
 # Colisão Parede Ellinia
     if player.plathitbox[1] < wall3.hitbox[1] + wall3.hitbox[3] and player.plathitbox[1] + \
@@ -6928,6 +7923,74 @@ while run:
                 2]:
                 stumpy.hit()
                 arrows.pop(arrows.index(arrow))
+
+        #Colisão Flechas Ellinia
+        if arrow.y - arrow.radius < slime1.hitbox[1] + slime1.hitbox[3] and arrow.y + arrow.radius > slime1.hitbox[1]:
+            if arrow.x + arrow.radius > slime1.hitbox[0] and arrow.x - arrow.radius < slime1.hitbox[0] + slime1.hitbox[
+                2]:
+                slime1.hit()
+                arrows.pop(arrows.index(arrow))
+
+        if arrow.y - arrow.radius < slime2.hitbox[1] + slime2.hitbox[3] and arrow.y + arrow.radius > slime2.hitbox[1]:
+            if arrow.x + arrow.radius > slime2.hitbox[0] and arrow.x - arrow.radius < slime2.hitbox[0] + slime2.hitbox[
+                2]:
+                slime2.hit()
+                arrows.pop(arrows.index(arrow))
+
+        if arrow.y - arrow.radius < slime3.hitbox[1] + slime3.hitbox[3] and arrow.y + arrow.radius > slime3.hitbox[1]:
+            if arrow.x + arrow.radius > slime3.hitbox[0] and arrow.x - arrow.radius < slime3.hitbox[0] + slime3.hitbox[
+                2]:
+                slime3.hit()
+                arrows.pop(arrows.index(arrow))
+
+        if arrow.y - arrow.radius < slime4.hitbox[1] + slime4.hitbox[3] and arrow.y + arrow.radius > slime4.hitbox[1]:
+            if arrow.x + arrow.radius > slime4.hitbox[0] and arrow.x - arrow.radius < slime4.hitbox[0] + slime4.hitbox[
+                2]:
+                slime4.hit()
+                arrows.pop(arrows.index(arrow))
+
+        if arrow.y - arrow.radius < slime5.hitbox[1] + slime5.hitbox[3] and arrow.y + arrow.radius > slime5.hitbox[1]:
+            if arrow.x + arrow.radius > slime5.hitbox[0] and arrow.x - arrow.radius < slime5.hitbox[0] + slime5.hitbox[
+                2]:
+                slime5.hit()
+                arrows.pop(arrows.index(arrow))
+
+        if arrow.y - arrow.radius < slime6.hitbox[1] + slime6.hitbox[3] and arrow.y + arrow.radius > slime6.hitbox[1]:
+            if arrow.x + arrow.radius > slime6.hitbox[0] and arrow.x - arrow.radius < slime6.hitbox[0] + slime6.hitbox[
+                2]:
+                slime6.hit()
+                arrows.pop(arrows.index(arrow))
+
+        if arrow.y - arrow.radius < slime7.hitbox[1] + slime7.hitbox[3] and arrow.y + arrow.radius > slime7.hitbox[1]:
+            if arrow.x + arrow.radius > slime7.hitbox[0] and arrow.x - arrow.radius < slime7.hitbox[0] + slime7.hitbox[
+                2]:
+                slime7.hit()
+                arrows.pop(arrows.index(arrow))
+
+        if arrow.y - arrow.radius < slime8.hitbox[1] + slime8.hitbox[3] and arrow.y + arrow.radius > slime8.hitbox[1]:
+            if arrow.x + arrow.radius > slime8.hitbox[0] and arrow.x - arrow.radius < slime8.hitbox[0] + slime8.hitbox[
+                2]:
+                slime8.hit()
+                arrows.pop(arrows.index(arrow))
+
+        if arrow.y - arrow.radius < slime9.hitbox[1] + slime9.hitbox[3] and arrow.y + arrow.radius > slime9.hitbox[1]:
+            if arrow.x + arrow.radius > slime9.hitbox[0] and arrow.x - arrow.radius < slime9.hitbox[0] + slime9.hitbox[
+                2]:
+                slime9.hit()
+                arrows.pop(arrows.index(arrow))
+
+        if arrow.y - arrow.radius < slime10.hitbox[1] + slime10.hitbox[3] and arrow.y + arrow.radius > slime10.hitbox[1]:
+            if arrow.x + arrow.radius > slime10.hitbox[0] and arrow.x - arrow.radius < slime10.hitbox[0] + slime10.hitbox[
+                2]:
+                slime10.hit()
+                arrows.pop(arrows.index(arrow))
+
+        if arrow.y - arrow.radius < KSlime.hitbox[1] + KSlime.hitbox[3] and arrow.y + arrow.radius > KSlime.hitbox[1]:
+            if arrow.x + arrow.radius > KSlime.hitbox[0] and arrow.x - arrow.radius < KSlime.hitbox[0] + KSlime.hitbox[
+                2]:
+                KSlime.hit()
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.x < 780 and arrow.x > 0:
             arrow.x += arrow.vel
