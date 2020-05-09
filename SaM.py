@@ -79,6 +79,10 @@ tocohit = pygame.mixer.Sound("BGM/tocohit.wav")
 stumpyhit = pygame.mixer.Sound("BGM/stumpyhit.wav")
 stumpydie = pygame.mixer.Sound("BGM/stumpydie.wav")
 stumpyskill = pygame.mixer.Sound("BGM/stumpyskill.wav")
+kslimeskill = pygame.mixer.Sound("BGM/kslimeskill.wav")
+kslimehit = pygame.mixer.Sound("BGM/kslimehit.wav")
+slimedie = pygame.mixer.Sound("BGM/slimedie.wav")
+slimehit = pygame.mixer.Sound("BGM/slimehit.wav")
 
 # Personagem
 class player(object):
@@ -3551,7 +3555,48 @@ class gate1(object):
     def draw(self, win):
         #self.move()
         if stumpy.visible:
-            if self.walkCount + 1 >= 18:
+            if self.walkCount + 1 >= 32:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(self.walkR[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            else:
+                win.blit(self.walkL[self.walkCount // 4], (self.x - camx, self.y))
+                self.walkCount += 1
+            if self.washit == 1:
+                self.washit = 0
+            elif self.washit == 2:
+                self.washit = 0
+
+# Gate Ellinia
+class gate2(object):
+    walkR = [pygame.image.load('imagens/Mob/Gate2/1.png'), pygame.image.load('imagens/Mob/Gate2/2.png'),
+             pygame.image.load('imagens/Mob/Gate2/3.png'), pygame.image.load('imagens/Mob/Gate2/4.png'),
+             pygame.image.load('imagens/Mob/Gate2/5.png'), pygame.image.load('imagens/Mob/Gate2/6.png'),
+             pygame.image.load('imagens/Mob/Gate2/7.png'), pygame.image.load('imagens/Mob/Gate2/8.png')]
+
+    walkL = [pygame.image.load('imagens/Mob/Gate2/1.png'), pygame.image.load('imagens/Mob/Gate2/2.png'),
+             pygame.image.load('imagens/Mob/Gate2/3.png'), pygame.image.load('imagens/Mob/Gate2/4.png'),
+             pygame.image.load('imagens/Mob/Gate2/5.png'), pygame.image.load('imagens/Mob/Gate2/6.png'),
+             pygame.image.load('imagens/Mob/Gate2/7.png'), pygame.image.load('imagens/Mob/Gate2/8.png')]
+
+    def __init__(self, x, y, width, height, end):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.path = [x, end]
+        self.walkCount = 0
+        self.vel = 4
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.health = 6
+        self.visible = True
+
+    def draw(self, win):
+        if slime9.visible or slime10.visible or KSlime.visible:
+            if self.walkCount + 1 >= 32:
                 self.walkCount = 0
 
             if self.vel > 0:
@@ -4911,9 +4956,6 @@ class stumpy(object): # Boss perion
                 self.visible = False
                 stumpydie.play()
                 sucesso.play()
-                win.blit(detonado, (57, 232))
-                pygame.display.update()
-                pygame.time.delay(2000)
 
             elif self.vel < 0:
                 self.hitbox = (0, 0, 0, 0)
@@ -5005,7 +5047,7 @@ class slime1(object):
                 self.walkCount = 0
 
     def hit(self):
-        tocohit.play()
+        slimehit.play()
         if self.health > 0 and self.vel > 0:
             self.washit = 1
             self.health -= 1
@@ -5017,12 +5059,12 @@ class slime1(object):
                 self.hitbox = (0, 0, 0, 0)
                 self.washit = 1
                 self.visible = False
-                tocodie.play()
+                slimedie.play()
             elif self.vel < 0:
                 self.hitbox = (0, 0, 0, 0)
                 self.washit = 2
                 self.visible = False
-                tocodie.play()
+                slimedie.play()
             else:
                 self.washit = 0
 
@@ -5080,7 +5122,7 @@ class slime2(object):
                 self.walkCount = 0
 
     def hit(self):
-        tocohit.play()
+        slimehit.play()
         if self.health > 0 and self.vel > 0:
             self.washit = 1
             self.health -= 1
@@ -5092,12 +5134,12 @@ class slime2(object):
                 self.hitbox = (0, 0, 0, 0)
                 self.washit = 1
                 self.visible = False
-                tocodie.play()
+                slimedie.play()
             elif self.vel < 0:
                 self.hitbox = (0, 0, 0, 0)
                 self.washit = 2
                 self.visible = False
-                tocodie.play()
+                slimedie.play()
             else:
                 self.washit = 0
 
@@ -5155,7 +5197,7 @@ class slime3(object):
                 self.walkCount = 0
 
     def hit(self):
-        tocohit.play()
+        slimehit.play()
         if self.health > 0 and self.vel > 0:
             self.washit = 1
             self.health -= 1
@@ -5167,12 +5209,12 @@ class slime3(object):
                 self.hitbox = (0, 0, 0, 0)
                 self.washit = 1
                 self.visible = False
-                tocodie.play()
+                slimedie.play()
             elif self.vel < 0:
                 self.hitbox = (0, 0, 0, 0)
                 self.washit = 2
                 self.visible = False
-                tocodie.play()
+                slimedie.play()
             else:
                 self.washit = 0
 
@@ -5230,7 +5272,7 @@ class slime4(object):
                 self.walkCount = 0
 
     def hit(self):
-        tocohit.play()
+        slimehit.play()
         if self.health > 0 and self.vel > 0:
             self.washit = 1
             self.health -= 1
@@ -5242,12 +5284,12 @@ class slime4(object):
                 self.hitbox = (0, 0, 0, 0)
                 self.washit = 1
                 self.visible = False
-                tocodie.play()
+                slimedie.play()
             elif self.vel < 0:
                 self.hitbox = (0, 0, 0, 0)
                 self.washit = 2
                 self.visible = False
-                tocodie.play()
+                slimedie.play()
             else:
                 self.washit = 0
 
@@ -5305,7 +5347,7 @@ class slime5(object):
                 self.walkCount = 0
 
     def hit(self):
-        tocohit.play()
+        slimehit.play()
         if self.health > 0 and self.vel > 0:
             self.washit = 1
             self.health -= 1
@@ -5317,12 +5359,12 @@ class slime5(object):
                 self.hitbox = (0, 0, 0, 0)
                 self.washit = 1
                 self.visible = False
-                tocodie.play()
+                slimedie.play()
             elif self.vel < 0:
                 self.hitbox = (0, 0, 0, 0)
                 self.washit = 2
                 self.visible = False
-                tocodie.play()
+                slimedie.play()
             else:
                 self.washit = 0
 
@@ -5380,7 +5422,7 @@ class slime6(object):
                 self.walkCount = 0
 
     def hit(self):
-        tocohit.play()
+        slimehit.play()
         if self.health > 0 and self.vel > 0:
             self.washit = 1
             self.health -= 1
@@ -5392,12 +5434,12 @@ class slime6(object):
                 self.hitbox = (0, 0, 0, 0)
                 self.washit = 1
                 self.visible = False
-                tocodie.play()
+                slimedie.play()
             elif self.vel < 0:
                 self.hitbox = (0, 0, 0, 0)
                 self.washit = 2
                 self.visible = False
-                tocodie.play()
+                slimedie.play()
             else:
                 self.washit = 0
 
@@ -5455,7 +5497,7 @@ class slime7(object):
                 self.walkCount = 0
 
     def hit(self):
-        tocohit.play()
+        slimehit.play()
         if self.health > 0 and self.vel > 0:
             self.washit = 1
             self.health -= 1
@@ -5467,12 +5509,12 @@ class slime7(object):
                 self.hitbox = (0, 0, 0, 0)
                 self.washit = 1
                 self.visible = False
-                tocodie.play()
+                slimedie.play()
             elif self.vel < 0:
                 self.hitbox = (0, 0, 0, 0)
                 self.washit = 2
                 self.visible = False
-                tocodie.play()
+                slimedie.play()
             else:
                 self.washit = 0
 
@@ -5530,7 +5572,7 @@ class slime8(object):
                 self.walkCount = 0
 
     def hit(self):
-        tocohit.play()
+        slimehit.play()
         if self.health > 0 and self.vel > 0:
             self.washit = 1
             self.health -= 1
@@ -5542,12 +5584,12 @@ class slime8(object):
                 self.hitbox = (0, 0, 0, 0)
                 self.washit = 1
                 self.visible = False
-                tocodie.play()
+                slimedie.play()
             elif self.vel < 0:
                 self.hitbox = (0, 0, 0, 0)
                 self.washit = 2
                 self.visible = False
-                tocodie.play()
+                slimedie.play()
             else:
                 self.washit = 0
 
@@ -5605,7 +5647,7 @@ class slime9(object):
                 self.walkCount = 0
 
     def hit(self):
-        tocohit.play()
+        slimehit.play()
         if self.health > 0 and self.vel > 0:
             self.washit = 1
             self.health -= 1
@@ -5617,12 +5659,16 @@ class slime9(object):
                 self.hitbox = (0, 0, 0, 0)
                 self.washit = 1
                 self.visible = False
-                tocodie.play()
+                slimedie.play()
+                if slime10.visible == False and KSlime.visible == False:
+                    sucesso.play()
             elif self.vel < 0:
                 self.hitbox = (0, 0, 0, 0)
                 self.washit = 2
                 self.visible = False
-                tocodie.play()
+                slimedie.play()
+                if slime10.visible == False and KSlime.visible == False:
+                    sucesso.play()
             else:
                 self.washit = 0
 
@@ -5680,7 +5726,7 @@ class slime10(object):
                 self.walkCount = 0
 
     def hit(self):
-        tocohit.play()
+        slimehit.play()
         if self.health > 0 and self.vel > 0:
             self.washit = 1
             self.health -= 1
@@ -5692,12 +5738,16 @@ class slime10(object):
                 self.hitbox = (0, 0, 0, 0)
                 self.washit = 1
                 self.visible = False
-                tocodie.play()
+                slimedie.play()
+                if slime9.visible == False and KSlime.visible == False:
+                    sucesso.play()
             elif self.vel < 0:
                 self.hitbox = (0, 0, 0, 0)
                 self.washit = 2
                 self.visible = False
-                tocodie.play()
+                slimedie.play()
+                if slime9.visible == False and KSlime.visible == False:
+                    sucesso.play()
             else:
                 self.washit = 0
 
@@ -5712,6 +5762,20 @@ class KSlime(object): # Boss Ellinia
              pygame.image.load('imagens/Mob/KSlime/SL5.png'), pygame.image.load('imagens/Mob/KSlime/SL6.png'),
              pygame.image.load('imagens/Mob/KSlime/SL7.png')]
 
+    skillR = [pygame.image.load('imagens/Mob/KSlime/KR1.png'), pygame.image.load('imagens/Mob/KSlime/KR2.png'),
+             pygame.image.load('imagens/Mob/KSlime/KR3.png'), pygame.image.load('imagens/Mob/KSlime/KR4.png'),
+             pygame.image.load('imagens/Mob/KSlime/KR5.png'), pygame.image.load('imagens/Mob/KSlime/KR6.png'),
+             pygame.image.load('imagens/Mob/KSlime/KR7.png'), pygame.image.load('imagens/Mob/KSlime/KR8.png'),
+             pygame.image.load('imagens/Mob/KSlime/KR9.png'), pygame.image.load('imagens/Mob/KSlime/KR10.png'),
+             pygame.image.load('imagens/Mob/KSlime/KR11.png')]
+
+    skillL = [pygame.image.load('imagens/Mob/KSlime/KL1.png'), pygame.image.load('imagens/Mob/KSlime/KL2.png'),
+             pygame.image.load('imagens/Mob/KSlime/KL3.png'), pygame.image.load('imagens/Mob/KSlime/KL4.png'),
+             pygame.image.load('imagens/Mob/KSlime/KL5.png'), pygame.image.load('imagens/Mob/KSlime/KL6.png'),
+             pygame.image.load('imagens/Mob/KSlime/KL7.png'), pygame.image.load('imagens/Mob/KSlime/KL8.png'),
+             pygame.image.load('imagens/Mob/KSlime/KL9.png'), pygame.image.load('imagens/Mob/KSlime/KL10.png'),
+             pygame.image.load('imagens/Mob/KSlime/KL11.png')]
+    
     def __init__(self, x, y, width, height, end):
         self.x = x
         self.y = y
@@ -5719,15 +5783,18 @@ class KSlime(object): # Boss Ellinia
         self.height = height
         self.path = [x, end]
         self.walkCount = 0
+        self.skillCount = 0
         self.vel = 5
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
         self.washit = 0
         self.health = 89
         self.visible = True
+        self.skill = False
 
     def draw(self, win):
         self.move()
-        if self.visible:
+        self.Skill()
+        if self.visible and self.skill == False:
             if self.walkCount + 1 >= 28:
                 self.walkCount = 0
 
@@ -5748,22 +5815,36 @@ class KSlime(object): # Boss Ellinia
 
     def move(self):
         if self.vel > 0:
-            if self.x < self.path[1] + self.vel:
-                self.x += self.vel
-            else:
-                self.vel = self.vel * -1
-                self.x += self.vel
-                self.walkCount = 0
+            if self.skill == False:
+                if self.x < self.path[1] + self.vel:
+                    self.x += self.vel
+                else:
+                    self.vel = self.vel * -1
+                    self.x += self.vel
+                    self.walkCount = 0
         else:
-            if self.x > self.path[0] - self.vel:
-                self.x += self.vel
+            if self.skill == False:
+                if self.x > self.path[0] - self.vel:
+                    self.x += self.vel
+                else:
+                    self.vel = self.vel * -1
+                    self.x += self.vel
+                    self.walkCount = 0
+
+    def Skill(self):
+        if self.visible and self.skill == True:
+            if self.skillCount + 1 >= 55:
+                self.skillCount = 0
+        
+            if self.vel > 0:
+                win.blit(self.skillR[self.skillCount // 5], (self.x - camx, self.y - 40))
+                self.skillCount += 1
             else:
-                self.vel = self.vel * -1
-                self.x += self.vel
-                self.walkCount = 0
+                win.blit(self.skillL[self.skillCount // 5], (self.x - camx, self.y - 40))
+                self.skillCount += 1
 
     def hit(self):
-        tocohit.play()
+        kslimehit.play()
         if self.health > 0 and self.vel > 0:
             self.washit = 1
             self.health -= 1
@@ -5775,12 +5856,16 @@ class KSlime(object): # Boss Ellinia
                 self.hitbox = (0, 0, 0, 0)
                 self.washit = 1
                 self.visible = False
-                tocodie.play()
+                slimedie.play()
+                if slime10.visible == False and slime9.visible == False:
+                    sucesso.play()
             elif self.vel < 0:
                 self.hitbox = (0, 0, 0, 0)
                 self.washit = 2
                 self.visible = False
-                tocodie.play()
+                slimedie.play()
+                if slime10.visible == False and slime9.visible == False:
+                    sucesso.play()
             else:
                 self.washit = 0
                 
@@ -5803,6 +5888,8 @@ def GameWindow():
 
     # Draw Gate Perion
     gate1.draw(win)
+    # Draw Gate Ellinia
+    gate2.draw(win)
     # Draw Objetos Mapa Perion
     altar1.draw(win)
     # Draw Player
@@ -6106,6 +6193,9 @@ wall2 = wall2(14802, 0, 48, 600)
 # Variável Gate Perion
 gate1 = gate1(14691, 281, 64, 64, 14708)
 
+# Variável Gate Ellinia
+gate2 = gate2(18566, 395, 64, 64, 14708)
+
 # Variável Objetos Mapa Perion
 altar1 = altar1(14637, 453, 64, 64, 14708)
 
@@ -6165,11 +6255,12 @@ while run:
 
     # TESTES
     #print("JumpCount:", player.jumpCount, "Camx:", camx, "onPlatform:", player.onPlatform, "isJump:", player.isJump)
-    print(camx)
+    #print(camx)
     # print(player.y)
     # print(player.onPlatform)
     # print(player.isJump)
     #print(stumpy.walkCount)
+    print(KSlime.skillCount)
 
 
     # Checkpoints
@@ -7457,6 +7548,32 @@ while run:
         player.x = 400
         player.y = 470
 
+# Skill King Slime
+    if slime9.visible == False:
+        KSlime.skill = True
+        if KSlime.skillCount == 1:
+            kslimeskill.play()
+        if KSlime.skillCount == 54:
+            slime9.hitbox = (slime9.x - camx, slime9.y, slime9.width, slime9.height)
+            slime9.washit = 0
+            slime9.health = 10
+            KSlime.skill = False
+            slime9.visible = True
+            KSlime.skillCount = 0
+
+    if slime10.visible == False:
+        KSlime.skill = True
+        if KSlime.skillCount == 1:
+            kslimeskill.play()
+        if KSlime.skillCount == 54:
+            slime10.hitbox = (slime10.x - camx, slime10.y, slime10.width, slime10.height)
+            slime10.washit = 0
+            slime10.health = 10
+            KSlime.skill = False
+            slime10.visible = True
+            KSlime.skillCount = 0
+
+        
 # Colisão Parede Perion
     if player.plathitbox[1] < wall1.hitbox[1] + wall1.hitbox[3] and player.plathitbox[1] + \
             player.plathitbox[
@@ -7605,15 +7722,16 @@ while run:
                 wall3.hitbox[0] + wall3.hitbox[2]:
             camx += 5
             player.walkCount = 0
-            
-    if player.plathitbox[1] < wall4.hitbox[1] + wall4.hitbox[3] and player.plathitbox[1] + \
-            player.plathitbox[
-                3] > wall4.hitbox[1]:
-        if player.plathitbox[0] + player.plathitbox[2] > wall4.hitbox[0] and player.plathitbox[0] < \
-                wall4.hitbox[0] + wall4.hitbox[2]:
-            camx -= 5
-            player.walkCount = 0
-            
+
+    if slime9.visible or slime10.visible or KSlime.visible:
+        if player.plathitbox[1] < wall4.hitbox[1] + wall4.hitbox[3] and player.plathitbox[1] + \
+                player.plathitbox[
+                    3] > wall4.hitbox[1]:
+            if player.plathitbox[0] + player.plathitbox[2] > wall4.hitbox[0] and player.plathitbox[0] < \
+                    wall4.hitbox[0] + wall4.hitbox[2]:
+                camx -= 5
+                player.walkCount = 0
+
     # Colisão Spike Ellinia
     if player.hitbox[1] < spike10.hitbox[1] + spike10.hitbox[3] and player.hitbox[1] + player.hitbox[3] > spike10.hitbox[
         1]:
@@ -7697,293 +7815,341 @@ while run:
             if arrow.x + arrow.radius > snail1.hitbox[0] and arrow.x - arrow.radius < snail1.hitbox[0] + snail1.hitbox[
                 2]:
                 snail1.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < snail2.hitbox[1] + snail2.hitbox[3] and arrow.y + arrow.radius > snail2.hitbox[1]:
             if arrow.x + arrow.radius > snail2.hitbox[0] and arrow.x - arrow.radius < snail2.hitbox[0] + snail2.hitbox[
                 2]:
                 snail2.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < snail3.hitbox[1] + snail3.hitbox[3] and arrow.y + arrow.radius > snail3.hitbox[1]:
             if arrow.x + arrow.radius > snail3.hitbox[0] and arrow.x - arrow.radius < snail3.hitbox[0] + snail3.hitbox[
                 2]:
                 snail3.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < snail4.hitbox[1] + snail4.hitbox[3] and arrow.y + arrow.radius > snail4.hitbox[1]:
             if arrow.x + arrow.radius > snail4.hitbox[0] and arrow.x - arrow.radius < snail4.hitbox[0] + snail4.hitbox[
                 2]:
                 snail4.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < snail5.hitbox[1] + snail5.hitbox[3] and arrow.y + arrow.radius > snail5.hitbox[1]:
             if arrow.x + arrow.radius > snail5.hitbox[0] and arrow.x - arrow.radius < snail5.hitbox[0] + snail5.hitbox[
                 2]:
                 snail5.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < snail6.hitbox[1] + snail6.hitbox[3] and arrow.y + arrow.radius > snail6.hitbox[1]:
             if arrow.x + arrow.radius > snail6.hitbox[0] and arrow.x - arrow.radius < snail6.hitbox[0] + snail6.hitbox[
                 2]:
                 snail6.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < snail7.hitbox[1] + snail7.hitbox[3] and arrow.y + arrow.radius > snail7.hitbox[1]:
             if arrow.x + arrow.radius > snail7.hitbox[0] and arrow.x - arrow.radius < snail7.hitbox[0] + snail7.hitbox[
                 2]:
                 snail7.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         # Colisão Flechas Henesys
         if arrow.y - arrow.radius < cogu1.hitbox[1] + cogu1.hitbox[3] and arrow.y + arrow.radius > cogu1.hitbox[1]:
             if arrow.x + arrow.radius > cogu1.hitbox[0] and arrow.x - arrow.radius < cogu1.hitbox[0] + cogu1.hitbox[
                 2]:
                 cogu1.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < cogu2.hitbox[1] + cogu2.hitbox[3] and arrow.y + arrow.radius > cogu2.hitbox[1]:
             if arrow.x + arrow.radius > cogu2.hitbox[0] and arrow.x - arrow.radius < cogu2.hitbox[0] + cogu2.hitbox[
                 2]:
                 cogu2.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < cogu3.hitbox[1] + cogu3.hitbox[3] and arrow.y + arrow.radius > cogu3.hitbox[1]:
             if arrow.x + arrow.radius > cogu3.hitbox[0] and arrow.x - arrow.radius < cogu3.hitbox[0] + cogu3.hitbox[
                 2]:
                 cogu3.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < cogu4.hitbox[1] + cogu4.hitbox[3] and arrow.y + arrow.radius > cogu4.hitbox[1]:
             if arrow.x + arrow.radius > cogu4.hitbox[0] and arrow.x - arrow.radius < cogu4.hitbox[0] + cogu4.hitbox[
                 2]:
                 cogu4.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < cogu5.hitbox[1] + cogu5.hitbox[3] and arrow.y + arrow.radius > cogu5.hitbox[1]:
             if arrow.x + arrow.radius > cogu5.hitbox[0] and arrow.x - arrow.radius < cogu5.hitbox[0] + cogu5.hitbox[
                 2]:
                 cogu5.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < cogu6.hitbox[1] + cogu6.hitbox[3] and arrow.y + arrow.radius > cogu6.hitbox[1]:
             if arrow.x + arrow.radius > cogu6.hitbox[0] and arrow.x - arrow.radius < cogu6.hitbox[0] + cogu6.hitbox[
                 2]:
                 cogu6.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < cogu7.hitbox[1] + cogu7.hitbox[3] and arrow.y + arrow.radius > cogu7.hitbox[1]:
             if arrow.x + arrow.radius > cogu7.hitbox[0] and arrow.x - arrow.radius < cogu7.hitbox[0] + cogu7.hitbox[
                 2]:
                 cogu7.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < cogu8.hitbox[1] + cogu8.hitbox[3] and arrow.y + arrow.radius > cogu8.hitbox[1]:
             if arrow.x + arrow.radius > cogu8.hitbox[0] and arrow.x - arrow.radius < cogu8.hitbox[0] + cogu8.hitbox[
                 2]:
                 cogu8.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < cogu9.hitbox[1] + cogu9.hitbox[3] and arrow.y + arrow.radius > cogu9.hitbox[1]:
             if arrow.x + arrow.radius > cogu9.hitbox[0] and arrow.x - arrow.radius < cogu9.hitbox[0] + cogu9.hitbox[
                 2]:
                 cogu9.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < cogu10.hitbox[1] + cogu10.hitbox[3] and arrow.y + arrow.radius > cogu10.hitbox[1]:
             if arrow.x + arrow.radius > cogu10.hitbox[0] and arrow.x - arrow.radius < cogu10.hitbox[0] + cogu10.hitbox[
                 2]:
                 cogu10.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < cogu11.hitbox[1] + cogu11.hitbox[3] and arrow.y + arrow.radius > cogu11.hitbox[1]:
             if arrow.x + arrow.radius > cogu11.hitbox[0] and arrow.x - arrow.radius < cogu11.hitbox[0] + cogu11.hitbox[
                 2]:
                 cogu11.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < cogu12.hitbox[1] + cogu12.hitbox[3] and arrow.y + arrow.radius > cogu12.hitbox[1]:
             if arrow.x + arrow.radius > cogu12.hitbox[0] and arrow.x - arrow.radius < cogu12.hitbox[0] + cogu12.hitbox[
                 2]:
                 cogu12.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < cogu13.hitbox[1] + cogu13.hitbox[3] and arrow.y + arrow.radius > cogu13.hitbox[1]:
             if arrow.x + arrow.radius > cogu13.hitbox[0] and arrow.x - arrow.radius < cogu13.hitbox[0] + cogu13.hitbox[
                 2]:
                 cogu13.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < cogu14.hitbox[1] + cogu14.hitbox[3] and arrow.y + arrow.radius > cogu14.hitbox[1]:
             if arrow.x + arrow.radius > cogu14.hitbox[0] and arrow.x - arrow.radius < cogu14.hitbox[0] + cogu14.hitbox[
                 2]:
                 cogu14.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
     # Colisão Flechas Perion
         if arrow.y - arrow.radius < toco1.hitbox[1] + toco1.hitbox[3] and arrow.y + arrow.radius > toco1.hitbox[1]:
             if arrow.x + arrow.radius > toco1.hitbox[0] and arrow.x - arrow.radius < toco1.hitbox[0] + toco1.hitbox[
                 2]:
                 toco1.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < toco2.hitbox[1] + toco2.hitbox[3] and arrow.y + arrow.radius > toco2.hitbox[1]:
             if arrow.x + arrow.radius > toco2.hitbox[0] and arrow.x - arrow.radius < toco2.hitbox[0] + toco2.hitbox[
                 2]:
                 toco2.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < toco3.hitbox[1] + toco3.hitbox[3] and arrow.y + arrow.radius > toco3.hitbox[1]:
             if arrow.x + arrow.radius > toco3.hitbox[0] and arrow.x - arrow.radius < toco3.hitbox[0] + toco3.hitbox[
                 2]:
                 toco3.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < toco4.hitbox[1] + toco4.hitbox[3] and arrow.y + arrow.radius > toco4.hitbox[1]:
             if arrow.x + arrow.radius > toco4.hitbox[0] and arrow.x - arrow.radius < toco4.hitbox[0] + toco4.hitbox[
                 2]:
                 toco4.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < toco5.hitbox[1] + toco5.hitbox[3] and arrow.y + arrow.radius > toco5.hitbox[1]:
             if arrow.x + arrow.radius > toco5.hitbox[0] and arrow.x - arrow.radius < toco5.hitbox[0] + toco5.hitbox[
                 2]:
                 toco5.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < toco6.hitbox[1] + toco6.hitbox[3] and arrow.y + arrow.radius > toco6.hitbox[1]:
             if arrow.x + arrow.radius > toco6.hitbox[0] and arrow.x - arrow.radius < toco6.hitbox[0] + toco6.hitbox[
                 2]:
                 toco6.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < toco7.hitbox[1] + toco7.hitbox[3] and arrow.y + arrow.radius > toco7.hitbox[1]:
             if arrow.x + arrow.radius > toco7.hitbox[0] and arrow.x - arrow.radius < toco7.hitbox[0] + toco7.hitbox[
                 2]:
                 toco7.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < toco8.hitbox[1] + toco8.hitbox[3] and arrow.y + arrow.radius > toco8.hitbox[1]:
             if arrow.x + arrow.radius > toco8.hitbox[0] and arrow.x - arrow.radius < toco8.hitbox[0] + toco8.hitbox[
                 2]:
                 toco8.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < toco9.hitbox[1] + toco9.hitbox[3] and arrow.y + arrow.radius > toco9.hitbox[1]:
             if arrow.x + arrow.radius > toco9.hitbox[0] and arrow.x - arrow.radius < toco9.hitbox[0] + toco9.hitbox[
                 2]:
                 toco9.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < toco10.hitbox[1] + toco10.hitbox[3] and arrow.y + arrow.radius > toco10.hitbox[1]:
             if arrow.x + arrow.radius > toco10.hitbox[0] and arrow.x - arrow.radius < toco10.hitbox[0] + toco10.hitbox[
                 2]:
                 toco10.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < toco11.hitbox[1] + toco11.hitbox[3] and arrow.y + arrow.radius > toco11.hitbox[1]:
             if arrow.x + arrow.radius > toco11.hitbox[0] and arrow.x - arrow.radius < toco11.hitbox[0] + toco11.hitbox[
                 2]:
                 toco11.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < toco12.hitbox[1] + toco12.hitbox[3] and arrow.y + arrow.radius > toco12.hitbox[1]:
             if arrow.x + arrow.radius > toco12.hitbox[0] and arrow.x - arrow.radius < toco12.hitbox[0] + toco12.hitbox[
                 2]:
                 toco12.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < toco13.hitbox[1] + toco13.hitbox[3] and arrow.y + arrow.radius > toco13.hitbox[1]:
             if arrow.x + arrow.radius > toco13.hitbox[0] and arrow.x - arrow.radius < toco13.hitbox[0] + toco13.hitbox[
                 2]:
                 toco13.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < toco14.hitbox[1] + toco14.hitbox[3] and arrow.y + arrow.radius > toco14.hitbox[1]:
             if arrow.x + arrow.radius > toco14.hitbox[0] and arrow.x - arrow.radius < toco14.hitbox[0] + toco14.hitbox[
                 2]:
                 toco14.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < toco15.hitbox[1] + toco15.hitbox[3] and arrow.y + arrow.radius > toco15.hitbox[1]:
             if arrow.x + arrow.radius > toco15.hitbox[0] and arrow.x - arrow.radius < toco15.hitbox[0] + toco15.hitbox[
                 2]:
                 toco15.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < toco16.hitbox[1] + toco16.hitbox[3] and arrow.y + arrow.radius > toco16.hitbox[1]:
             if arrow.x + arrow.radius > toco16.hitbox[0] and arrow.x - arrow.radius < toco16.hitbox[0] + toco16.hitbox[
                 2]:
                 toco16.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         #Colisão Flecha Stumpy
         if arrow.y - arrow.radius < stumpy.hitbox[1] + stumpy.hitbox[3] and arrow.y + arrow.radius > stumpy.hitbox[1]:
             if arrow.x + arrow.radius > stumpy.hitbox[0] and arrow.x - arrow.radius < stumpy.hitbox[0] + stumpy.hitbox[
                 2]:
                 stumpy.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         #Colisão Flechas Ellinia
         if arrow.y - arrow.radius < slime1.hitbox[1] + slime1.hitbox[3] and arrow.y + arrow.radius > slime1.hitbox[1]:
             if arrow.x + arrow.radius > slime1.hitbox[0] and arrow.x - arrow.radius < slime1.hitbox[0] + slime1.hitbox[
                 2]:
                 slime1.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < slime2.hitbox[1] + slime2.hitbox[3] and arrow.y + arrow.radius > slime2.hitbox[1]:
             if arrow.x + arrow.radius > slime2.hitbox[0] and arrow.x - arrow.radius < slime2.hitbox[0] + slime2.hitbox[
                 2]:
                 slime2.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < slime3.hitbox[1] + slime3.hitbox[3] and arrow.y + arrow.radius > slime3.hitbox[1]:
             if arrow.x + arrow.radius > slime3.hitbox[0] and arrow.x - arrow.radius < slime3.hitbox[0] + slime3.hitbox[
                 2]:
                 slime3.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < slime4.hitbox[1] + slime4.hitbox[3] and arrow.y + arrow.radius > slime4.hitbox[1]:
             if arrow.x + arrow.radius > slime4.hitbox[0] and arrow.x - arrow.radius < slime4.hitbox[0] + slime4.hitbox[
                 2]:
                 slime4.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < slime5.hitbox[1] + slime5.hitbox[3] and arrow.y + arrow.radius > slime5.hitbox[1]:
             if arrow.x + arrow.radius > slime5.hitbox[0] and arrow.x - arrow.radius < slime5.hitbox[0] + slime5.hitbox[
                 2]:
                 slime5.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < slime6.hitbox[1] + slime6.hitbox[3] and arrow.y + arrow.radius > slime6.hitbox[1]:
             if arrow.x + arrow.radius > slime6.hitbox[0] and arrow.x - arrow.radius < slime6.hitbox[0] + slime6.hitbox[
                 2]:
                 slime6.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < slime7.hitbox[1] + slime7.hitbox[3] and arrow.y + arrow.radius > slime7.hitbox[1]:
             if arrow.x + arrow.radius > slime7.hitbox[0] and arrow.x - arrow.radius < slime7.hitbox[0] + slime7.hitbox[
                 2]:
                 slime7.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < slime8.hitbox[1] + slime8.hitbox[3] and arrow.y + arrow.radius > slime8.hitbox[1]:
             if arrow.x + arrow.radius > slime8.hitbox[0] and arrow.x - arrow.radius < slime8.hitbox[0] + slime8.hitbox[
                 2]:
                 slime8.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < slime9.hitbox[1] + slime9.hitbox[3] and arrow.y + arrow.radius > slime9.hitbox[1]:
             if arrow.x + arrow.radius > slime9.hitbox[0] and arrow.x - arrow.radius < slime9.hitbox[0] + slime9.hitbox[
                 2]:
                 slime9.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < slime10.hitbox[1] + slime10.hitbox[3] and arrow.y + arrow.radius > slime10.hitbox[1]:
             if arrow.x + arrow.radius > slime10.hitbox[0] and arrow.x - arrow.radius < slime10.hitbox[0] + slime10.hitbox[
                 2]:
                 slime10.hit()
-                arrows.pop(arrows.index(arrow))
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
 
         if arrow.y - arrow.radius < KSlime.hitbox[1] + KSlime.hitbox[3] and arrow.y + arrow.radius > KSlime.hitbox[1]:
             if arrow.x + arrow.radius > KSlime.hitbox[0] and arrow.x - arrow.radius < KSlime.hitbox[0] + KSlime.hitbox[
