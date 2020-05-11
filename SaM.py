@@ -45,6 +45,7 @@ arrowR = pygame.image.load('imagens/Player/arrowR.png')
 # Imagens HUD / Background
 bg = pygame.image.load('imagens/Mapa/mapa.png')
 bg2 = pygame.image.load('imagens/Mapa/mapa2.png')
+bg3 = pygame.image.load('imagens/Mapa/mapa3.png')
 teclas = pygame.image.load('imagens/Misc/keys.png')
 icone = pygame.image.load('imagens/Misc/icone.png')
 diepic = pygame.image.load('imagens/Mapa/die.png')
@@ -83,6 +84,7 @@ kslimeskill = pygame.mixer.Sound("BGM/kslimeskill.wav")
 kslimehit = pygame.mixer.Sound("BGM/kslimehit.wav")
 slimedie = pygame.mixer.Sound("BGM/slimedie.wav")
 slimehit = pygame.mixer.Sound("BGM/slimehit.wav")
+
 
 # Personagem
 class player(object):
@@ -567,6 +569,7 @@ class spike2(object):
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
         pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
 
 ## Monstros Porto Lith
 class snail1(object):
@@ -1111,6 +1114,7 @@ class snail7(object):
             else:
                 self.washit = 0
 
+
 # Objetos Henesys
 ## Espinhos Henesys
 class spike3(object):
@@ -1126,6 +1130,7 @@ class spike3(object):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
         pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
+
 class spike4(object):
 
     def __init__(self, x, y, width, height):
@@ -1138,6 +1143,7 @@ class spike4(object):
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
         pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
 
 class spike5(object):
 
@@ -1152,6 +1158,7 @@ class spike5(object):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
         pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
+
 class spike6(object):
 
     def __init__(self, x, y, width, height):
@@ -1164,6 +1171,7 @@ class spike6(object):
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
         pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
 
 ## Plataformas Henesys
 class platform17(object):
@@ -1187,6 +1195,7 @@ class platform17(object):
         else:
             player.onPlatform = False
 
+
 class platform18(object):
 
     def __init__(self, x, y, width, height):
@@ -1207,6 +1216,7 @@ class platform18(object):
             player.isJump = False
         else:
             player.onPlatform = False
+
 
 class platform19(object):
 
@@ -1229,6 +1239,7 @@ class platform19(object):
         else:
             player.onPlatform = False
 
+
 class platform20(object):
 
     def __init__(self, x, y, width, height):
@@ -1249,6 +1260,7 @@ class platform20(object):
             player.isJump = False
         else:
             player.onPlatform = False
+
 
 class platform21(object):
 
@@ -1271,6 +1283,7 @@ class platform21(object):
         else:
             player.onPlatform = False
 
+
 class platform22(object):
 
     def __init__(self, x, y, width, height):
@@ -1292,6 +1305,7 @@ class platform22(object):
         else:
             player.onPlatform = False
 
+
 class platform23(object):
 
     def __init__(self, x, y, width, height):
@@ -1312,6 +1326,7 @@ class platform23(object):
             player.isJump = False
         else:
             player.onPlatform = False
+
 
 class platform24(object):
 
@@ -1356,6 +1371,7 @@ class platform25(object):
         else:
             player.onPlatform = False
 
+
 class platform26(object):
 
     def __init__(self, x, y, width, height):
@@ -1376,6 +1392,7 @@ class platform26(object):
             player.isJump = False
         else:
             player.onPlatform = False
+
 
 class platform27(object):
 
@@ -1398,6 +1415,7 @@ class platform27(object):
         else:
             player.onPlatform = False
 
+
 class platform28(object):
 
     def __init__(self, x, y, width, height):
@@ -1418,6 +1436,7 @@ class platform28(object):
             player.isJump = False
         else:
             player.onPlatform = False
+
 
 class platform29(object):
 
@@ -1440,6 +1459,7 @@ class platform29(object):
         else:
             player.onPlatform = False
 
+
 class platform30(object):
 
     def __init__(self, x, y, width, height):
@@ -1460,6 +1480,7 @@ class platform30(object):
             player.isJump = False
         else:
             player.onPlatform = False
+
 
 class platform31(object):
 
@@ -1482,6 +1503,7 @@ class platform31(object):
         else:
             player.onPlatform = False
 
+
 class platform32(object):
 
     def __init__(self, x, y, width, height):
@@ -1502,6 +1524,7 @@ class platform32(object):
             player.isJump = False
         else:
             player.onPlatform = False
+
 
 class platform33(object):
 
@@ -1524,6 +1547,7 @@ class platform33(object):
         else:
             player.onPlatform = False
 
+
 class platform34(object):
 
     def __init__(self, x, y, width, height):
@@ -1544,6 +1568,7 @@ class platform34(object):
             player.isJump = False
         else:
             player.onPlatform = False
+
 
 class platform35(object):
 
@@ -1566,6 +1591,7 @@ class platform35(object):
         else:
             player.onPlatform = False
 
+
 class platform36(object):
 
     def __init__(self, x, y, width, height):
@@ -1586,6 +1612,7 @@ class platform36(object):
             player.isJump = False
         else:
             player.onPlatform = False
+
 
 class platform37(object):
 
@@ -1608,6 +1635,7 @@ class platform37(object):
         else:
             player.onPlatform = False
 
+
 class platform38(object):
 
     def __init__(self, x, y, width, height):
@@ -1628,6 +1656,7 @@ class platform38(object):
             player.isJump = False
         else:
             player.onPlatform = False
+
 
 class platform39(object):
 
@@ -1650,6 +1679,7 @@ class platform39(object):
         else:
             player.onPlatform = False
 
+
 class platform40(object):
 
     def __init__(self, x, y, width, height):
@@ -1670,6 +1700,7 @@ class platform40(object):
             player.isJump = False
         else:
             player.onPlatform = False
+
 
 class platform41(object):
 
@@ -1692,6 +1723,7 @@ class platform41(object):
         else:
             player.onPlatform = False
 
+
 class platform42(object):
 
     def __init__(self, x, y, width, height):
@@ -1712,6 +1744,7 @@ class platform42(object):
             player.isJump = False
         else:
             player.onPlatform = False
+
 
 ## Monstros Henesys
 class cogu1(object):
@@ -1758,7 +1791,8 @@ class cogu1(object):
                 win.blit(self.LHS, (round(self.x - camx), round(self.y)))
                 self.washit = 0
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 13, self.hitbox[1] - 17, 49, 8))
-            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
             pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
@@ -1799,6 +1833,7 @@ class cogu1(object):
                 cogudie.play()
             else:
                 self.washit = 0
+
 
 class cogu2(object):
     def __init__(self, x, y, width, height, end):
@@ -1833,7 +1868,8 @@ class cogu2(object):
                 win.blit(cogu1.LHS, (round(self.x - camx), round(self.y)))
                 self.washit = 0
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 13, self.hitbox[1] - 17, 49, 8))
-            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
             pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
@@ -1874,6 +1910,7 @@ class cogu2(object):
                 cogudie.play()
             else:
                 self.washit = 0
+
 
 class cogu3(object):
     def __init__(self, x, y, width, height, end):
@@ -1908,7 +1945,8 @@ class cogu3(object):
                 win.blit(cogu1.LHS, (round(self.x - camx), round(self.y)))
                 self.washit = 0
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 13, self.hitbox[1] - 17, 49, 8))
-            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
             pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
@@ -1949,6 +1987,7 @@ class cogu3(object):
                 cogudie.play()
             else:
                 self.washit = 0
+
 
 class cogu4(object):
     def __init__(self, x, y, width, height, end):
@@ -1983,7 +2022,8 @@ class cogu4(object):
                 win.blit(cogu1.LHS, (round(self.x - camx), round(self.y)))
                 self.washit = 0
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 13, self.hitbox[1] - 17, 49, 8))
-            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
             pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
@@ -2024,6 +2064,7 @@ class cogu4(object):
                 cogudie.play()
             else:
                 self.washit = 0
+
 
 class cogu5(object):
     def __init__(self, x, y, width, height, end):
@@ -2058,7 +2099,8 @@ class cogu5(object):
                 win.blit(cogu1.LHS, (round(self.x - camx), round(self.y)))
                 self.washit = 0
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 13, self.hitbox[1] - 17, 49, 8))
-            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
             pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
@@ -2099,6 +2141,7 @@ class cogu5(object):
                 cogudie.play()
             else:
                 self.washit = 0
+
 
 class cogu6(object):
     def __init__(self, x, y, width, height, end):
@@ -2133,7 +2176,8 @@ class cogu6(object):
                 win.blit(cogu1.LHS, (round(self.x - camx), round(self.y)))
                 self.washit = 0
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 13, self.hitbox[1] - 17, 49, 8))
-            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
             pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
@@ -2174,6 +2218,7 @@ class cogu6(object):
                 cogudie.play()
             else:
                 self.washit = 0
+
 
 class cogu7(object):
     def __init__(self, x, y, width, height, end):
@@ -2208,7 +2253,8 @@ class cogu7(object):
                 win.blit(cogu1.LHS, (round(self.x - camx), round(self.y)))
                 self.washit = 0
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 13, self.hitbox[1] - 17, 49, 8))
-            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
             pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
@@ -2249,6 +2295,7 @@ class cogu7(object):
                 cogudie.play()
             else:
                 self.washit = 0
+
 
 class cogu8(object):
     def __init__(self, x, y, width, height, end):
@@ -2283,7 +2330,8 @@ class cogu8(object):
                 win.blit(cogu1.LHS, (round(self.x - camx), round(self.y)))
                 self.washit = 0
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 13, self.hitbox[1] - 17, 49, 8))
-            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
             pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
@@ -2324,6 +2372,7 @@ class cogu8(object):
                 cogudie.play()
             else:
                 self.washit = 0
+
 
 class cogu9(object):
     def __init__(self, x, y, width, height, end):
@@ -2358,7 +2407,8 @@ class cogu9(object):
                 win.blit(cogu1.LHS, (round(self.x - camx), round(self.y)))
                 self.washit = 0
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 13, self.hitbox[1] - 17, 49, 8))
-            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
             pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
@@ -2399,6 +2449,7 @@ class cogu9(object):
                 cogudie.play()
             else:
                 self.washit = 0
+
 
 class cogu10(object):
     def __init__(self, x, y, width, height, end):
@@ -2433,7 +2484,8 @@ class cogu10(object):
                 win.blit(cogu1.LHS, (round(self.x - camx), round(self.y)))
                 self.washit = 0
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 13, self.hitbox[1] - 17, 49, 8))
-            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
             pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
@@ -2474,6 +2526,7 @@ class cogu10(object):
                 cogudie.play()
             else:
                 self.washit = 0
+
 
 class cogu11(object):
     def __init__(self, x, y, width, height, end):
@@ -2508,7 +2561,8 @@ class cogu11(object):
                 win.blit(cogu1.LHS, (round(self.x - camx), round(self.y)))
                 self.washit = 0
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 13, self.hitbox[1] - 17, 49, 8))
-            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
             pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
@@ -2549,6 +2603,8 @@ class cogu11(object):
                 cogudie.play()
             else:
                 self.washit = 0
+
+
 class cogu12(object):
     def __init__(self, x, y, width, height, end):
         self.x = x
@@ -2582,7 +2638,8 @@ class cogu12(object):
                 win.blit(cogu1.LHS, (round(self.x - camx), round(self.y)))
                 self.washit = 0
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 13, self.hitbox[1] - 17, 49, 8))
-            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
             pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
@@ -2623,6 +2680,7 @@ class cogu12(object):
                 cogudie.play()
             else:
                 self.washit = 0
+
 
 class cogu13(object):
     def __init__(self, x, y, width, height, end):
@@ -2657,7 +2715,8 @@ class cogu13(object):
                 win.blit(cogu1.LHS, (round(self.x - camx), round(self.y)))
                 self.washit = 0
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 13, self.hitbox[1] - 17, 49, 8))
-            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
             pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
@@ -2698,6 +2757,7 @@ class cogu13(object):
                 cogudie.play()
             else:
                 self.washit = 0
+
 
 class cogu14(object):
     def __init__(self, x, y, width, height, end):
@@ -2732,7 +2792,8 @@ class cogu14(object):
                 win.blit(cogu1.LHS, (round(self.x - camx), round(self.y)))
                 self.washit = 0
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 13, self.hitbox[1] - 17, 49, 8))
-            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
             pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
@@ -2774,6 +2835,7 @@ class cogu14(object):
             else:
                 self.washit = 0
 
+
 # Espinhos Perion
 class spike7(object):
 
@@ -2788,6 +2850,7 @@ class spike7(object):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
         pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
+
 class spike8(object):
 
     def __init__(self, x, y, width, height):
@@ -2800,6 +2863,7 @@ class spike8(object):
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
         pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
 
 class spike9(object):
 
@@ -2815,6 +2879,8 @@ class spike9(object):
         pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     # Plataformas Perion
+
+
 class platform43(object):
 
     def __init__(self, x, y, width, height):
@@ -2835,6 +2901,7 @@ class platform43(object):
             player.isJump = False
         else:
             player.onPlatform = False
+
 
 class platform44(object):
 
@@ -2857,6 +2924,7 @@ class platform44(object):
         else:
             player.onPlatform = False
 
+
 class platform45(object):
 
     def __init__(self, x, y, width, height):
@@ -2877,6 +2945,7 @@ class platform45(object):
             player.isJump = False
         else:
             player.onPlatform = False
+
 
 class platform46(object):
 
@@ -2899,6 +2968,7 @@ class platform46(object):
         else:
             player.onPlatform = False
 
+
 class platform47(object):
 
     def __init__(self, x, y, width, height):
@@ -2919,6 +2989,7 @@ class platform47(object):
             player.isJump = False
         else:
             player.onPlatform = False
+
 
 class platform48(object):
 
@@ -2941,6 +3012,7 @@ class platform48(object):
         else:
             player.onPlatform = False
 
+
 class platform49(object):
 
     def __init__(self, x, y, width, height):
@@ -2961,6 +3033,7 @@ class platform49(object):
             player.isJump = False
         else:
             player.onPlatform = False
+
 
 class platform50(object):
 
@@ -2983,6 +3056,7 @@ class platform50(object):
         else:
             player.onPlatform = False
 
+
 class platform51(object):
 
     def __init__(self, x, y, width, height):
@@ -3003,6 +3077,7 @@ class platform51(object):
             player.isJump = False
         else:
             player.onPlatform = False
+
 
 class platform52(object):
 
@@ -3025,6 +3100,7 @@ class platform52(object):
         else:
             player.onPlatform = False
 
+
 class platform53(object):
 
     def __init__(self, x, y, width, height):
@@ -3045,6 +3121,7 @@ class platform53(object):
             player.isJump = False
         else:
             player.onPlatform = False
+
 
 class platform54(object):
 
@@ -3067,6 +3144,7 @@ class platform54(object):
         else:
             player.onPlatform = False
 
+
 class platform55(object):
 
     def __init__(self, x, y, width, height):
@@ -3087,6 +3165,7 @@ class platform55(object):
             player.isJump = False
         else:
             player.onPlatform = False
+
 
 class platform56(object):
 
@@ -3109,6 +3188,7 @@ class platform56(object):
         else:
             player.onPlatform = False
 
+
 class platform57(object):
 
     def __init__(self, x, y, width, height):
@@ -3130,6 +3210,7 @@ class platform57(object):
         else:
             player.onPlatform = False
 
+
 class platform58(object):
 
     def __init__(self, x, y, width, height):
@@ -3150,6 +3231,7 @@ class platform58(object):
             player.isJump = False
         else:
             player.onPlatform = False
+
 
 class platform59(object):
 
@@ -3282,6 +3364,7 @@ class platform64(object):
         else:
             player.onPlatform = False
 
+
 class platform65(object):
 
     def __init__(self, x, y, width, height):
@@ -3302,6 +3385,7 @@ class platform65(object):
             player.isJump = False
         else:
             player.onPlatform = False
+
 
 class platform66(object):
 
@@ -3325,6 +3409,8 @@ class platform66(object):
             player.onPlatform = False
 
     # Objetos Parede Perion
+
+
 class wall1(object):
 
     def __init__(self, x, y, width, height):
@@ -3338,6 +3424,7 @@ class wall1(object):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
         pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
+
 class wall2(object):
 
     def __init__(self, x, y, width, height):
@@ -3350,6 +3437,7 @@ class wall2(object):
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
         pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
 
 # Objetos Plataformas Ellinia
 class platform67(object):
@@ -3373,6 +3461,7 @@ class platform67(object):
         else:
             player.onPlatform = False
 
+
 class platform68(object):
 
     def __init__(self, x, y, width, height):
@@ -3393,6 +3482,7 @@ class platform68(object):
             player.isJump = False
         else:
             player.onPlatform = False
+
 
 class platform69(object):
 
@@ -3415,6 +3505,7 @@ class platform69(object):
         else:
             player.onPlatform = False
 
+
 class platform70(object):
 
     def __init__(self, x, y, width, height):
@@ -3435,6 +3526,7 @@ class platform70(object):
             player.isJump = False
         else:
             player.onPlatform = False
+
 
 class platform71(object):
 
@@ -3457,6 +3549,7 @@ class platform71(object):
         else:
             player.onPlatform = False
 
+
 class platform72(object):
 
     def __init__(self, x, y, width, height):
@@ -3477,6 +3570,7 @@ class platform72(object):
             player.isJump = False
         else:
             player.onPlatform = False
+
 
 class platform73(object):
 
@@ -3514,6 +3608,7 @@ class wall3(object):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
         pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
+
 class wall4(object):
 
     def __init__(self, x, y, width, height):
@@ -3526,8 +3621,10 @@ class wall4(object):
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
         pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
-        
+
     # Objetos Gate Perion
+
+
 class gate1(object):
     walkR = [pygame.image.load('imagens/Mob/Gate/1.png'), pygame.image.load('imagens/Mob/Gate/2.png'),
              pygame.image.load('imagens/Mob/Gate/3.png'), pygame.image.load('imagens/Mob/Gate/4.png'),
@@ -3553,7 +3650,7 @@ class gate1(object):
         self.visible = True
 
     def draw(self, win):
-        #self.move()
+        # self.move()
         if stumpy.visible:
             if self.walkCount + 1 >= 32:
                 self.walkCount = 0
@@ -3568,6 +3665,7 @@ class gate1(object):
                 self.washit = 0
             elif self.washit == 2:
                 self.washit = 0
+
 
 # Gate Ellinia
 class gate2(object):
@@ -3610,6 +3708,7 @@ class gate2(object):
             elif self.washit == 2:
                 self.washit = 0
 
+
 # Altar Perion
 
 class altar1(object):
@@ -3631,7 +3730,7 @@ class altar1(object):
         self.visible = True
 
     def draw(self, win):
-        #self.move()
+        # self.move()
         if self.visible:
             if self.walkCount + 1 >= 4:
                 self.walkCount = 0
@@ -3646,6 +3745,7 @@ class altar1(object):
                 self.washit = 0
             elif self.washit == 2:
                 self.washit = 0
+
 
 # Monstros Perion
 class toco1(object):
@@ -3690,7 +3790,8 @@ class toco1(object):
                 win.blit(self.LHS, (round(self.x - camx), round(self.y)))
                 self.washit = 0
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 8, self.hitbox[1] - 17, 49, 8))
-            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
             pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
@@ -3963,6 +4064,7 @@ class toco4(object):
             else:
                 self.washit = 0
 
+
 class toco5(object):
     def __init__(self, x, y, width, height, end):
         self.x = x
@@ -3996,7 +4098,8 @@ class toco5(object):
                 win.blit(toco1.LHS, (round(self.x - camx), round(self.y)))
                 self.washit = 0
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 8, self.hitbox[1] - 17, 49, 8))
-            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
             pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
@@ -4037,6 +4140,7 @@ class toco5(object):
                 tocodie.play()
             else:
                 self.washit = 0
+
 
 class toco6(object):
     def __init__(self, x, y, width, height, end):
@@ -4071,7 +4175,8 @@ class toco6(object):
                 win.blit(toco1.LHS, (round(self.x - camx), round(self.y)))
                 self.washit = 0
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 8, self.hitbox[1] - 17, 49, 8))
-            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
             pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
@@ -4113,6 +4218,7 @@ class toco6(object):
             else:
                 self.washit = 0
 
+
 class toco7(object):
     def __init__(self, x, y, width, height, end):
         self.x = x
@@ -4146,7 +4252,8 @@ class toco7(object):
                 win.blit(toco1.LHS, (round(self.x - camx), round(self.y)))
                 self.washit = 0
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 8, self.hitbox[1] - 17, 49, 8))
-            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
             pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
@@ -4881,7 +4988,8 @@ class toco16(object):
             else:
                 self.washit = 0
 
-class stumpy(object): # Boss perion
+
+class stumpy(object):  # Boss perion
     walkR = [pygame.image.load('imagens/Mob/Stumpy/1.png'), pygame.image.load('imagens/Mob/Stumpy/2.png'),
              pygame.image.load('imagens/Mob/Stumpy/3.png'), pygame.image.load('imagens/Mob/Stumpy/4.png'),
              pygame.image.load('imagens/Mob/Stumpy/5.png'), pygame.image.load('imagens/Mob/Stumpy/6.png'),
@@ -4937,7 +5045,8 @@ class stumpy(object): # Boss perion
             elif self.washit == 2:
                 self.washit = 0
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] - 50, self.hitbox[1] - 80, 187, 8))
-            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0]- 48, self.hitbox[1] - 78, 183 - (2 * (89 - self.health)), 4))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] - 48, self.hitbox[1] - 78, 183 - (2 * (89 - self.health)), 4))
             self.hitbox = (self.x - camx + 50, self.y + 80, self.width, self.height)
             pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
@@ -4965,6 +5074,7 @@ class stumpy(object): # Boss perion
             else:
                 self.washit = 0
 
+
 # Objetos Spike Ellinia
 class spike10(object):
 
@@ -4978,6 +5088,7 @@ class spike10(object):
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
         pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
 
 # Objetos Monstros Ellinia
 class slime1(object):
@@ -5026,7 +5137,8 @@ class slime1(object):
                 win.blit(self.LHS, (round(self.x - camx), round(self.y)))
                 self.washit = 0
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 8, self.hitbox[1] - 17, 49, 8))
-            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y + 30, self.width, self.height)
             pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
@@ -5067,6 +5179,7 @@ class slime1(object):
                 slimedie.play()
             else:
                 self.washit = 0
+
 
 class slime2(object):
     def __init__(self, x, y, width, height, end):
@@ -5101,7 +5214,8 @@ class slime2(object):
                 win.blit(slime1.LHS, (round(self.x - camx), round(self.y)))
                 self.washit = 0
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 8, self.hitbox[1] - 17, 49, 8))
-            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y + 30, self.width, self.height)
             pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
@@ -5142,6 +5256,7 @@ class slime2(object):
                 slimedie.play()
             else:
                 self.washit = 0
+
 
 class slime3(object):
     def __init__(self, x, y, width, height, end):
@@ -5176,7 +5291,8 @@ class slime3(object):
                 win.blit(slime1.LHS, (round(self.x - camx), round(self.y)))
                 self.washit = 0
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 8, self.hitbox[1] - 17, 49, 8))
-            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y + 30, self.width, self.height)
             pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
@@ -5217,6 +5333,7 @@ class slime3(object):
                 slimedie.play()
             else:
                 self.washit = 0
+
 
 class slime4(object):
     def __init__(self, x, y, width, height, end):
@@ -5251,7 +5368,8 @@ class slime4(object):
                 win.blit(slime1.LHS, (round(self.x - camx), round(self.y)))
                 self.washit = 0
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 8, self.hitbox[1] - 17, 49, 8))
-            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y + 30, self.width, self.height)
             pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
@@ -5292,6 +5410,7 @@ class slime4(object):
                 slimedie.play()
             else:
                 self.washit = 0
+
 
 class slime5(object):
     def __init__(self, x, y, width, height, end):
@@ -5326,7 +5445,8 @@ class slime5(object):
                 win.blit(slime1.LHS, (round(self.x - camx), round(self.y)))
                 self.washit = 0
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 8, self.hitbox[1] - 17, 49, 8))
-            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y + 30, self.width, self.height)
             pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
@@ -5367,6 +5487,7 @@ class slime5(object):
                 slimedie.play()
             else:
                 self.washit = 0
+
 
 class slime6(object):
     def __init__(self, x, y, width, height, end):
@@ -5401,7 +5522,8 @@ class slime6(object):
                 win.blit(slime1.LHS, (round(self.x - camx), round(self.y)))
                 self.washit = 0
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 8, self.hitbox[1] - 17, 49, 8))
-            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y + 30, self.width, self.height)
             pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
@@ -5442,6 +5564,7 @@ class slime6(object):
                 slimedie.play()
             else:
                 self.washit = 0
+
 
 class slime7(object):
     def __init__(self, x, y, width, height, end):
@@ -5476,7 +5599,8 @@ class slime7(object):
                 win.blit(slime1.LHS, (round(self.x - camx), round(self.y)))
                 self.washit = 0
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 8, self.hitbox[1] - 17, 49, 8))
-            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y + 30, self.width, self.height)
             pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
@@ -5517,6 +5641,7 @@ class slime7(object):
                 slimedie.play()
             else:
                 self.washit = 0
+
 
 class slime8(object):
     def __init__(self, x, y, width, height, end):
@@ -5551,7 +5676,8 @@ class slime8(object):
                 win.blit(slime1.LHS, (round(self.x - camx), round(self.y)))
                 self.washit = 0
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 8, self.hitbox[1] - 17, 49, 8))
-            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y + 30, self.width, self.height)
             pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
@@ -5592,6 +5718,7 @@ class slime8(object):
                 slimedie.play()
             else:
                 self.washit = 0
+
 
 class slime9(object):
     def __init__(self, x, y, width, height, end):
@@ -5626,7 +5753,8 @@ class slime9(object):
                 win.blit(slime1.LHS, (round(self.x - camx), round(self.y)))
                 self.washit = 0
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 8, self.hitbox[1] - 17, 49, 8))
-            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y + 30, self.width, self.height)
             pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
@@ -5671,6 +5799,7 @@ class slime9(object):
                     sucesso.play()
             else:
                 self.washit = 0
+
 
 class slime10(object):
     def __init__(self, x, y, width, height, end):
@@ -5705,7 +5834,8 @@ class slime10(object):
                 win.blit(slime1.LHS, (round(self.x - camx), round(self.y)))
                 self.washit = 0
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] + 8, self.hitbox[1] - 17, 49, 8))
-            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y + 30, self.width, self.height)
             pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
@@ -5751,7 +5881,8 @@ class slime10(object):
             else:
                 self.washit = 0
 
-class KSlime(object): # Boss Ellinia
+
+class KSlime(object):  # Boss Ellinia
     walkR = [pygame.image.load('imagens/Mob/KSlime/SR1.png'), pygame.image.load('imagens/Mob/KSlime/SR2.png'),
              pygame.image.load('imagens/Mob/KSlime/SR3.png'), pygame.image.load('imagens/Mob/KSlime/SR4.png'),
              pygame.image.load('imagens/Mob/KSlime/SR5.png'), pygame.image.load('imagens/Mob/KSlime/SR6.png'),
@@ -5763,19 +5894,19 @@ class KSlime(object): # Boss Ellinia
              pygame.image.load('imagens/Mob/KSlime/SL7.png')]
 
     skillR = [pygame.image.load('imagens/Mob/KSlime/KR1.png'), pygame.image.load('imagens/Mob/KSlime/KR2.png'),
-             pygame.image.load('imagens/Mob/KSlime/KR3.png'), pygame.image.load('imagens/Mob/KSlime/KR4.png'),
-             pygame.image.load('imagens/Mob/KSlime/KR5.png'), pygame.image.load('imagens/Mob/KSlime/KR6.png'),
-             pygame.image.load('imagens/Mob/KSlime/KR7.png'), pygame.image.load('imagens/Mob/KSlime/KR8.png'),
-             pygame.image.load('imagens/Mob/KSlime/KR9.png'), pygame.image.load('imagens/Mob/KSlime/KR10.png'),
-             pygame.image.load('imagens/Mob/KSlime/KR11.png')]
+              pygame.image.load('imagens/Mob/KSlime/KR3.png'), pygame.image.load('imagens/Mob/KSlime/KR4.png'),
+              pygame.image.load('imagens/Mob/KSlime/KR5.png'), pygame.image.load('imagens/Mob/KSlime/KR6.png'),
+              pygame.image.load('imagens/Mob/KSlime/KR7.png'), pygame.image.load('imagens/Mob/KSlime/KR8.png'),
+              pygame.image.load('imagens/Mob/KSlime/KR9.png'), pygame.image.load('imagens/Mob/KSlime/KR10.png'),
+              pygame.image.load('imagens/Mob/KSlime/KR11.png')]
 
     skillL = [pygame.image.load('imagens/Mob/KSlime/KL1.png'), pygame.image.load('imagens/Mob/KSlime/KL2.png'),
-             pygame.image.load('imagens/Mob/KSlime/KL3.png'), pygame.image.load('imagens/Mob/KSlime/KL4.png'),
-             pygame.image.load('imagens/Mob/KSlime/KL5.png'), pygame.image.load('imagens/Mob/KSlime/KL6.png'),
-             pygame.image.load('imagens/Mob/KSlime/KL7.png'), pygame.image.load('imagens/Mob/KSlime/KL8.png'),
-             pygame.image.load('imagens/Mob/KSlime/KL9.png'), pygame.image.load('imagens/Mob/KSlime/KL10.png'),
-             pygame.image.load('imagens/Mob/KSlime/KL11.png')]
-    
+              pygame.image.load('imagens/Mob/KSlime/KL3.png'), pygame.image.load('imagens/Mob/KSlime/KL4.png'),
+              pygame.image.load('imagens/Mob/KSlime/KL5.png'), pygame.image.load('imagens/Mob/KSlime/KL6.png'),
+              pygame.image.load('imagens/Mob/KSlime/KL7.png'), pygame.image.load('imagens/Mob/KSlime/KL8.png'),
+              pygame.image.load('imagens/Mob/KSlime/KL9.png'), pygame.image.load('imagens/Mob/KSlime/KL10.png'),
+              pygame.image.load('imagens/Mob/KSlime/KL11.png')]
+
     def __init__(self, x, y, width, height, end):
         self.x = x
         self.y = y
@@ -5809,7 +5940,8 @@ class KSlime(object): # Boss Ellinia
             elif self.washit == 2:
                 self.washit = 0
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] - 30, self.hitbox[1] - 80, 187, 8))
-            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0]- 28, self.hitbox[1] - 78, 183 - (2 * (89 - self.health)), 4))
+            pygame.draw.rect(win, (255, 0, 0),
+                             (self.hitbox[0] - 28, self.hitbox[1] - 78, 183 - (2 * (89 - self.health)), 4))
             self.hitbox = (self.x - camx + 30, self.y + 80, self.width, self.height)
             pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
@@ -5835,7 +5967,7 @@ class KSlime(object): # Boss Ellinia
         if self.visible and self.skill == True:
             if self.skillCount + 1 >= 55:
                 self.skillCount = 0
-        
+
             if self.vel > 0:
                 win.blit(self.skillR[self.skillCount // 5], (self.x - camx, self.y - 40))
                 self.skillCount += 1
@@ -5868,12 +6000,13 @@ class KSlime(object): # Boss Ellinia
                     sucesso.play()
             else:
                 self.washit = 0
-                
+
+
 def GameWindow():
     # Background (Mapa)
+    win.blit(bg3, (18675 - camx, 0))
     win.blit(bg2, (10920 - camx, 0))
     win.blit(bg, (0 - camx, 0))
-
 
     # HUD
     win.blit(teclas, (600, 5))
@@ -5936,7 +6069,7 @@ def GameWindow():
     spike5.draw(win)
     spike6.draw(win)
 
-    #Draw Plataformas Henesys
+    # Draw Plataformas Henesys
     platform16.draw(win)
     platform17.draw(win)
     platform18.draw(win)
@@ -5965,7 +6098,7 @@ def GameWindow():
     platform41.draw(win)
     platform42.draw(win)
 
-# Draw Monstros Henesys
+    # Draw Monstros Henesys
     cogu1.draw(win)
     cogu2.draw(win)
     cogu3.draw(win)
@@ -5981,12 +6114,12 @@ def GameWindow():
     cogu13.draw(win)
     cogu14.draw(win)
 
-# Draw Espinhos Perion
+    # Draw Espinhos Perion
     spike7.draw(win)
     spike8.draw(win)
     spike9.draw(win)
 
-# Draw Plataformas Perion
+    # Draw Plataformas Perion
     platform43.draw(win)
     platform44.draw(win)
     platform45.draw(win)
@@ -6012,7 +6145,7 @@ def GameWindow():
     platform65.draw(win)
     platform66.draw(win)
 
-# Draw Monstros Perion
+    # Draw Monstros Perion
     toco1.draw(win)
     toco2.draw(win)
     toco3.draw(win)
@@ -6030,18 +6163,18 @@ def GameWindow():
     toco15.draw(win)
     toco16.draw(win)
     stumpy.draw(win)
-# Draw Paredes Perion
+    # Draw Paredes Perion
     wall1.draw(win)
     wall2.draw(win)
 
-# Draw Spikes Ellinia
+    # Draw Spikes Ellinia
     spike10.draw(win)
 
-#Draw Parede Ellinia
+    # Draw Parede Ellinia
     wall3.draw(win)
     wall4.draw(win)
 
-#Draw Plataformas Ellinia
+    # Draw Plataformas Ellinia
     platform67.draw(win)
     platform68.draw(win)
     platform69.draw(win)
@@ -6050,7 +6183,7 @@ def GameWindow():
     platform72.draw(win)
     platform73.draw(win)
 
-# Draw Monstros Ellinia
+    # Draw Monstros Ellinia
     slime1.draw(win)
     slime2.draw(win)
     slime3.draw(win)
@@ -6066,7 +6199,7 @@ def GameWindow():
 
 
 # Main loop
-camx = 17400  # Camera
+camx = 18300  # Camera
 
 # Variavel Player
 player = player(400, 470, 64, 64)
@@ -6254,14 +6387,13 @@ while run:
     clock.tick(27)
 
     # TESTES
-    #print("JumpCount:", player.jumpCount, "Camx:", camx, "onPlatform:", player.onPlatform, "isJump:", player.isJump)
-    #print(camx)
+    # print("JumpCount:", player.jumpCount, "Camx:", camx, "onPlatform:", player.onPlatform, "isJump:", player.isJump)
+    # print(camx)
     # print(player.y)
     # print(player.onPlatform)
     # print(player.isJump)
-    #print(stumpy.walkCount)
-    print(KSlime.skillCount)
-
+    # print(stumpy.walkCount)
+    #print(KSlime.skillCount)
 
     # Checkpoints
     if camx == 6545:
@@ -6292,6 +6424,10 @@ while run:
 
     if camx == 14430:
         music = pygame.mixer.music.load("BGM/BGM04.mp3")
+        pygame.mixer.music.play(-1)
+
+    if camx == 18275:
+        music = pygame.mixer.music.load("BGM/BGM05.mp3")
         pygame.mixer.music.play(-1)
 
     # Verificação de GameOver
@@ -6499,8 +6635,8 @@ while run:
                 platform11.hitbox[0] + platform11.hitbox[2]:
             platform11.hit()
             player.onPlatform = True
-        #else:
-            #player.onPlatform = False
+        # else:
+        # player.onPlatform = False
 
     if player.plathitbox[1] < platform12.hitbox[1] + platform12.hitbox[3] and player.plathitbox[1] + player.plathitbox[
         3] > platform12.hitbox[1]:
@@ -6539,7 +6675,7 @@ while run:
             platform16.hit()
             player.onPlatform = True
 
-    #Colisão Monstros Henesys
+    # Colisão Monstros Henesys
     if player.hitbox[1] < cogu1.hitbox[1] + cogu1.hitbox[3] and player.hitbox[1] + player.hitbox[3] > cogu1.hitbox[
         1]:
         if player.hitbox[0] + player.hitbox[2] > cogu1.hitbox[0] and player.hitbox[0] < cogu1.hitbox[0] + \
@@ -6550,7 +6686,7 @@ while run:
             camx = checkpoint
             player.x = 400
             player.y = 470
-            
+
     if player.hitbox[1] < cogu2.hitbox[1] + cogu2.hitbox[3] and player.hitbox[1] + player.hitbox[3] > cogu2.hitbox[
         1]:
         if player.hitbox[0] + player.hitbox[2] > cogu2.hitbox[0] and player.hitbox[0] < cogu2.hitbox[0] + \
@@ -6704,7 +6840,6 @@ while run:
         else:
             player.onPlatform = False
 
-
     if player.plathitbox[1] < platform18.hitbox[1] + platform18.hitbox[3] and player.plathitbox[1] + player.plathitbox[
         3] > platform18.hitbox[1]:
         if player.plathitbox[0] + player.plathitbox[2] > platform18.hitbox[0] and player.plathitbox[0] < \
@@ -6738,8 +6873,8 @@ while run:
                 platform21.hitbox[0] + platform21.hitbox[2]:
             platform21.hit()
             player.onPlatform = True
-        #else:
-            #player.onPlatform = False
+        # else:
+        # player.onPlatform = False
 
     if player.plathitbox[1] < platform22.hitbox[1] + platform22.hitbox[3] and player.plathitbox[1] + player.plathitbox[
         3] > platform22.hitbox[1]:
@@ -6765,8 +6900,8 @@ while run:
                 platform24.hitbox[0] + platform24.hitbox[2]:
             platform24.hit()
             player.onPlatform = True
-        #else:
-            #player.onPlatform = False
+        # else:
+        # player.onPlatform = False
 
     if player.plathitbox[1] < platform25.hitbox[1] + platform25.hitbox[3] and player.plathitbox[1] + \
             player.plathitbox[
@@ -6775,8 +6910,8 @@ while run:
                 platform25.hitbox[0] + platform25.hitbox[2]:
             platform25.hit()
             player.onPlatform = True
-        #else:
-            #player.onPlatform = False
+        # else:
+        # player.onPlatform = False
 
     if player.plathitbox[1] < platform26.hitbox[1] + platform26.hitbox[3] and player.plathitbox[1] + \
             player.plathitbox[
@@ -6785,8 +6920,8 @@ while run:
                 platform26.hitbox[0] + platform26.hitbox[2]:
             platform26.hit()
             player.onPlatform = True
-        #else:
-            #player.onPlatform = False
+        # else:
+        # player.onPlatform = False
 
     if player.plathitbox[1] < platform27.hitbox[1] + platform27.hitbox[3] and player.plathitbox[1] + \
             player.plathitbox[
@@ -6795,8 +6930,8 @@ while run:
                 platform27.hitbox[0] + platform27.hitbox[2]:
             platform27.hit()
             player.onPlatform = True
-        #else:
-            #player.onPlatform = False
+        # else:
+        # player.onPlatform = False
 
     if player.plathitbox[1] < platform28.hitbox[1] + platform28.hitbox[3] and player.plathitbox[1] + \
             player.plathitbox[
@@ -6805,8 +6940,8 @@ while run:
                 platform28.hitbox[0] + platform28.hitbox[2]:
             platform28.hit()
             player.onPlatform = True
-        #else:
-            #player.onPlatform = False
+        # else:
+        # player.onPlatform = False
 
     if player.plathitbox[1] < platform29.hitbox[1] + platform29.hitbox[3] and player.plathitbox[1] + \
             player.plathitbox[
@@ -6815,8 +6950,8 @@ while run:
                 platform29.hitbox[0] + platform29.hitbox[2]:
             platform29.hit()
             player.onPlatform = True
-        #else:
-            #player.onPlatform = False
+        # else:
+        # player.onPlatform = False
 
     if player.plathitbox[1] < platform30.hitbox[1] + platform30.hitbox[3] and player.plathitbox[1] + \
             player.plathitbox[
@@ -6825,8 +6960,8 @@ while run:
                 platform30.hitbox[0] + platform30.hitbox[2]:
             platform30.hit()
             player.onPlatform = True
-        #else:
-            #player.onPlatform = False
+        # else:
+        # player.onPlatform = False
 
     if player.plathitbox[1] < platform31.hitbox[1] + platform31.hitbox[3] and player.plathitbox[1] + \
             player.plathitbox[
@@ -6835,8 +6970,8 @@ while run:
                 platform31.hitbox[0] + platform31.hitbox[2]:
             platform31.hit()
             player.onPlatform = True
-#        else:
-#            player.onPlatform = False
+    #        else:
+    #            player.onPlatform = False
 
     if player.plathitbox[1] < platform32.hitbox[1] + platform32.hitbox[3] and player.plathitbox[1] + \
             player.plathitbox[
@@ -6845,8 +6980,8 @@ while run:
                 platform32.hitbox[0] + platform32.hitbox[2]:
             platform32.hit()
             player.onPlatform = True
-#        else:
-#            player.onPlatform = False
+    #        else:
+    #            player.onPlatform = False
 
     if player.plathitbox[1] < platform33.hitbox[1] + platform33.hitbox[3] and player.plathitbox[1] + \
             player.plathitbox[
@@ -6875,8 +7010,8 @@ while run:
                 platform35.hitbox[0] + platform35.hitbox[2]:
             platform35.hit()
             player.onPlatform = True
-        #else:
-            #player.onPlatform = False
+        # else:
+        # player.onPlatform = False
 
     if player.plathitbox[1] < platform36.hitbox[1] + platform36.hitbox[3] and player.plathitbox[1] + \
             player.plathitbox[
@@ -6885,8 +7020,8 @@ while run:
                 platform36.hitbox[0] + platform36.hitbox[2]:
             platform36.hit()
             player.onPlatform = True
-        #else:
-            #player.onPlatform = False
+        # else:
+        # player.onPlatform = False
 
     if player.plathitbox[1] < platform37.hitbox[1] + platform37.hitbox[3] and player.plathitbox[1] + \
             player.plathitbox[
@@ -6915,8 +7050,8 @@ while run:
                 platform39.hitbox[0] + platform39.hitbox[2]:
             platform39.hit()
             player.onPlatform = True
-        #else:
-            #player.onPlatform = False
+        # else:
+        # player.onPlatform = False
 
     if player.plathitbox[1] < platform40.hitbox[1] + platform40.hitbox[3] and player.plathitbox[1] + \
             player.plathitbox[
@@ -6945,10 +7080,10 @@ while run:
                 platform42.hitbox[0] + platform42.hitbox[2]:
             platform42.hit()
             player.onPlatform = True
-        #else:
-            #player.onPlatform = False
-            
-            # Colisão Espinhos Henesys
+        # else:
+        # player.onPlatform = False
+
+        # Colisão Espinhos Henesys
     if player.hitbox[1] < spike3.hitbox[1] + spike3.hitbox[3] and player.hitbox[1] + player.hitbox[3] > spike3.hitbox[
         1]:
         if player.hitbox[0] + player.hitbox[2] > spike3.hitbox[0] and player.hitbox[0] < spike3.hitbox[0] + \
@@ -6959,7 +7094,7 @@ while run:
             camx = checkpoint
             player.x = 400
             player.y = 470
-            
+
     if player.hitbox[1] < spike4.hitbox[1] + spike4.hitbox[3] and player.hitbox[1] + player.hitbox[3] > spike4.hitbox[
         1]:
         if player.hitbox[0] + player.hitbox[2] > spike4.hitbox[0] and player.hitbox[0] < spike4.hitbox[0] + \
@@ -6970,7 +7105,7 @@ while run:
             camx = checkpoint
             player.x = 400
             player.y = 470
-            
+
     if player.hitbox[1] < spike5.hitbox[1] + spike5.hitbox[3] and player.hitbox[1] + player.hitbox[3] > spike5.hitbox[
         1]:
         if player.hitbox[0] + player.hitbox[2] > spike5.hitbox[0] and player.hitbox[0] < spike5.hitbox[0] + \
@@ -6992,7 +7127,7 @@ while run:
             camx = checkpoint
             player.x = 400
             player.y = 470
-    
+
     # Colisão Espinhos Perion
     if player.hitbox[1] < spike7.hitbox[1] + spike7.hitbox[3] and player.hitbox[1] + player.hitbox[3] > spike7.hitbox[
         1]:
@@ -7004,7 +7139,7 @@ while run:
             camx = checkpoint
             player.x = 400
             player.y = 470
-            
+
     if player.hitbox[1] < spike8.hitbox[1] + spike8.hitbox[3] and player.hitbox[1] + player.hitbox[3] > spike8.hitbox[
         1]:
         if player.hitbox[0] + player.hitbox[2] > spike8.hitbox[0] and player.hitbox[0] < spike8.hitbox[0] + \
@@ -7015,7 +7150,7 @@ while run:
             camx = checkpoint
             player.x = 400
             player.y = 470
-            
+
     if player.hitbox[1] < spike9.hitbox[1] + spike9.hitbox[3] and player.hitbox[1] + player.hitbox[3] > spike9.hitbox[
         1]:
         if player.hitbox[0] + player.hitbox[2] > spike9.hitbox[0] and player.hitbox[0] < spike9.hitbox[0] + \
@@ -7026,7 +7161,7 @@ while run:
             camx = checkpoint
             player.x = 400
             player.y = 470
-            
+
     # Colisão Plataformas Perion
     if player.plathitbox[1] < platform43.hitbox[1] + platform43.hitbox[3] and player.plathitbox[1] + \
             player.plathitbox[
@@ -7035,8 +7170,8 @@ while run:
                 platform43.hitbox[0] + platform43.hitbox[2]:
             platform43.hit()
             player.onPlatform = True
-        #else:
-            #player.onPlatform = False
+        # else:
+        # player.onPlatform = False
 
     if player.plathitbox[1] < platform44.hitbox[1] + platform44.hitbox[3] and player.plathitbox[1] + \
             player.plathitbox[
@@ -7087,7 +7222,7 @@ while run:
             player.onPlatform = True
         # else:
         # player.onPlatform = False
-        
+
     if player.plathitbox[1] < platform49.hitbox[1] + platform49.hitbox[3] and player.plathitbox[1] + \
             player.plathitbox[
                 3] > platform49.hitbox[1]:
@@ -7247,7 +7382,7 @@ while run:
             player.onPlatform = True
         else:
             player.onPlatform = False
-        
+
     if player.plathitbox[1] < platform65.hitbox[1] + platform65.hitbox[3] and player.plathitbox[1] + \
             player.plathitbox[
                 3] > platform65.hitbox[1]:
@@ -7255,8 +7390,8 @@ while run:
                 platform65.hitbox[0] + platform65.hitbox[2]:
             platform65.hit()
             player.onPlatform = True
-        #else:
-            #player.onPlatform = False
+        # else:
+        # player.onPlatform = False
 
     if player.plathitbox[1] < platform66.hitbox[1] + platform66.hitbox[3] and player.plathitbox[1] + \
             player.plathitbox[
@@ -7265,10 +7400,10 @@ while run:
                 platform66.hitbox[0] + platform66.hitbox[2]:
             platform66.hit()
             player.onPlatform = True
-        #else:
-            #player.onPlatform = False
+        # else:
+        # player.onPlatform = False
 
-#Colisão Plataformas Ellinia
+    # Colisão Plataformas Ellinia
     if player.plathitbox[1] < platform67.hitbox[1] + platform67.hitbox[3] and player.plathitbox[1] + \
             player.plathitbox[
                 3] > platform67.hitbox[1]:
@@ -7276,8 +7411,8 @@ while run:
                 platform67.hitbox[0] + platform67.hitbox[2]:
             platform67.hit()
             player.onPlatform = True
-        #else:
-            #player.onPlatform = False
+        # else:
+        # player.onPlatform = False
 
     if player.plathitbox[1] < platform68.hitbox[1] + platform68.hitbox[3] and player.plathitbox[1] + \
             player.plathitbox[
@@ -7286,8 +7421,8 @@ while run:
                 platform68.hitbox[0] + platform68.hitbox[2]:
             platform68.hit()
             player.onPlatform = True
-        #else:
-            #player.onPlatform = False
+        # else:
+        # player.onPlatform = False
 
     if player.plathitbox[1] < platform69.hitbox[1] + platform69.hitbox[3] and player.plathitbox[1] + \
             player.plathitbox[
@@ -7296,8 +7431,8 @@ while run:
                 platform69.hitbox[0] + platform69.hitbox[2]:
             platform69.hit()
             player.onPlatform = True
-        #else:
-            #player.onPlatform = False
+        # else:
+        # player.onPlatform = False
 
     if player.plathitbox[1] < platform70.hitbox[1] + platform70.hitbox[3] and player.plathitbox[1] + \
             player.plathitbox[
@@ -7306,8 +7441,8 @@ while run:
                 platform70.hitbox[0] + platform70.hitbox[2]:
             platform70.hit()
             player.onPlatform = True
-        #else:
-            #player.onPlatform = False
+        # else:
+        # player.onPlatform = False
 
     if player.plathitbox[1] < platform71.hitbox[1] + platform71.hitbox[3] and player.plathitbox[1] + \
             player.plathitbox[
@@ -7316,8 +7451,8 @@ while run:
                 platform71.hitbox[0] + platform71.hitbox[2]:
             platform71.hit()
             player.onPlatform = True
-        #else:
-            #player.onPlatform = False
+        # else:
+        # player.onPlatform = False
 
     if player.plathitbox[1] < platform72.hitbox[1] + platform72.hitbox[3] and player.plathitbox[1] + \
             player.plathitbox[
@@ -7326,8 +7461,8 @@ while run:
                 platform72.hitbox[0] + platform72.hitbox[2]:
             platform72.hit()
             player.onPlatform = True
-        #else:
-            #player.onPlatform = False
+        # else:
+        # player.onPlatform = False
 
     if player.plathitbox[1] < platform73.hitbox[1] + platform73.hitbox[3] and player.plathitbox[1] + \
             player.plathitbox[
@@ -7336,10 +7471,10 @@ while run:
                 platform73.hitbox[0] + platform73.hitbox[2]:
             platform73.hit()
             player.onPlatform = True
-        #else:
-            #player.onPlatform = False
-        
-# Colisão Monstros Perion
+        # else:
+        # player.onPlatform = False
+
+    # Colisão Monstros Perion
     if player.hitbox[1] < toco1.hitbox[1] + toco1.hitbox[3] and player.hitbox[1] + player.hitbox[3] > toco1.hitbox[
         1]:
         if player.hitbox[0] + player.hitbox[2] > toco1.hitbox[0] and player.hitbox[0] < toco1.hitbox[0] + \
@@ -7515,8 +7650,8 @@ while run:
             camx = checkpoint
             player.x = 400
             player.y = 470
-    
-    #Colisão Hitbox Stumpy
+
+    # Colisão Hitbox Stumpy
     if player.hitbox[1] < stumpy.hitbox[1] + stumpy.hitbox[3] and player.hitbox[1] + player.hitbox[3] > stumpy.hitbox[
         1]:
         if player.hitbox[0] + player.hitbox[2] > stumpy.hitbox[0] and player.hitbox[0] < stumpy.hitbox[0] + \
@@ -7527,7 +7662,7 @@ while run:
             camx = checkpoint
             player.x = 400
             player.y = 470
-            
+
     # Colisão Skill Stumpy
     if stumpy.walkCount == 40 and player.y == 470 and camx > 13955 and stumpy.visible == True and camx < 14385:
         player.hit()
@@ -7548,7 +7683,7 @@ while run:
         player.x = 400
         player.y = 470
 
-# Skill King Slime
+    # Skill King Slime
     if slime9.visible == False:
         KSlime.skill = True
         if KSlime.skillCount == 1:
@@ -7573,8 +7708,7 @@ while run:
             slime10.visible = True
             KSlime.skillCount = 0
 
-        
-# Colisão Parede Perion
+    # Colisão Parede Perion
     if player.plathitbox[1] < wall1.hitbox[1] + wall1.hitbox[3] and player.plathitbox[1] + \
             player.plathitbox[
                 3] > wall1.hitbox[1]:
@@ -7592,7 +7726,7 @@ while run:
                 camx -= 5
                 player.walkCount = 0
 
-# Colisão Monstros Ellinia
+    # Colisão Monstros Ellinia
     if player.hitbox[1] < slime1.hitbox[1] + slime1.hitbox[3] and player.hitbox[1] + player.hitbox[3] > slime1.hitbox[
         1]:
         if player.hitbox[0] + player.hitbox[2] > slime1.hitbox[0] and player.hitbox[0] < slime1.hitbox[0] + \
@@ -7692,8 +7826,9 @@ while run:
             player.x = 400
             player.y = 470
 
-    if player.hitbox[1] < slime10.hitbox[1] + slime10.hitbox[3] and player.hitbox[1] + player.hitbox[3] > slime10.hitbox[
-        1]:
+    if player.hitbox[1] < slime10.hitbox[1] + slime10.hitbox[3] and player.hitbox[1] + player.hitbox[3] > \
+            slime10.hitbox[
+                1]:
         if player.hitbox[0] + player.hitbox[2] > slime10.hitbox[0] and player.hitbox[0] < slime10.hitbox[0] + \
                 slime10.hitbox[2]:
             player.hit()
@@ -7702,7 +7837,7 @@ while run:
             camx = checkpoint
             player.x = 400
             player.y = 470
-            
+
     if player.hitbox[1] < KSlime.hitbox[1] + KSlime.hitbox[3] and player.hitbox[1] + player.hitbox[3] > KSlime.hitbox[
         1]:
         if player.hitbox[0] + player.hitbox[2] > KSlime.hitbox[0] and player.hitbox[0] < KSlime.hitbox[0] + \
@@ -7714,7 +7849,7 @@ while run:
             player.x = 400
             player.y = 470
 
-# Colisão Parede Ellinia
+    # Colisão Parede Ellinia
     if player.plathitbox[1] < wall3.hitbox[1] + wall3.hitbox[3] and player.plathitbox[1] + \
             player.plathitbox[
                 3] > wall3.hitbox[1]:
@@ -7733,8 +7868,9 @@ while run:
                 player.walkCount = 0
 
     # Colisão Spike Ellinia
-    if player.hitbox[1] < spike10.hitbox[1] + spike10.hitbox[3] and player.hitbox[1] + player.hitbox[3] > spike10.hitbox[
-        1]:
+    if player.hitbox[1] < spike10.hitbox[1] + spike10.hitbox[3] and player.hitbox[1] + player.hitbox[3] > \
+            spike10.hitbox[
+                1]:
         if player.hitbox[0] + player.hitbox[2] > spike10.hitbox[0] and player.hitbox[0] < spike10.hitbox[0] + \
                 spike10.hitbox[2]:
             player.hit()
@@ -7805,8 +7941,6 @@ while run:
 
     elif player.y > 470:
         player.y = 470
-
-
 
     # Colisão Flechas
     for arrow in arrows:
@@ -7959,7 +8093,7 @@ while run:
                 if arrows != []:
                     arrows.pop(arrows.index(arrow))
 
-    # Colisão Flechas Perion
+        # Colisão Flechas Perion
         if arrow.y - arrow.radius < toco1.hitbox[1] + toco1.hitbox[3] and arrow.y + arrow.radius > toco1.hitbox[1]:
             if arrow.x + arrow.radius > toco1.hitbox[0] and arrow.x - arrow.radius < toco1.hitbox[0] + toco1.hitbox[
                 2]:
@@ -8072,7 +8206,7 @@ while run:
                 if arrows != []:
                     arrows.pop(arrows.index(arrow))
 
-        #Colisão Flecha Stumpy
+        # Colisão Flecha Stumpy
         if arrow.y - arrow.radius < stumpy.hitbox[1] + stumpy.hitbox[3] and arrow.y + arrow.radius > stumpy.hitbox[1]:
             if arrow.x + arrow.radius > stumpy.hitbox[0] and arrow.x - arrow.radius < stumpy.hitbox[0] + stumpy.hitbox[
                 2]:
@@ -8080,7 +8214,7 @@ while run:
                 if arrows != []:
                     arrows.pop(arrows.index(arrow))
 
-        #Colisão Flechas Ellinia
+        # Colisão Flechas Ellinia
         if arrow.y - arrow.radius < slime1.hitbox[1] + slime1.hitbox[3] and arrow.y + arrow.radius > slime1.hitbox[1]:
             if arrow.x + arrow.radius > slime1.hitbox[0] and arrow.x - arrow.radius < slime1.hitbox[0] + slime1.hitbox[
                 2]:
@@ -8144,9 +8278,11 @@ while run:
                 if arrows != []:
                     arrows.pop(arrows.index(arrow))
 
-        if arrow.y - arrow.radius < slime10.hitbox[1] + slime10.hitbox[3] and arrow.y + arrow.radius > slime10.hitbox[1]:
-            if arrow.x + arrow.radius > slime10.hitbox[0] and arrow.x - arrow.radius < slime10.hitbox[0] + slime10.hitbox[
-                2]:
+        if arrow.y - arrow.radius < slime10.hitbox[1] + slime10.hitbox[3] and arrow.y + arrow.radius > slime10.hitbox[
+            1]:
+            if arrow.x + arrow.radius > slime10.hitbox[0] and arrow.x - arrow.radius < slime10.hitbox[0] + \
+                    slime10.hitbox[
+                        2]:
                 slime10.hit()
                 if arrows != []:
                     arrows.pop(arrows.index(arrow))
@@ -8161,7 +8297,7 @@ while run:
         if arrow.x < 780 and arrow.x > 0:
             arrow.x += arrow.vel
         else:
-            if arrows != []: # if utilizado para corrigir o bug que tenta deletar uma flecha que já foi deletada ao colidir com um monstro.
+            if arrows != []:  # if utilizado para corrigir o bug que tenta deletar uma flecha que já foi deletada ao colidir com um monstro.
                 arrows.pop(arrows.index(arrow))
 
     for event in pygame.event.get():
@@ -8196,7 +8332,8 @@ while run:
         if player.jumpCount == 10:
             if len(arrows) < 1:
                 arrows.append(
-                    projectile(round(player.x + player.width // 2), round(player.y + player.height // 1.7), 13, facingB))
+                    projectile(round(player.x + player.width // 2), round(player.y + player.height // 1.7), 13,
+                               facingB))
                 arrowSound.play()
 
     # Tecla F2 (Emote sorrir)
