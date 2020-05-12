@@ -123,6 +123,8 @@ class player(object):
             else:
                 win.blit(walkL[self.walkCount // 6], (round(self.x), round(self.y)))
                 self.walkCount += 1
+            if onGravity == True:
+                win.blit(jumpL, (round(self.x), round(self.y)))
 
         elif self.right:
             if self.jumpCount < 10:
@@ -130,12 +132,19 @@ class player(object):
             else:
                 win.blit(walkR[self.walkCount // 6], (round(self.x), round(self.y)))
                 self.walkCount += 1
-
+            if onGravity == True:
+                win.blit(jumpL, (round(self.x), round(self.y)))
         elif self.jumpCount < 10 and self.facing == 0:
             win.blit(jumpL, (round(self.x), round(self.y)))
 
         elif self.jumpCount < 10 and self.facing == 1:
             win.blit(jumpR, (round(self.x), round(self.y)))
+
+        elif onGravity == True and self.facing == 1:
+            win.blit(jumpR, (round(self.x), round(self.y)))
+
+        elif onGravity == True and self.facing == 0:
+            win.blit(jumpL, (round(self.x), round(self.y)))
 
         elif self.attack:
             if self.facing == 0:
