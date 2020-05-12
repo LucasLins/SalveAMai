@@ -1,4 +1,4 @@
-# ![SaM Logo](https://cdn.discordapp.com/attachments/680077619701481534/709809617496178758/SaM.png)
+# ![SaM Logo](https://cdn.discordapp.com/attachments/680077619701481534/709835924250296340/SaM.png)
 
 #### Sobre:
 **Salve a Mai** é um jogo de plataforma criado por **Lucas Lins** que faz parte de um projeto da disciplina `Introdução à Programação` na **UNIESP**. O jogo foi programado em `Python` utilizando o `Pygame`.
