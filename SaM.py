@@ -92,6 +92,10 @@ kslimehit = pygame.mixer.Sound("BGM/kslimehit.wav")
 slimedie = pygame.mixer.Sound("BGM/slimedie.wav")
 slimehit = pygame.mixer.Sound("BGM/slimehit.wav")
 laserhit = pygame.mixer.Sound("BGM/laser.wav")
+digaodie = pygame.mixer.Sound("BGM/digaodie.wav")
+digaohit = pygame.mixer.Sound("BGM/digaohit.wav")
+jailopen = pygame.mixer.Sound("BGM/jailopen.wav")
+digaoskill1 = pygame.mixer.Sound("BGM/digaoskill1.wav")
 
 # Personagem
 class player(object):
@@ -184,10 +188,10 @@ class player(object):
             pygame.display.update()
             self.x = 654
             self.y = 361
-            pygame.time.delay(3000)
             self.walkCount = 0
             self.jumpCount = 10
             self.isJump = False
+            pygame.time.delay(3000)
 
 
 # Flecha
@@ -6881,6 +6885,196 @@ class wall6(object):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
         pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
+# Plataformas Jail
+class platform109(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform110(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform111(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform112(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform113(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform114(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform115(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform116(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
+class platform117(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+    def hit(self):
+        if player.jumpCount <= -1:
+            player.onPlatform = True
+            player.jumpCount = 10
+            player.isJump = False
+        else:
+            player.onPlatform = False
+
 # Parede Jail
 class wall7(object):
 
@@ -7163,6 +7357,23 @@ class digao(object):  # Boss Ellinia
              pygame.image.load('imagens/Mob/Digao/DL3.png'), pygame.image.load('imagens/Mob/Digao/DL4.png'),
              pygame.image.load('imagens/Mob/Digao/DL5.png'), pygame.image.load('imagens/Mob/Digao/DL6.png')]
 
+    imgskill1 = [pygame.image.load('imagens/Mob/Digao/skill1/1.png'), pygame.image.load('imagens/Mob/Digao/skill1/2.png'),
+              pygame.image.load('imagens/Mob/Digao/skill1/3.png'), pygame.image.load('imagens/Mob/Digao/skill1/4.png'),
+              pygame.image.load('imagens/Mob/Digao/skill1/5.png'), pygame.image.load('imagens/Mob/Digao/skill1/6.png'),
+              pygame.image.load('imagens/Mob/Digao/skill1/7.png'), pygame.image.load('imagens/Mob/Digao/skill1/8.png'),
+              pygame.image.load('imagens/Mob/Digao/skill1/9.png'), pygame.image.load('imagens/Mob/Digao/skill1/10.png'),
+              pygame.image.load('imagens/Mob/Digao/skill1/11.png'), pygame.image.load('imagens/Mob/Digao/skill1/12.png'), 
+              pygame.image.load('imagens/Mob/Digao/skill1/13.png'), pygame.image.load('imagens/Mob/Digao/skill1/14.png'), 
+              pygame.image.load('imagens/Mob/Digao/skill1/15.png'), pygame.image.load('imagens/Mob/Digao/skill1/16.png'), 
+              pygame.image.load('imagens/Mob/Digao/skill1/17.png'), pygame.image.load('imagens/Mob/Digao/skill1/18.png'), 
+              pygame.image.load('imagens/Mob/Digao/skill1/19.png'), pygame.image.load('imagens/Mob/Digao/skill1/20.png'), 
+              pygame.image.load('imagens/Mob/Digao/skill1/21.png'), pygame.image.load('imagens/Mob/Digao/skill1/22.png'), 
+              pygame.image.load('imagens/Mob/Digao/skill1/23.png'), pygame.image.load('imagens/Mob/Digao/skill1/24.png'), 
+              pygame.image.load('imagens/Mob/Digao/skill1/25.png'), pygame.image.load('imagens/Mob/Digao/skill1/26.png'), 
+              pygame.image.load('imagens/Mob/Digao/skill1/27.png')]
+
+    explosionskill1 = pygame.image.load('imagens/Mob/Digao/skill1/explosion.png')
+
     def __init__(self, x, y, width, height, end):
         self.x = x
         self.y = y
@@ -7170,54 +7381,73 @@ class digao(object):  # Boss Ellinia
         self.height = height
         self.path = [x, end]
         self.walkCount = 0
-        self.skillCount = 0
-        self.vel = 5
+        self.skill1Count = 0
+        self.vel = 4
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
         self.washit = 0
-        self.health = 89
+        self.health = 181
         self.visible = True
-        self.skill = False
+        self.onskill1 = False
+        self.onskill2 = False
+        self.onskill3 = False
+        self.onskill4 = False
 
     def draw(self, win):
         self.move()
-        if self.visible and self.skill == False:
+        self.skill1()
+
+        if self.visible and self.onskill1 == False:
             if self.walkCount + 1 >= 24:
                 self.walkCount = 0
 
             if self.vel > 0:
                 win.blit(self.walkR[self.walkCount // 4], (self.x - camx, self.y))
                 self.walkCount += 1
+                self.hitbox = (self.x - camx + 65, self.y + 30, self.width, self.height)
             else:
                 win.blit(self.walkL[self.walkCount // 4], (self.x - camx, self.y))
                 self.walkCount += 1
+                self.hitbox = (self.x - camx + 23, self.y + 30, self.width, self.height)
             if self.washit == 1:
                 self.washit = 0
             elif self.washit == 2:
                 self.washit = 0
-            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] - 30, self.hitbox[1] - 80, 187, 8))
-            pygame.draw.rect(win, (255, 0, 0),
-                             (self.hitbox[0] - 28, self.hitbox[1] - 78, 183 - (2 * (89 - self.health)), 4))
-            self.hitbox = (self.x - camx + 30, self.y + 80, self.width, self.height)
+            pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0], self.hitbox[1] - 12, 187, 8))
+            pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 2, self.hitbox[1] - 10 , 183 - (1 * (181 - self.health)), 4))
+            #self.hitbox = (self.x - camx, self.y + 20, self.width, self.height)
             pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
-        if self.vel > 0:
-            if self.x < self.path[1] + self.vel:
-                self.x += self.vel
+        if self.onskill1 == False:
+            if self.vel > 0:
+                if self.x < self.path[1] + self.vel:
+                    self.x += self.vel
+                else:
+                    self.vel = self.vel * -1
+                    self.x += self.vel
+                    self.walkCount = 0
             else:
-                self.vel = self.vel * -1
-                self.x += self.vel
-                self.walkCount = 0
-        else:
-            if self.x > self.path[0] - self.vel:
-                self.x += self.vel
-            else:
-                self.vel = self.vel * -1
-                self.x += self.vel
-                self.walkCount = 0
+                if self.x > self.path[0] - self.vel:
+                    self.x += self.vel
+                else:
+                    self.vel = self.vel * -1
+                    self.x += self.vel
+                    self.walkCount = 0
+
+    def skill1(self):
+        if self.skill1Count >= 88:
+            win.blit(self.explosionskill1, (self.x - camx - 525, 420))
+
+        if self.visible and self.onskill1 == True:
+            if self.skill1Count + 1 >= 108:
+                self.skill1Count = 0
+
+            if self.vel < 0:
+                win.blit(self.imgskill1[self.skill1Count // 4], (self.x - camx - 100, self.y - 80))
+                self.skill1Count += 1
 
     def hit(self):
-        kslimehit.play()
+        digaohit.play()
         if self.health > 0 and self.vel > 0:
             self.washit = 1
             self.health -= 1
@@ -7229,12 +7459,12 @@ class digao(object):  # Boss Ellinia
                 self.hitbox = (0, 0, 0, 0)
                 self.washit = 1
                 self.visible = False
-                slimedie.play()
+                digaodie.play()
             elif self.vel < 0:
                 self.hitbox = (0, 0, 0, 0)
                 self.washit = 2
                 self.visible = False
-                slimedie.play()
+                digaodie.play()
             else:
                 self.washit = 0
 
@@ -7499,7 +7729,19 @@ def GameWindow():
     wall9.draw(win)
     wall10.draw(win)
 
+    # Boss Final Draw
     digao.draw(win)
+
+    # Plataformas Jail
+    platform109.draw(win)
+    platform110.draw(win)
+    platform111.draw(win)
+    platform112.draw(win)
+    platform113.draw(win)
+    platform114.draw(win)
+    platform115.draw(win)
+    platform116.draw(win)
+    platform117.draw(win)
 
     activator.draw(win)
 
@@ -7507,7 +7749,7 @@ def GameWindow():
 
 
 # Main loop
-camx = 27358  # Camera
+camx = 27081  # Camera
 
 # Variavel Player
 player = player(400, 470, 64, 64)
@@ -7771,7 +8013,23 @@ wall8 = wall8(27648, 0, 20, 600)
 wall9 = wall9(28608, 0, 20, 600)
 wall10 = wall10(29358, 0, 70, 600)
 
-digao = digao(27618, 269, 82, 117, 28404)
+# Variavel Boss Final
+digao = digao(27645, 269, 110, 256, 28404)
+
+# Plataformas Jail fila 1
+platform109 = platform109(27753, 480, 60, 15)
+platform110 = platform110(27753, 399, 60, 15)
+platform111 = platform111(27753, 315, 60, 15)
+
+# Plataformas Jail fila 2
+platform112 = platform112(28129, 480, 60, 15)
+platform113 = platform113(28129, 399, 60, 15)
+platform114 = platform114(28129, 315, 60, 15)
+
+# Plataformas Jail fila 3
+platform115 = platform115(28490, 480, 60, 15)
+platform116 = platform116(28490, 399, 60, 15)
+platform117 = platform117(28490, 315, 60, 15)
 
 portal1 = portal1(26305, 328, 196, 225)
 
@@ -7784,6 +8042,8 @@ while run:
     # TESTES
     # print("JumpCount:", player.jumpCount, "Camx:", camx, "onPlatform:", player.onPlatform, "isJump:", player.isJump)
     print(camx)
+    #print(digao.skill1Count)
+    #print(digao.walkCount)
     # print(player.y)
     #print(player.onPlatform)
     # print(player.isJump)
@@ -7804,6 +8064,9 @@ while run:
 
     if camx >= 18385 and camx <= 18441:
         checkpoint = 18429
+
+    if camx == 27081:
+        checkpoint = 27081
 
     # BGM de cada cidade
     if camx == 0:
@@ -9754,6 +10017,97 @@ while run:
             camx -= 5
             player.walkCount = 0
 
+# Colisão Plataformas Jail
+    if player.plathitbox[1] < platform109.hitbox[1] + platform109.hitbox[3] and player.plathitbox[1] + \
+            player.plathitbox[
+                3] > platform109.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform109.hitbox[0] and player.plathitbox[0] < \
+                platform109.hitbox[0] + platform109.hitbox[2]:
+            platform109.hit()
+            player.onPlatform = True
+        # else:
+        # player.onPlatform = False
+        
+    if player.plathitbox[1] < platform110.hitbox[1] + platform110.hitbox[3] and player.plathitbox[1] + \
+            player.plathitbox[
+                3] > platform110.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform110.hitbox[0] and player.plathitbox[0] < \
+                platform110.hitbox[0] + platform110.hitbox[2]:
+            platform110.hit()
+            player.onPlatform = True
+        # else:
+        # player.onPlatform = False
+        
+    if player.plathitbox[1] < platform111.hitbox[1] + platform111.hitbox[3] and player.plathitbox[1] + \
+            player.plathitbox[
+                3] > platform111.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform111.hitbox[0] and player.plathitbox[0] < \
+                platform111.hitbox[0] + platform111.hitbox[2]:
+            platform111.hit()
+            player.onPlatform = True
+        # else:
+        # player.onPlatform = False
+        
+    if player.plathitbox[1] < platform112.hitbox[1] + platform112.hitbox[3] and player.plathitbox[1] + \
+            player.plathitbox[
+                3] > platform112.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform112.hitbox[0] and player.plathitbox[0] < \
+                platform112.hitbox[0] + platform112.hitbox[2]:
+            platform112.hit()
+            player.onPlatform = True
+        # else:
+        # player.onPlatform = False
+        
+    if player.plathitbox[1] < platform113.hitbox[1] + platform113.hitbox[3] and player.plathitbox[1] + \
+            player.plathitbox[
+                3] > platform113.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform113.hitbox[0] and player.plathitbox[0] < \
+                platform113.hitbox[0] + platform113.hitbox[2]:
+            platform113.hit()
+            player.onPlatform = True
+        # else:
+        # player.onPlatform = False
+        
+    if player.plathitbox[1] < platform114.hitbox[1] + platform114.hitbox[3] and player.plathitbox[1] + \
+            player.plathitbox[
+                3] > platform114.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform114.hitbox[0] and player.plathitbox[0] < \
+                platform114.hitbox[0] + platform114.hitbox[2]:
+            platform114.hit()
+            player.onPlatform = True
+        # else:
+        # player.onPlatform = False
+        
+    if player.plathitbox[1] < platform115.hitbox[1] + platform115.hitbox[3] and player.plathitbox[1] + \
+            player.plathitbox[
+                3] > platform115.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform115.hitbox[0] and player.plathitbox[0] < \
+                platform115.hitbox[0] + platform115.hitbox[2]:
+            platform115.hit()
+            player.onPlatform = True
+        # else:
+        # player.onPlatform = False
+        
+    if player.plathitbox[1] < platform116.hitbox[1] + platform116.hitbox[3] and player.plathitbox[1] + \
+            player.plathitbox[
+                3] > platform116.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform116.hitbox[0] and player.plathitbox[0] < \
+                platform116.hitbox[0] + platform116.hitbox[2]:
+            platform116.hit()
+            player.onPlatform = True
+        # else:
+        # player.onPlatform = False
+        
+    if player.plathitbox[1] < platform117.hitbox[1] + platform117.hitbox[3] and player.plathitbox[1] + \
+            player.plathitbox[
+                3] > platform117.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > platform117.hitbox[0] and player.plathitbox[0] < \
+                platform117.hitbox[0] + platform117.hitbox[2]:
+            platform117.hit()
+            player.onPlatform = True
+        # else:
+        # player.onPlatform = False
+        
 # Colisão Paredes Jail
     if player.plathitbox[1] < wall7.hitbox[1] + wall7.hitbox[3] and player.plathitbox[1] + \
             player.plathitbox[
@@ -9762,15 +10116,6 @@ while run:
                 wall7.hitbox[0] + wall7.hitbox[2]:
             camx += 5
             player.walkCount = 0
-
-    if player.plathitbox[1] < wall8.hitbox[1] + wall8.hitbox[3] and player.plathitbox[1] + \
-            player.plathitbox[
-                3] > wall8.hitbox[1]:
-        if player.plathitbox[0] + player.plathitbox[2] > wall8.hitbox[0] and player.plathitbox[0] < \
-                wall8.hitbox[0] + wall8.hitbox[2]:
-            if digao.visible == True:
-                camx += 5
-                player.walkCount = 0
 
     if player.plathitbox[1] < wall9.hitbox[1] + wall9.hitbox[3] and player.plathitbox[1] + \
             player.plathitbox[
@@ -9788,6 +10133,7 @@ while run:
                 wall10.hitbox[0] + wall10.hitbox[2]:
             camx -= 5
             player.walkCount = 0
+
 # Activator colisão
     if player.plathitbox[1] < activator.hitbox[1] + activator.hitbox[3] and player.plathitbox[1] + \
             player.plathitbox[
@@ -9847,6 +10193,37 @@ while run:
 
     if laser.walkCount == 20 and camx >= 19546 and camx <= 20400:
        laserhit.play()
+
+    if player.hitbox[1] < digao.hitbox[1] + digao.hitbox[3] and player.hitbox[1] + player.hitbox[3] > digao.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > digao.hitbox[0] and player.hitbox[0] < digao.hitbox[0] + \
+                digao.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+            
+    # Skill1 digão
+    if digao.x == 28101 and digao.vel < 0:
+        digao.onskill1 = True
+
+    if digao.skill1Count == 1 and camx >= 26931:
+        digaoskill1.play()
+
+    if digao.skill1Count == 107:
+        digao.onskill1 = False
+        digao.skill1Count = 0
+
+    if digao.skill1Count >= 90 and camx >= 27151:
+        if player.y >= 400:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
 
     # Funções da Gravidade
     if player.y < 470 and player.isJump == False and player.onPlatform == False:
@@ -10346,6 +10723,13 @@ while run:
         if arrow.y - arrow.radius < wall9.hitbox[1] + wall9.hitbox[3] and arrow.y + arrow.radius > wall9.hitbox[1]:
             if arrow.x + arrow.radius > wall9.hitbox[0] and arrow.x - arrow.radius < wall9.hitbox[0] + wall9.hitbox[
                 2]:
+                if arrows != []:
+                    arrows.pop(arrows.index(arrow))
+                    
+        if arrow.y - arrow.radius < digao.hitbox[1] + digao.hitbox[3] and arrow.y + arrow.radius > digao.hitbox[1]:
+            if arrow.x + arrow.radius > digao.hitbox[0] and arrow.x - arrow.radius < digao.hitbox[0] + digao.hitbox[
+                2]:
+                digao.hit()
                 if arrows != []:
                     arrows.pop(arrows.index(arrow))
         
