@@ -96,6 +96,8 @@ digaodie = pygame.mixer.Sound("BGM/digaodie.wav")
 digaohit = pygame.mixer.Sound("BGM/digaohit.wav")
 jailopen = pygame.mixer.Sound("BGM/jailopen.wav")
 digaoskill1 = pygame.mixer.Sound("BGM/digaoskill1.wav")
+digaoskill2 = pygame.mixer.Sound("BGM/digaoskill2.wav")
+digaoskill3 = pygame.mixer.Sound("BGM/digaoskill3.wav")
 
 # Personagem
 class player(object):
@@ -7348,7 +7350,7 @@ class portal1(object):  # Boss Ellinia
                 win.blit(self.skillL[self.skillCount // 4], (self.x - camx, self.y))
                 self.skillCount += 1
 
-class digao(object):  # Boss Ellinia
+class digao(object):  # Boss Final
     walkR = [pygame.image.load('imagens/Mob/Digao/DR1.png'), pygame.image.load('imagens/Mob/Digao/DR2.png'),
              pygame.image.load('imagens/Mob/Digao/DR3.png'), pygame.image.load('imagens/Mob/Digao/DR4.png'),
              pygame.image.load('imagens/Mob/Digao/DR5.png'), pygame.image.load('imagens/Mob/Digao/DR6.png')]
@@ -7356,6 +7358,67 @@ class digao(object):  # Boss Ellinia
     walkL = [pygame.image.load('imagens/Mob/Digao/DL1.png'), pygame.image.load('imagens/Mob/Digao/DL2.png'),
              pygame.image.load('imagens/Mob/Digao/DL3.png'), pygame.image.load('imagens/Mob/Digao/DL4.png'),
              pygame.image.load('imagens/Mob/Digao/DL5.png'), pygame.image.load('imagens/Mob/Digao/DL6.png')]
+
+    dieL = [pygame.image.load('imagens/Mob/Digao/die/1.png'), pygame.image.load('imagens/Mob/Digao/die/2.png'),
+              pygame.image.load('imagens/Mob/Digao/die/3.png'), pygame.image.load('imagens/Mob/Digao/die/4.png'),
+              pygame.image.load('imagens/Mob/Digao/die/5.png'), pygame.image.load('imagens/Mob/Digao/die/6.png'),
+              pygame.image.load('imagens/Mob/Digao/die/7.png'), pygame.image.load('imagens/Mob/Digao/die/8.png'),
+              pygame.image.load('imagens/Mob/Digao/die/9.png'), pygame.image.load('imagens/Mob/Digao/die/10.png'),
+              pygame.image.load('imagens/Mob/Digao/die/11.png'), pygame.image.load('imagens/Mob/Digao/die/12.png'),
+              pygame.image.load('imagens/Mob/Digao/die/13.png'), pygame.image.load('imagens/Mob/Digao/die/14.png'),
+              pygame.image.load('imagens/Mob/Digao/die/15.png'), pygame.image.load('imagens/Mob/Digao/die/16.png'),
+              pygame.image.load('imagens/Mob/Digao/die/17.png'), pygame.image.load('imagens/Mob/Digao/die/18.png'),
+              pygame.image.load('imagens/Mob/Digao/die/19.png'), pygame.image.load('imagens/Mob/Digao/die/20.png'),
+              pygame.image.load('imagens/Mob/Digao/die/21.png'), pygame.image.load('imagens/Mob/Digao/die/22.png'),
+              pygame.image.load('imagens/Mob/Digao/die/23.png'), pygame.image.load('imagens/Mob/Digao/die/24.png'),
+              pygame.image.load('imagens/Mob/Digao/die/25.png'), pygame.image.load('imagens/Mob/Digao/die/26.png'),
+              pygame.image.load('imagens/Mob/Digao/die/27.png'), pygame.image.load('imagens/Mob/Digao/die/28.png'),
+              pygame.image.load('imagens/Mob/Digao/die/29.png'), pygame.image.load('imagens/Mob/Digao/die/30.png'),
+              pygame.image.load('imagens/Mob/Digao/die/31.png'), pygame.image.load('imagens/Mob/Digao/die/32.png'),
+              pygame.image.load('imagens/Mob/Digao/die/33.png'), pygame.image.load('imagens/Mob/Digao/die/34.png'),
+              pygame.image.load('imagens/Mob/Digao/die/35.png'), pygame.image.load('imagens/Mob/Digao/die/36.png'),
+              pygame.image.load('imagens/Mob/Digao/die/37.png'), pygame.image.load('imagens/Mob/Digao/die/38.png'),
+              pygame.image.load('imagens/Mob/Digao/die/39.png')]
+
+    dieR = [pygame.transform.flip(pygame.image.load('imagens/Mob/Digao/die/1.png'), True, False),
+            pygame.transform.flip(pygame.image.load('imagens/Mob/Digao/die/2.png'), True, False),
+            pygame.transform.flip(pygame.image.load('imagens/Mob/Digao/die/3.png'), True, False),
+            pygame.transform.flip(pygame.image.load('imagens/Mob/Digao/die/4.png'), True, False),
+            pygame.transform.flip(pygame.image.load('imagens/Mob/Digao/die/5.png'), True, False),
+            pygame.transform.flip(pygame.image.load('imagens/Mob/Digao/die/6.png'), True, False),
+            pygame.transform.flip(pygame.image.load('imagens/Mob/Digao/die/7.png'), True, False),
+            pygame.transform.flip(pygame.image.load('imagens/Mob/Digao/die/8.png'), True, False),
+            pygame.transform.flip(pygame.image.load('imagens/Mob/Digao/die/9.png'), True, False),
+            pygame.transform.flip(pygame.image.load('imagens/Mob/Digao/die/10.png'), True, False),
+            pygame.transform.flip(pygame.image.load('imagens/Mob/Digao/die/11.png'), True, False),
+            pygame.transform.flip(pygame.image.load('imagens/Mob/Digao/die/12.png'), True, False),
+            pygame.transform.flip(pygame.image.load('imagens/Mob/Digao/die/13.png'), True, False),
+            pygame.transform.flip(pygame.image.load('imagens/Mob/Digao/die/14.png'), True, False),
+            pygame.transform.flip(pygame.image.load('imagens/Mob/Digao/die/15.png'), True, False),
+            pygame.transform.flip(pygame.image.load('imagens/Mob/Digao/die/16.png'), True, False),
+            pygame.transform.flip(pygame.image.load('imagens/Mob/Digao/die/17.png'), True, False),
+            pygame.transform.flip(pygame.image.load('imagens/Mob/Digao/die/18.png'), True, False),
+            pygame.transform.flip(pygame.image.load('imagens/Mob/Digao/die/19.png'), True, False),
+            pygame.transform.flip(pygame.image.load('imagens/Mob/Digao/die/20.png'), True, False),
+            pygame.transform.flip(pygame.image.load('imagens/Mob/Digao/die/21.png'), True, False),
+            pygame.transform.flip(pygame.image.load('imagens/Mob/Digao/die/22.png'), True, False),
+            pygame.transform.flip(pygame.image.load('imagens/Mob/Digao/die/23.png'), True, False),
+            pygame.transform.flip(pygame.image.load('imagens/Mob/Digao/die/24.png'), True, False),
+            pygame.transform.flip(pygame.image.load('imagens/Mob/Digao/die/25.png'), True, False),
+            pygame.transform.flip(pygame.image.load('imagens/Mob/Digao/die/26.png'), True, False),
+            pygame.transform.flip(pygame.image.load('imagens/Mob/Digao/die/27.png'), True, False),
+            pygame.transform.flip(pygame.image.load('imagens/Mob/Digao/die/28.png'), True, False),
+            pygame.transform.flip(pygame.image.load('imagens/Mob/Digao/die/29.png'), True, False),
+            pygame.transform.flip(pygame.image.load('imagens/Mob/Digao/die/30.png'), True, False),
+            pygame.transform.flip(pygame.image.load('imagens/Mob/Digao/die/31.png'), True, False),
+            pygame.transform.flip(pygame.image.load('imagens/Mob/Digao/die/32.png'), True, False),
+            pygame.transform.flip(pygame.image.load('imagens/Mob/Digao/die/33.png'), True, False),
+            pygame.transform.flip(pygame.image.load('imagens/Mob/Digao/die/34.png'), True, False),
+            pygame.transform.flip(pygame.image.load('imagens/Mob/Digao/die/35.png'), True, False),
+            pygame.transform.flip(pygame.image.load('imagens/Mob/Digao/die/36.png'), True, False),
+            pygame.transform.flip(pygame.image.load('imagens/Mob/Digao/die/37.png'), True, False),
+            pygame.transform.flip(pygame.image.load('imagens/Mob/Digao/die/38.png'), True, False),
+            pygame.transform.flip(pygame.image.load('imagens/Mob/Digao/die/39.png'), True, False)]
 
     imgskill1 = [pygame.image.load('imagens/Mob/Digao/skill1/1.png'), pygame.image.load('imagens/Mob/Digao/skill1/2.png'),
               pygame.image.load('imagens/Mob/Digao/skill1/3.png'), pygame.image.load('imagens/Mob/Digao/skill1/4.png'),
@@ -7373,6 +7436,23 @@ class digao(object):  # Boss Ellinia
               pygame.image.load('imagens/Mob/Digao/skill1/27.png')]
 
     explosionskill1 = pygame.image.load('imagens/Mob/Digao/skill1/explosion.png')
+    
+    imgskill2 = [pygame.image.load('imagens/Mob/Digao/skill2/1.png'), pygame.image.load('imagens/Mob/Digao/skill2/2.png'),
+              pygame.image.load('imagens/Mob/Digao/skill2/3.png'), pygame.image.load('imagens/Mob/Digao/skill2/4.png'),
+              pygame.image.load('imagens/Mob/Digao/skill2/5.png'), pygame.image.load('imagens/Mob/Digao/skill2/6.png'),
+              pygame.image.load('imagens/Mob/Digao/skill2/7.png'), pygame.image.load('imagens/Mob/Digao/skill2/8.png'),
+              pygame.image.load('imagens/Mob/Digao/skill2/9.png'), pygame.image.load('imagens/Mob/Digao/skill2/10.png'),
+              pygame.image.load('imagens/Mob/Digao/skill2/11.png'), pygame.image.load('imagens/Mob/Digao/skill2/12.png'), 
+              pygame.image.load('imagens/Mob/Digao/skill2/13.png'), pygame.image.load('imagens/Mob/Digao/skill2/14.png'), 
+              pygame.image.load('imagens/Mob/Digao/skill2/15.png'), pygame.image.load('imagens/Mob/Digao/skill2/16.png'), 
+              pygame.image.load('imagens/Mob/Digao/skill2/17.png'), pygame.image.load('imagens/Mob/Digao/skill2/18.png'), 
+              pygame.image.load('imagens/Mob/Digao/skill2/19.png'), pygame.image.load('imagens/Mob/Digao/skill2/20.png'), 
+              pygame.image.load('imagens/Mob/Digao/skill2/21.png'), pygame.image.load('imagens/Mob/Digao/skill2/22.png'), 
+              pygame.image.load('imagens/Mob/Digao/skill2/23.png'), pygame.image.load('imagens/Mob/Digao/skill2/24.png'), 
+              pygame.image.load('imagens/Mob/Digao/skill2/25.png'), pygame.image.load('imagens/Mob/Digao/skill2/26.png'), 
+              pygame.image.load('imagens/Mob/Digao/skill2/27.png'), pygame.image.load('imagens/Mob/Digao/skill2/28.png'),
+              pygame.image.load('imagens/Mob/Digao/skill2/29.png'), pygame.image.load('imagens/Mob/Digao/skill2/30.png'),
+              pygame.image.load('imagens/Mob/Digao/skill2/31.png')]
 
     def __init__(self, x, y, width, height, end):
         self.x = x
@@ -7381,12 +7461,15 @@ class digao(object):  # Boss Ellinia
         self.height = height
         self.path = [x, end]
         self.walkCount = 0
+        self.dieCount = 0
         self.skill1Count = 0
+        self.skill2Count = 0
         self.vel = 4
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
         self.washit = 0
-        self.health = 181
+        self.health = 1
         self.visible = True
+        self.ondie = False
         self.onskill1 = False
         self.onskill2 = False
         self.onskill3 = False
@@ -7395,8 +7478,9 @@ class digao(object):  # Boss Ellinia
     def draw(self, win):
         self.move()
         self.skill1()
-
-        if self.visible and self.onskill1 == False:
+        self.skill2()
+        self.die()
+        if self.visible and self.ondie == False and self.onskill1 == False and self.onskill2 == False:
             if self.walkCount + 1 >= 24:
                 self.walkCount = 0
 
@@ -7418,7 +7502,7 @@ class digao(object):  # Boss Ellinia
             pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
-        if self.onskill1 == False:
+        if self.ondie == False and self.onskill1 == False and self.onskill2 == False:
             if self.vel > 0:
                 if self.x < self.path[1] + self.vel:
                     self.x += self.vel
@@ -7446,6 +7530,27 @@ class digao(object):  # Boss Ellinia
                 win.blit(self.imgskill1[self.skill1Count // 4], (self.x - camx - 100, self.y - 80))
                 self.skill1Count += 1
 
+    def skill2(self):
+        if self.visible and self.onskill2 == True:
+            if self.skill2Count + 1 >= 124:
+                self.skill2Count = 0
+
+            if self.vel < 0:
+                win.blit(self.imgskill2[self.skill2Count // 4], (self.x - camx - 100, self.y - 215))
+                self.skill2Count += 1
+    
+    def die(self):
+        if self.visible and self.ondie == True:
+            if self.dieCount + 1 >= 156:
+                self.dieCount = 0
+
+            if self.vel > 0:
+                win.blit(self.dieR[self.dieCount // 4], (self.x - camx - 50, self.y))
+                self.dieCount += 1
+            else:
+                win.blit(self.dieL[self.dieCount // 4], (self.x - camx + 50, self.y))
+                self.dieCount += 1
+                    
     def hit(self):
         digaohit.play()
         if self.health > 0 and self.vel > 0:
@@ -7458,15 +7563,76 @@ class digao(object):  # Boss Ellinia
             if self.vel > 0:
                 self.hitbox = (0, 0, 0, 0)
                 self.washit = 1
-                self.visible = False
+                self.ondie = True
+                #self.visible = False
                 digaodie.play()
             elif self.vel < 0:
                 self.hitbox = (0, 0, 0, 0)
                 self.washit = 2
-                self.visible = False
+                self.ondie = True
+                #self.visible = False
                 digaodie.play()
             else:
                 self.washit = 0
+
+class arrow1(object):
+    walkL = [pygame.image.load('imagens/Mob/Digao/skill2/arrow/1.png'), pygame.image.load('imagens/Mob/Digao/skill2/arrow/2.png'),
+          pygame.image.load('imagens/Mob/Digao/skill2/arrow/3.png'), pygame.image.load('imagens/Mob/Digao/skill2/arrow/4.png'),
+          pygame.image.load('imagens/Mob/Digao/skill2/arrow/5.png')]
+    
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.walkCount = 0
+        self.vel = 4
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.visible = False
+
+    def draw(self, win):
+        if self.visible:
+            if self.walkCount + 1 >= 25:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(self.walkL[self.walkCount // 5], (self.x - camx, self.y))
+                self.walkCount += 1
+
+            self.hitbox = (self.x - camx, self.y, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+
+class arrow2(object):
+    walkL = [pygame.image.load('imagens/Mob/Digao/skill2/arrow/1.png'),
+             pygame.image.load('imagens/Mob/Digao/skill2/arrow/2.png'),
+             pygame.image.load('imagens/Mob/Digao/skill2/arrow/3.png'),
+             pygame.image.load('imagens/Mob/Digao/skill2/arrow/4.png'),
+             pygame.image.load('imagens/Mob/Digao/skill2/arrow/5.png')]
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.walkCount = 0
+        self.vel = 4
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.visible = False
+
+    def draw(self, win):
+        if self.visible:
+            if self.walkCount + 1 >= 25:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(self.walkL[self.walkCount // 5], (self.x - camx, self.y))
+                self.walkCount += 1
+
+            self.hitbox = (self.x - camx, self.y, self.width, self.height)
+            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
 def GameWindow():
     # Background (Mapa)
@@ -7731,6 +7897,8 @@ def GameWindow():
 
     # Boss Final Draw
     digao.draw(win)
+    arrow1.draw(win)
+    arrow2.draw(win)
 
     # Plataformas Jail
     platform109.draw(win)
@@ -8015,6 +8183,8 @@ wall10 = wall10(29358, 0, 70, 600)
 
 # Variavel Boss Final
 digao = digao(27645, 269, 110, 256, 28404)
+arrow1 = arrow1(28611, 480, 57, 33)
+arrow2 = arrow2(28611, 244, 57, 33)
 
 # Plataformas Jail fila 1
 platform109 = platform109(27753, 480, 60, 15)
@@ -8041,8 +8211,10 @@ while run:
 
     # TESTES
     # print("JumpCount:", player.jumpCount, "Camx:", camx, "onPlatform:", player.onPlatform, "isJump:", player.isJump)
-    print(camx)
-    #print(digao.skill1Count)
+    #print(camx)
+    #print(digao.x)
+    #print(digao.skill2Count)
+    print(arrow1.x)
     #print(digao.walkCount)
     # print(player.y)
     #print(player.onPlatform)
@@ -10224,6 +10396,74 @@ while run:
             camx = checkpoint
             player.x = 400
             player.y = 470
+
+    # Skill2 Digão
+    if player.hitbox[1] < arrow1.hitbox[1] + arrow1.hitbox[3] and player.hitbox[1] + player.hitbox[3] > arrow1.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > arrow1.hitbox[0] and player.hitbox[0] < arrow1.hitbox[0] + \
+                arrow1.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+            
+    if player.hitbox[1] < arrow2.hitbox[1] + arrow2.hitbox[3] and player.hitbox[1] + player.hitbox[3] > arrow2.hitbox[
+        1]:
+        if player.hitbox[0] + player.hitbox[2] > arrow2.hitbox[0] and player.hitbox[0] < arrow2.hitbox[0] + \
+                arrow2.hitbox[2]:
+            player.hit()
+            life -= 1
+            player.health -= 1
+            camx = checkpoint
+            player.x = 400
+            player.y = 470
+            
+    if digao.x == 27865 and digao.vel < 0:
+        digao.onskill2 = True
+
+    if digao.skill2Count == 1 and camx >= 26931:
+        digaoskill2.play()
+        
+    if digao.skill2Count > 20:
+        arrow1.visible = True
+        arrow1.width = 57
+        arrow1.heigth = 33
+        arrow1.x -= 10
+
+        arrow2.visible = True
+        arrow2.width = 57
+        arrow2.heigth = 33
+        arrow2.x -= 10
+
+    if arrow1.x == 27581:
+        arrow1.visible = False
+        arrow1.width = 0
+        arrow1.heigth = 0
+        arrow1.x = 28611
+
+    if arrow2.x == 27581:
+        arrow2.visible = False
+        arrow2.width = 0
+        arrow2.heigth = 0
+        arrow2.x = 28611
+        
+    if digao.skill2Count == 123:
+        digao.onskill2 = False
+        digao.skill2Count = 0
+        arrow1.visible = False
+        arrow1.width = 0
+        arrow1.heigth = 0
+        arrow1.x = 28611
+
+        arrow2.visible = False
+        arrow2.width = 0
+        arrow2.heigth = 0
+        arrow2.x = 28611
+
+    if digao.dieCount >= 155:
+        digao.visible = False
 
     # Funções da Gravidade
     if player.y < 470 and player.isJump == False and player.onPlatform == False:
