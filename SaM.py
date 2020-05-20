@@ -66,6 +66,7 @@ detonado = pygame.image.load('imagens/Mapa/detonado.png')
 errado = pygame.image.load('imagens/Mapa/errado.png')
 faltakeys = pygame.image.load('imagens/Mapa/faltakeys.png')
 quest = pygame.image.load('imagens/Misc/quest.png')
+skybg = pygame.image.load('imagens/Mapa/skybg.png')
 
 # Configurações da janela
 pygame.display.set_icon(icone)
@@ -191,8 +192,8 @@ class player(object):
             win.blit(charL, (round(self.x), round(self.y)))
         self.hitbox = (self.x + 23, self.y + 5, 37, 73)
         self.plathitbox = (self.x + 30, self.y + 75, 20, 1)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
-        pygame.draw.rect(win, (255, 0, 0), self.plathitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.plathitbox, 2)
 
     def hit(self):
         if self.health >= 1:
@@ -235,7 +236,7 @@ class platform1(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= 0:
@@ -257,7 +258,7 @@ class platform2(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= 0:
@@ -279,7 +280,7 @@ class platform3(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= 0:
@@ -301,7 +302,7 @@ class platform4(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -323,7 +324,7 @@ class platform5(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -345,7 +346,7 @@ class platform6(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -367,7 +368,7 @@ class platform7(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -389,7 +390,7 @@ class platform8(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -411,7 +412,7 @@ class platform9(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -433,7 +434,7 @@ class platform10(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -455,7 +456,7 @@ class platform11(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -476,7 +477,7 @@ class platform12(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -498,7 +499,7 @@ class platform13(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -520,7 +521,7 @@ class platform14(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -542,7 +543,7 @@ class platform15(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -564,7 +565,7 @@ class platform16(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -587,7 +588,7 @@ class spike1(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
 
 class spike2(object):
@@ -601,7 +602,7 @@ class spike2(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
 
 ## Monstros Porto Lith
@@ -651,7 +652,7 @@ class snail1(object):
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] - 2, self.hitbox[1] - 17, 49, 8))
             pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0], self.hitbox[1] - 15, 45 - (15 * (3 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y - 3, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -727,7 +728,7 @@ class snail2(object):
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] - 2, self.hitbox[1] - 17, 49, 8))
             pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0], self.hitbox[1] - 15, 45 - (15 * (3 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y - 3, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -803,7 +804,7 @@ class snail3(object):
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] - 2, self.hitbox[1] - 17, 49, 8))
             pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0], self.hitbox[1] - 15, 45 - (15 * (3 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y - 3, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -879,7 +880,7 @@ class snail4(object):
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] - 2, self.hitbox[1] - 17, 49, 8))
             pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0], self.hitbox[1] - 15, 45 - (15 * (3 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y - 3, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -955,7 +956,7 @@ class snail5(object):
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] - 2, self.hitbox[1] - 17, 49, 8))
             pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0], self.hitbox[1] - 15, 45 - (15 * (3 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y - 3, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -1030,7 +1031,7 @@ class snail6(object):
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] - 2, self.hitbox[1] - 17, 49, 8))
             pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0], self.hitbox[1] - 15, 45 - (15 * (3 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y - 3, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -1106,7 +1107,7 @@ class snail7(object):
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0] - 2, self.hitbox[1] - 17, 49, 8))
             pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0], self.hitbox[1] - 15, 45 - (15 * (3 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y - 3, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -1160,7 +1161,7 @@ class spike3(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
 
 class spike4(object):
@@ -1174,7 +1175,7 @@ class spike4(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
 
 class spike5(object):
@@ -1188,7 +1189,7 @@ class spike5(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
 
 class spike6(object):
@@ -1202,7 +1203,7 @@ class spike6(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
 
 ## Plataformas Henesys
@@ -1217,7 +1218,7 @@ class platform17(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -1239,7 +1240,7 @@ class platform18(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -1261,7 +1262,7 @@ class platform19(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -1283,7 +1284,7 @@ class platform20(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -1305,7 +1306,7 @@ class platform21(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -1327,7 +1328,7 @@ class platform22(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -1349,7 +1350,7 @@ class platform23(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -1371,7 +1372,7 @@ class platform24(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -1393,7 +1394,7 @@ class platform25(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -1415,7 +1416,7 @@ class platform26(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -1437,7 +1438,7 @@ class platform27(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -1459,7 +1460,7 @@ class platform28(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -1481,7 +1482,7 @@ class platform29(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -1503,7 +1504,7 @@ class platform30(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -1525,7 +1526,7 @@ class platform31(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -1547,7 +1548,7 @@ class platform32(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -1569,7 +1570,7 @@ class platform33(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -1591,7 +1592,7 @@ class platform34(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -1613,7 +1614,7 @@ class platform35(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -1635,7 +1636,7 @@ class platform36(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -1657,7 +1658,7 @@ class platform37(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -1679,7 +1680,7 @@ class platform38(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -1701,7 +1702,7 @@ class platform39(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -1723,7 +1724,7 @@ class platform40(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -1745,7 +1746,7 @@ class platform41(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -1767,7 +1768,7 @@ class platform42(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -1826,7 +1827,7 @@ class cogu1(object):
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -1903,7 +1904,7 @@ class cogu2(object):
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -1980,7 +1981,7 @@ class cogu3(object):
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -2057,7 +2058,7 @@ class cogu4(object):
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -2134,7 +2135,7 @@ class cogu5(object):
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -2211,7 +2212,7 @@ class cogu6(object):
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -2288,7 +2289,7 @@ class cogu7(object):
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -2365,7 +2366,7 @@ class cogu8(object):
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -2442,7 +2443,7 @@ class cogu9(object):
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -2519,7 +2520,7 @@ class cogu10(object):
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -2596,7 +2597,7 @@ class cogu11(object):
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -2673,7 +2674,7 @@ class cogu12(object):
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -2750,7 +2751,7 @@ class cogu13(object):
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -2827,7 +2828,7 @@ class cogu14(object):
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] + 15, self.hitbox[1] - 15, 45 - (7 * (6 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -2880,7 +2881,7 @@ class spike7(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
 
 class spike8(object):
@@ -2894,7 +2895,7 @@ class spike8(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
 
 class spike9(object):
@@ -2908,7 +2909,7 @@ class spike9(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     # Plataformas Perion
 
@@ -2924,7 +2925,7 @@ class platform43(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -2946,7 +2947,7 @@ class platform44(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -2968,7 +2969,7 @@ class platform45(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -2990,7 +2991,7 @@ class platform46(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -3012,7 +3013,7 @@ class platform47(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -3034,7 +3035,7 @@ class platform48(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -3056,7 +3057,7 @@ class platform49(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -3078,7 +3079,7 @@ class platform50(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -3100,7 +3101,7 @@ class platform51(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -3122,7 +3123,7 @@ class platform52(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -3144,7 +3145,7 @@ class platform53(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -3166,7 +3167,7 @@ class platform54(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -3188,7 +3189,7 @@ class platform55(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -3210,7 +3211,7 @@ class platform56(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -3232,7 +3233,7 @@ class platform57(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -3254,7 +3255,7 @@ class platform58(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -3276,7 +3277,7 @@ class platform59(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -3298,7 +3299,7 @@ class platform60(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -3320,7 +3321,7 @@ class platform61(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -3342,7 +3343,7 @@ class platform62(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -3364,7 +3365,7 @@ class platform63(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -3386,7 +3387,7 @@ class platform64(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -3408,7 +3409,7 @@ class platform65(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -3430,7 +3431,7 @@ class platform66(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -3454,7 +3455,7 @@ class wall1(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
 
 class wall2(object):
@@ -3468,7 +3469,7 @@ class wall2(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
 
 # Objetos Plataformas Ellinia
@@ -3483,7 +3484,7 @@ class platform67(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -3505,7 +3506,7 @@ class platform68(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -3527,7 +3528,7 @@ class platform69(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -3549,7 +3550,7 @@ class platform70(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -3571,7 +3572,7 @@ class platform71(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -3593,7 +3594,7 @@ class platform72(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -3615,7 +3616,7 @@ class platform73(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -3638,7 +3639,7 @@ class wall3(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
 
 class wall4(object):
@@ -3652,7 +3653,7 @@ class wall4(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     # Objetos Gate Perion
 
@@ -3825,7 +3826,7 @@ class toco1(object):
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -3902,7 +3903,7 @@ class toco2(object):
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -3979,7 +3980,7 @@ class toco3(object):
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -4056,7 +4057,7 @@ class toco4(object):
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -4133,7 +4134,7 @@ class toco5(object):
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -4210,7 +4211,7 @@ class toco6(object):
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -4287,7 +4288,7 @@ class toco7(object):
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -4364,7 +4365,7 @@ class toco8(object):
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -4441,7 +4442,7 @@ class toco9(object):
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -4518,7 +4519,7 @@ class toco10(object):
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -4595,7 +4596,7 @@ class toco11(object):
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -4672,7 +4673,7 @@ class toco12(object):
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -4749,7 +4750,7 @@ class toco13(object):
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -4826,7 +4827,7 @@ class toco14(object):
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -4903,7 +4904,7 @@ class toco15(object):
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -4980,7 +4981,7 @@ class toco16(object):
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -5080,7 +5081,7 @@ class stumpy(object):  # Boss perion
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] - 48, self.hitbox[1] - 78, 183 - (2 * (89 - self.health)), 4))
             self.hitbox = (self.x - camx + 50, self.y + 80, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         stumpyhit.play()
@@ -5122,7 +5123,7 @@ class spike10(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
 
 # Objetos Monstros Ellinia
@@ -5175,7 +5176,7 @@ class slime1(object):
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y + 30, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -5252,7 +5253,7 @@ class slime2(object):
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y + 30, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -5329,7 +5330,7 @@ class slime3(object):
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y + 30, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -5406,7 +5407,7 @@ class slime4(object):
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y + 30, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -5483,7 +5484,7 @@ class slime5(object):
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y + 30, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -5560,7 +5561,7 @@ class slime6(object):
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y + 30, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -5637,7 +5638,7 @@ class slime7(object):
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y + 30, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -5714,7 +5715,7 @@ class slime8(object):
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y + 30, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -5791,7 +5792,7 @@ class slime9(object):
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y + 30, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -5872,7 +5873,7 @@ class slime10(object):
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] + 10, self.hitbox[1] - 15, 45 - (4 * (10 - self.health)), 4))
             self.hitbox = (self.x - camx, self.y + 30, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -5978,7 +5979,7 @@ class KSlime(object):  # Boss Ellinia
             pygame.draw.rect(win, (255, 0, 0),
                              (self.hitbox[0] - 28, self.hitbox[1] - 78, 183 - (2 * (89 - self.health)), 4))
             self.hitbox = (self.x - camx + 30, self.y + 80, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -6049,7 +6050,7 @@ class spike11(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
 # Objetos Plataformas ?
 class platform74(object):
@@ -6063,7 +6064,7 @@ class platform74(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -6084,7 +6085,7 @@ class platform75(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -6105,7 +6106,7 @@ class platform76(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -6126,7 +6127,7 @@ class platform77(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -6147,7 +6148,7 @@ class platform78(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -6168,7 +6169,7 @@ class platform79(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -6189,7 +6190,7 @@ class platform80(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -6210,7 +6211,7 @@ class platform81(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -6231,7 +6232,7 @@ class platform82(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -6252,7 +6253,7 @@ class platform83(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -6273,7 +6274,7 @@ class platform84(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -6300,7 +6301,7 @@ class platform85(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -6321,7 +6322,7 @@ class platform86(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -6343,7 +6344,7 @@ class platform87(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -6364,7 +6365,7 @@ class platform88(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -6385,7 +6386,7 @@ class platform89(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -6406,7 +6407,7 @@ class platform90(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -6427,7 +6428,7 @@ class platform91(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -6448,7 +6449,7 @@ class platform92(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -6469,7 +6470,7 @@ class platform93(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -6490,7 +6491,7 @@ class platform94(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -6511,7 +6512,7 @@ class platform95(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -6532,7 +6533,7 @@ class platform96(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -6553,7 +6554,7 @@ class platform97(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -6574,7 +6575,7 @@ class platform98(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -6595,7 +6596,7 @@ class platform99(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -6616,7 +6617,7 @@ class platform100(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -6637,7 +6638,7 @@ class platform101(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -6658,7 +6659,7 @@ class platform102(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -6679,7 +6680,7 @@ class platform103(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -6700,7 +6701,7 @@ class platform104(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -6721,7 +6722,7 @@ class platform105(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -6742,7 +6743,7 @@ class platform106(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -6763,7 +6764,7 @@ class platform107(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -6784,7 +6785,7 @@ class platform108(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -6855,7 +6856,7 @@ class alien(object):
                 self.walkCount += 1
 
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.vel > 0:
@@ -6885,7 +6886,7 @@ class wall5(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
 class wall6(object):
 
@@ -6898,7 +6899,7 @@ class wall6(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
 # Plataformas Jail
 class platform109(object):
@@ -6912,7 +6913,7 @@ class platform109(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -6933,7 +6934,7 @@ class platform110(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -6954,7 +6955,7 @@ class platform111(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -6975,7 +6976,7 @@ class platform112(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -6996,7 +6997,7 @@ class platform113(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -7017,7 +7018,7 @@ class platform114(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -7038,7 +7039,7 @@ class platform115(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -7059,7 +7060,7 @@ class platform116(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -7080,7 +7081,7 @@ class platform117(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         if player.jumpCount <= -1:
@@ -7102,7 +7103,7 @@ class wall7(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
 class wall8(object):
 
@@ -7115,7 +7116,7 @@ class wall8(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
 class wall9(object):
 
@@ -7128,7 +7129,7 @@ class wall9(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
 class wall10(object):
 
@@ -7141,7 +7142,33 @@ class wall10(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+class wall11(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+
+class wall12(object):
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.hitbox = (self.x, self.y, self.width, self.height)
+
+    def draw(self, win):
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
 class lever1(object):
     walkR = [pygame.image.load('imagens/Mob/Lever/LD.png'), pygame.image.load('imagens/Mob/Lever/LD.png')]
@@ -7176,7 +7203,7 @@ class lever1(object):
         elif self.washit == 2:
             self.washit = 0
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         self.cont += 1
@@ -7211,7 +7238,7 @@ class lever2(object):
         elif self.washit == 2:
             self.washit = 0
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         self.cont += 1
@@ -7246,7 +7273,7 @@ class lever3(object):
         elif self.washit == 2:
             self.washit = 0
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         self.cont += 1
@@ -7281,7 +7308,7 @@ class lever4(object):
         elif self.washit == 2:
             self.washit = 0
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def hit(self):
         self.cont += 1
@@ -7300,7 +7327,7 @@ class activator(object):
 
     def draw(self, win):
         self.hitbox = (self.x - camx, self.y, self.width, self.height)
-        pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+        #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
 class portal1(object): 
 
@@ -7353,7 +7380,7 @@ class portal1(object):
                 self.walkCount += 1
 
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def Skill(self):
         if self.skill == True:
@@ -7389,7 +7416,7 @@ class portal2(object):
                 self.walkCount += 1
 
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def Skill(self):
         if self.skill == True:
@@ -7565,7 +7592,7 @@ class digao(object):  # Boss Final
             pygame.draw.rect(win, (0, 0, 0), (self.hitbox[0], self.hitbox[1] - 12, 187, 8))
             pygame.draw.rect(win, (255, 0, 0), (self.hitbox[0] + 2, self.hitbox[1] - 10 , 183 - (1 * (181 - self.health)), 4))
             #self.hitbox = (self.x - camx, self.y + 20, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
     def move(self):
         if self.ondie == False and self.onskill1 == False and self.onskill2 == False and self.onskill3 == False:
@@ -7678,7 +7705,7 @@ class arrow1(object):
                 self.walkCount += 1
 
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
 class arrow2(object):
     walkL = [pygame.image.load('imagens/Mob/Digao/skill2/arrow/1.png'),
@@ -7708,7 +7735,7 @@ class arrow2(object):
                 self.walkCount += 1
 
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
 
 class jar1(object):
@@ -7747,7 +7774,7 @@ class jar1(object):
                 self.walkCount += 1
 
             self.hitbox = (self.x - camx + 39, self.y, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
 class jar2(object):
     def __init__(self, x, y, width, height):
@@ -7771,7 +7798,7 @@ class jar2(object):
                 self.walkCount += 1
 
             self.hitbox = (self.x - camx + 39, self.y, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
 class jar3(object):
     def __init__(self, x, y, width, height):
@@ -7795,7 +7822,7 @@ class jar3(object):
                 self.walkCount += 1
 
             self.hitbox = (self.x - camx + 39, self.y, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
 class jar4(object):
     def __init__(self, x, y, width, height):
@@ -7819,7 +7846,7 @@ class jar4(object):
                 self.walkCount += 1
 
             self.hitbox = (self.x - camx + 39, self.y, self.width, self.height)
-            pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
 
 class jail(object):
@@ -7847,7 +7874,7 @@ class jail(object):
                 self.walkCount += 1
 
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            ##pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
 class key1(object):
     walkL = [pygame.image.load('imagens/Mob/Keys/key.png')]
@@ -7873,7 +7900,7 @@ class key1(object):
                 self.walkCount += 1
 
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            ##pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
 class key2(object):
     walkL = [pygame.image.load('imagens/Mob/Keys/key.png')]
@@ -7899,7 +7926,7 @@ class key2(object):
                 self.walkCount += 1
 
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            ##pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
 class key3(object):
     walkL = [pygame.image.load('imagens/Mob/Keys/key.png')]
@@ -7925,7 +7952,7 @@ class key3(object):
                 self.walkCount += 1
 
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            ##pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
 class key4(object):
     walkL = [pygame.image.load('imagens/Mob/Keys/key.png')]
@@ -7951,7 +7978,7 @@ class key4(object):
                 self.walkCount += 1
 
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            ##pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
 class key5(object):
     walkL = [pygame.image.load('imagens/Mob/Keys/key.png')]
@@ -7977,7 +8004,7 @@ class key5(object):
                 self.walkCount += 1
 
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            ##pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
 class key6(object):
     walkL = [pygame.image.load('imagens/Mob/Keys/key.png')]
@@ -8003,7 +8030,7 @@ class key6(object):
                 self.walkCount += 1
 
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            ##pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
 class key7(object):
     walkL = [pygame.image.load('imagens/Mob/Keys/key.png')]
@@ -8029,11 +8056,47 @@ class key7(object):
                 self.walkCount += 1
 
             self.hitbox = (self.x - camx, self.y, self.width, self.height)
-            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            ##pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
 
+class fim(object):
+    walkL = [pygame.image.load('imagens/Mapa/Fim/1.png'), pygame.image.load('imagens/Mapa/Fim/2.png'),
+             pygame.image.load('imagens/Mapa/Fim/3.png'), pygame.image.load('imagens/Mapa/Fim/4.png'),
+             pygame.image.load('imagens/Mapa/Fim/5.png'), pygame.image.load('imagens/Mapa/Fim/6.png'),
+             pygame.image.load('imagens/Mapa/Fim/7.png'), pygame.image.load('imagens/Mapa/Fim/8.png'),
+             pygame.image.load('imagens/Mapa/Fim/9.png'), pygame.image.load('imagens/Mapa/Fim/10.png'),
+             pygame.image.load('imagens/Mapa/Fim/11.png'), pygame.image.load('imagens/Mapa/Fim/12.png'),
+             pygame.image.load('imagens/Mapa/Fim/13.png'), pygame.image.load('imagens/Mapa/Fim/14.png'),
+             pygame.image.load('imagens/Mapa/Fim/15.png'), pygame.image.load('imagens/Mapa/Fim/16.png'),
+             pygame.image.load('imagens/Mapa/Fim/17.png'), pygame.image.load('imagens/Mapa/Fim/18.png')]
+
+    def __init__(self, x, y, width, height):
+        self.x = x
+        self.y = y
+        self.width = width
+        self.height = height
+        self.walkCount = 0
+        self.vel = 4
+        self.hitbox = (self.x - camx, self.y, self.width, self.height)
+        self.washit = 0
+        self.visible = True
+
+    def draw(self, win):
+        if self.visible:
+            if self.walkCount + 1 >= 54:
+                self.walkCount = 0
+
+            if self.vel > 0:
+                win.blit(self.walkL[self.walkCount // 3], (self.x - camx, self.y))
+                self.walkCount += 1
+
+            self.hitbox = (self.x - camx + 39, self.y, self.width, self.height)
+            #pygame.draw.rect(win, (255, 0, 0), self.hitbox, 2)
+            
 def GameWindow():
     # Background (Mapa)
     win.blit(bg4, (27358 - camx, 0))
+    win.blit(skybg, (29358 - camx, 0))
+    win.blit(skybg, (31468 - camx, 0))
     jail.draw(win)
     win.blit(parede, (29347 - camx, 0))
     win.blit(bg3, (18675 - camx, 0))
@@ -8087,9 +8150,13 @@ def GameWindow():
 
     portal1.draw(win)
     portal2.draw(win)
-    
+
+    #Mapa Final
+    fim.draw(win)
     # Draw Player
     player.draw(win)
+
+
 
     for arrow in arrows:
         arrow.draw(win)
@@ -8344,11 +8411,14 @@ def GameWindow():
 
     activator.draw(win)
 
+    wall11.draw(win)
+    wall12.draw(win)
+
     pygame.display.update()
 
 
 # Main loop
-camx = 27081  # Camera
+camx = 0  # Camera
 
 # Variavel Player
 player = player(400, 470, 64, 64)
@@ -8650,13 +8720,18 @@ key5 = key5(KSlime.x, 509, 32, 31)
 key6 = key6(26155, 516, 32, 31)
 key7 = key7(digao.x, 515, 32, 31)
 
+fim = fim(30068, 0, 0, 0)
+
+wall11 = wall11(30490, 0, 10, 600)
+wall12 = wall12(31070, 0, 10, 600)
+
 run = True
 while run:
     keys = pygame.key.get_pressed()
     clock.tick(27)
 
     # TESTES
-    print(camx)
+    #print(camx)
     #print(digao.x)
     #print(digao.skill2Count)
     #print(arrow1.x)
@@ -10751,6 +10826,21 @@ while run:
             camx -= 5
             player.walkCount = 0
 
+    if player.plathitbox[1] < wall11.hitbox[1] + wall11.hitbox[3] and player.plathitbox[1] + \
+            player.plathitbox[
+                3] > wall11.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > wall11.hitbox[0] and player.plathitbox[0] < \
+                wall11.hitbox[0] + wall11.hitbox[2]:
+            camx += 5
+            player.walkCount = 0
+            
+    if player.plathitbox[1] < wall12.hitbox[1] + wall12.hitbox[3] and player.plathitbox[1] + \
+            player.plathitbox[
+                3] > wall12.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > wall12.hitbox[0] and player.plathitbox[0] < \
+                wall12.hitbox[0] + wall12.hitbox[2]:
+            camx -= 5
+            player.walkCount = 0
 # Interagir com alavancas
     if player.hitbox[1] < lever1.hitbox[1] + lever1.hitbox[3] and player.hitbox[1] + \
             player.hitbox[
@@ -10835,6 +10925,20 @@ while run:
                 camx = 27081
                 music = pygame.mixer.music.load("BGM/BGM06.mp3")
                 pygame.mixer.music.play(-1)
+                if life < 3 and player.health < 3:
+                    life = 3
+                    player.health = 3
+
+# Funções do portal2
+    if player.plathitbox[1] < portal2.hitbox[1] + portal2.hitbox[3] and player.plathitbox[1] + \
+            player.plathitbox[
+                3] > portal2.hitbox[1]:
+        if player.plathitbox[0] + player.plathitbox[2] > portal2.hitbox[0] and player.plathitbox[0] < \
+                portal2.hitbox[0] + portal2.hitbox[2]:
+            if keys[pygame.K_UP]:
+                camx = 30075
+                music = pygame.mixer.music.load("BGM/BGMendgame.mp3")
+                pygame.mixer.music.play(-1)
 
     if portal1.skillCount == 131:
         portal1.skill = False
@@ -10892,7 +10996,7 @@ while run:
         digao.onskill1 = False
         digao.skill1Count = 0
 
-    if digao.skill1Count >= 90 and camx >= 27151:
+    if digao.skill1Count >= 90 and camx >= 27151 and camx <= 29615:
         if player.y >= 400:
             player.hit()
             life -= 1
@@ -11058,7 +11162,8 @@ while run:
         digao.visible = False
 
     key4.x = stumpy.x + 93
-    key5.x = KSlime.x + 103
+    if KSlime.visible == True:
+        key5.x = KSlime.x + 103
     key6.x = portal1.x + 98
     key7.x = digao.x + 101
 
